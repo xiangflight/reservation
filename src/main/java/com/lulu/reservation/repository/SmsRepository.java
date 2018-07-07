@@ -2,7 +2,6 @@ package com.lulu.reservation.repository;
 
 import com.lulu.reservation.domain.database.Sms;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  * @author 赵翔 xiangflight@foxmail.com

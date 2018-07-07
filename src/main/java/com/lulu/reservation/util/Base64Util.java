@@ -5,9 +5,20 @@ import sun.misc.BASE64Encoder;
 
 import java.io.UnsupportedEncodingException;
 
+/**
+ * @author 赵翔 xiangflight@foxmail.com
+ * @version 2.0.1 创建时间: 2018/7/7 下午23:25
+ * <p>
+ *     Base64工具类
+ *
+ */
 public class Base64Util {
-	// 加密
-	public static String getBase64(String str) {
+    /**
+     * 编码成Base64字符串
+     * @param str 原字符串
+     * @return Base64字符串
+     */
+	public static String encode2Str(String str) {
 		byte[] b = null;
 		String s = null;
 		try {
@@ -21,9 +32,13 @@ public class Base64Util {
 		return s;
 	}
 
-	// 解密
-	public static String getFromBase64(String s) {
-		byte[] b = null;
+    /**
+     * 解码成原始字符串
+     * @param s Base64字符串
+     * @return 原始字符串
+     */
+	 private static String decode2Str(String s) {
+		byte[] b;
 		String result = null;
 		if (s != null) {
 			BASE64Decoder decoder = new BASE64Decoder();
@@ -36,10 +51,4 @@ public class Base64Util {
 		}
 		return result;
 	}
-	
-	public static void main(String[] args) {
-		String sss=getFromBase64("6ZSA6aG557qi5a2X5Y+R56Wo5aGr5byA6YeR6aKdKOaIlueojuminSnotoXov4flr7nlupTnmoTok53lrZflj5Hnpajph5Hpop0o5oiW56iO6aKdKSE=");
-		System.out.println(sss);
-	}
-	
 }

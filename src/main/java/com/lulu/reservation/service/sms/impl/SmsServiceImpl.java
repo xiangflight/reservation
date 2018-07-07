@@ -54,12 +54,12 @@ public class SmsServiceImpl implements SmsService {
     private void sendRealCodeSms(String phone) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
-        String authorizedStr = Base64Util.getBase64(Constants.JG_SMS_AUTHORIZATION);
+        String authorizedStr = Base64Util.encode2Str(Constants.JG_SMS_AUTHORIZATION);
         httpHeaders.add("Authorization", "Basic " + authorizedStr);
         final MediaType mediaType = MediaType.parseMediaType("application/json;charset=UTF-8");
         httpHeaders.setContentType(mediaType);
         httpHeaders.add("Accept", MediaType.APPLICATION_JSON.toString());
-        HashMap<String, String> params = new HashMap<>();
+        HashMap<String, String> params = new HashMap<>(2);
         params.put("mobile", phone);
         params.put("temp_id", "1");
         final String jsonParams = JSON.toJSONString(params);

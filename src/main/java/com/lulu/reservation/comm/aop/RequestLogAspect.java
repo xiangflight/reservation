@@ -27,6 +27,8 @@ import java.util.StringJoiner;
 @Slf4j
 public class RequestLogAspect {
 
+    private static final String UNKNOWN_STRING = "unknown";
+
     @Pointcut("execution(public * com.lulu.reservation.web.*.*(..))")
     public void appRequestLog() {}
 
@@ -51,8 +53,8 @@ public class RequestLogAspect {
                     joiner.add(k + ":" + v[0]);
                 }
             });
-            log.info("uri = {}, httpMethod = {}, sessionId = {}, remoteIp = {}",
-                    uri, httpMethod, sessionId, remoteAddr);
+            log.info("path = {}, methodName = {}, uri = {}, httpMethod = {}, sessionId = {}, remoteIp = {}",
+                    path, methodName, uri, httpMethod, sessionId, remoteAddr);
         } catch (Exception e) {
             log.error("*******操作请求日志记录失败doBefore()*******", e);
         }
@@ -60,13 +62,13 @@ public class RequestLogAspect {
 
     private String getIpAddr(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
-        if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
+        if (StringUtils.isEmpty(ip) || UNKNOWN_STRING.equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
         }
-        if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
+        if (StringUtils.isEmpty(ip) || UNKNOWN_STRING.equalsIgnoreCase(ip)) {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
-        if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
+        if (StringUtils.isEmpty(ip) || UNKNOWN_STRING.equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
         }
         return ip;

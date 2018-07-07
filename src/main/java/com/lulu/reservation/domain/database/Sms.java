@@ -1,10 +1,8 @@
 package com.lulu.reservation.domain.database;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author 赵翔 xiangflight@foxmail.com
@@ -33,15 +31,6 @@ public class Sms {
 
     @Column
     private Integer state;
-
-    public Sms(){}
-
-    public Sms(String phone, Integer type, Long updateTime, Integer state) {
-        this.phone = phone;
-        this.type = type;
-        this.updateTime = updateTime;
-        this.state = state;
-    }
 
     @Override
     public String toString() {

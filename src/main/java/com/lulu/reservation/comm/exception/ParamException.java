@@ -1,7 +1,6 @@
 package com.lulu.reservation.comm.exception;
 
 import com.lulu.reservation.comm.Constants;
-import com.lulu.reservation.domain.response.Resp;
 import lombok.Getter;
 
 /**

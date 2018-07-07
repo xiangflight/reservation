@@ -1,6 +1,5 @@
 package com.lulu.reservation.comm.exception;
 
-import com.lulu.reservation.comm.Constants;
 import com.lulu.reservation.domain.response.Resp;
 import com.lulu.reservation.util.RespUtil;
 import lombok.extern.slf4j.Slf4j;
