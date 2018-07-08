@@ -16,6 +16,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -54,7 +55,7 @@ public class SmsServiceImpl implements SmsService {
     private void sendRealCodeSms(String phone) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
-        String authorizedStr = Base64Util.encode2Str(Constants.JG_SMS_AUTHORIZATION);
+        String authorizedStr = Base64Utils.encodeToString(Constants.JG_SMS_AUTHORIZATION.getBytes());
         httpHeaders.add("Authorization", "Basic " + authorizedStr);
         final MediaType mediaType = MediaType.parseMediaType("application/json;charset=UTF-8");
         httpHeaders.setContentType(mediaType);
