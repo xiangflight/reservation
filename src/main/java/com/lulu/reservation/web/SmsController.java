@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("sms")
+@RequestMapping("/sms")
 public class SmsController {
 
     private final SmsService smsService;
@@ -32,7 +32,7 @@ public class SmsController {
         this.smsService = smsService;
     }
 
-    @PostMapping("verification/code")
+    @PostMapping("/verification/code")
     public Resp sendVerificationCode(@RequestBody SmsRequest smsRequest) {
         final String phone = smsRequest.getPhone();
         if (StringUtils.isEmpty(phone)) {

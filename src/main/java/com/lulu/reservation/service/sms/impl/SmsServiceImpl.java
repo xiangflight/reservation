@@ -7,7 +7,6 @@ import com.lulu.reservation.domain.database.Sms;
 import com.lulu.reservation.domain.response.Resp;
 import com.lulu.reservation.repository.SmsRepository;
 import com.lulu.reservation.service.sms.SmsService;
-import com.lulu.reservation.util.Base64Util;
 import com.lulu.reservation.util.PhoneFormatCheckUtil;
 import com.lulu.reservation.util.RespUtil;
 import lombok.extern.slf4j.Slf4j;

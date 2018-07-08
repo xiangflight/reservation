@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 2.0.1 创建时间: 2018/7/7 下午11:29
  * <p>
  * 类说明：
- *     Spring boot工程启动累
+ *     Spring boot工程启动类
  */
 @SpringBootApplication
 public class ReservationApplication {

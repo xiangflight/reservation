@@ -9,7 +9,6 @@
 *.iws
 *.iml
 *.ipr
-*.yml
 
 # BlueJ files
 *.ctxt

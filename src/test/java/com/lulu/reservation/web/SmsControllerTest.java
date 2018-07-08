@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lulu.reservation.domain.database.Sms;
 import com.lulu.reservation.domain.request.SmsRequest;
 import com.lulu.reservation.domain.response.Resp;
+import com.lulu.reservation.repository.SmsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ import static org.junit.Assert.*;
 @AutoConfigureMockMvc
 public class SmsControllerTest {
 
-    private static final String POST_PHONE = "17328722442";
+    private static final String POST_PHONE = "1111";
     private static final String POST_URL = "/sms/verification/code";
     private static final String EXPECTED_STRING = "请求成功";
 
@@ -42,6 +44,14 @@ public class SmsControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Autowired
+    private SmsRepository smsRepository;
+
+    @Before
+    public void setup() {
+        smsRepository.deleteAll();
+    }
 
     @Test
     public void sendVerificationCode() throws Exception{
