@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>我很中意nei呐</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="woa/css/common.css" />
+    <link rel="stylesheet" href="woa/css/main.css" />
+    <script type="text/javascript" src="woa/js/adaptive.js"></script>
+    <script>
+        window['adaptive'].desinWidth = 750;
+        window['adaptive'].baseFont = 28;
+        window['adaptive'].init();
+    </script>
+    <style>
+        ::-webkit-input-placeholder {
+            /* WebKit browsers */
+            color: #FFF;
+        }
+
+        :-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: #FFF;
+        }
+
+        ::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: #FFF;
+        }
+
+        :-ms-input-placeholder {
+            /* Internet Explorer 10+ */
+            color: #FFF;
+        }
+    </style>
+</head>
+
+<body class="phone-bg">
+
+<div class="u-icon"></div>
+<div class="bw icon-i ">
+    <img src="woa/img/user.jpg" class="loginImg">
+</div>
+
+<div style="width: 6rem;height:auto;" class="pos_r mtc top1">
+
+    <div class="w100  pos_r phone-input-line">
+        <input class="font14" placeholder="请输入手机号" id='phone' name="phone" />
+    </div>
+    <div class="w100  pos_r phone-input-line">
+        <input class="font14" placeholder="请输入手机验证码" id='code' name="dxCode" />
+        <button type="button" class="m-btn colw bgc1 font13 pos_r fr" style="top: -0.34rem;background: none;" id="getCode">获取验证码</button>
+    </div>
+</div>
+<div class="login-btn-bg"></div>
+<div class="login-btn">
+    <span class="font14">立即绑定</span>
+</div>
+
+</body>
+
+</html>
+<script src="woa/js/jquery-1.8.3.min.js"></script>
+<script src="woa/js/tooltipbox.js"></script>
+<script type="text/javascript" src="woa/js/util.js"></script>
+<script src="woa/js/user_api.js"></script>
+<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+<script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+<script src="woa/js/jweixin-1.2.0.js"></script>
+
+<script>
+    $(function(){
+
+        userImg()
+    })
+
+</script>
+
+<script>
+    var geolocation = new qq.maps.Geolocation("BQRBZ-Q7X6F-6VJJH-JVKWG-CUG6S-KWFLQ", "myapp");
+    var positionNum = 0;
+    var options = {
+        timeout: 2000
+    };
+    //坐标URL
+    var derUrl = "http://apis.map.qq.com/ws/distance/v1"
+    //全局变量距离
+    var oyfast = "";
+
+    //全局经纬度
+    var lt = "";
+    var lg = "";
+
+    function showPosition(position) {
+        positionNum++;
+        lat = position.lat;
+        lng = position.lng;
+        lt = position.lat;
+        lg = position.lng;
+
+        //		console.log(lat, lng, position.addr)
+        //		alert('具体地址：' + position.addr + '经度：' + lat + '纬度' + lng);
+        //	$("#myAddress").html(position.addr);
+        var center = new qq.maps.LatLng(lat, lng);
+        var map = new qq.maps.Map(document.getElementById('container'), {
+            center: center,
+            zoom: 13,
+            zoomControl: false,
+            draggable: true, //手势控制, 用来设置地图是否能够鼠标拖拽，默认值为“可以”；
+            scrollwheel: true, //用来配置地图是否能够通过鼠标滚轮操作进行放大，默认值为“可以”；
+            disableDoubleClickZoom: true, // 用来配置地图是否可以通过鼠标双击进行放大，默认值为“可以”。
+
+        });
+
+        //创建marker
+        var marker = new qq.maps.Marker({
+            position: center,
+            map: map
+        });
+
+        //自定义标注图标
+        var anchor = new qq.maps.Point(55, 55),
+            size = new qq.maps.Size(42, 95),
+            origin = new qq.maps.Point(0, 0),
+            markerIcon = new qq.maps.MarkerImage(
+                "woa/img/ic_position_012x.png",
+                size,
+                origin,
+                anchor
+            );
+        marker.setIcon(markerIcon);
+
+    }
+
+    function showErr() {
+        positionNum++;
+        console.log('定位失败！');
+        setInterval(function() {
+            geolocation.getLocation(showPosition, showErr, options);
+        }, 2000)
+    };
+    geolocation.getLocation(showPosition, showErr, options);
+    var onOff = 0;
+    $('#getCode').on('click', function() {
+        console.log($(this))
+
+        if(onOff) return false;
+        var phone = $('input[name=phone]').val();
+
+        var dxCode = $('input[name=dxCode]').val();
+
+        if(isNull(phone)) {
+            tooltipbox.show('手机号不能为空');
+            return false;
+        } else if(!checkMobileAndTel(phone)) {
+            tooltipbox.show('手机号格式不正确');
+            return false;
+        }
+        onOff = 1;
+        dlc_request('/Wxsite/User/api', {
+            api_name: 'sendCode',
+            mobile: phone,
+            type:1,
+        }, function(res) {
+            if(res.code == 1) {
+                var num = 120;
+                $("#getCode").html(num + 's');
+                var that = this;
+                var timer = setInterval(function() {
+                    num--;
+                    $("#getCode").html(num + 's');
+                    if(num == 0) {
+                        clearInterval(timer);
+                        onOff = 0;
+                        $("#getCode").html("重新发送");
+                    }
+                }, 1000);
+
+                setTimeout(function() {
+                    tooltipbox.show(res.msg)
+                }, 500)
+
+            } else {
+                tooltipbox.show(res.msg);
+            }
+
+        });
+
+    });
+
+    //获取用户个人信息判断手机是否绑定
+    var btn_onOff = 0;
+    $('.login-btn').on('click', function() {
+        if(btn_onOff) return false;
+        var phone = $('input[name=phone]').val();
+        var dxCode = $('input[name=dxCode]').val();
+        if(isNull(phone)) {
+            tooltipbox.show('手机号不能为空');
+            return false;
+        } else if(!checkMobileAndTel(phone)) {
+            tooltipbox.show('手机号格式不正确');
+            return false;
+        } else if(isNull(dxCode)) {
+            tooltipbox.show('短信验证码不能为空');
+            return false;
+        }
+        dlc_request('/Wxsite/User/api', {
+            'api_name':'setPhone',
+            'mobile':phone,
+            'code': dxCode,
+            longitude: lt,
+            latitude: lg
+        }, function(res) {
+
+            console.log(res);
+
+            tooltipbox.show(res.msg);
+            if(res.code == 1) {
+
+                window.location.href = "index.html";
+            }
+        });
+
+
+    });
+
+    function userImg() {
+        dlc_request('/Wxsite/User/api', {
+            api_name: 'getUserInfo'
+        }, function(res) {
+            console.log(res);
+            //		alert(res.code)
+            if(res.code == 1) {
+                $(".loginImg").attr("src", res.data.head_img);
+            }
+
+        })
+    }
+</script>

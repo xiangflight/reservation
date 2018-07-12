@@ -15,7 +15,7 @@ public class HelloController {
 
     private static final String HELLO_WORLD_CONSTANT = "hello world";
 
-    @RequestMapping("hello")
+    @RequestMapping("/hello")
     public String hello() {
         return HELLO_WORLD_CONSTANT;
     }

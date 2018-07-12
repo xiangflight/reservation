@@ -4,3 +4,4 @@ spring:
     username: root
     password: Qj2018
     driver-class-name: com.mysql.jdbc.Driver
+

@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 类说明：
  * 统一异常处理
  */
-@ControllerAdvice
 @Slf4j
+@ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = Exception.class)
     @ResponseBody
+    @ExceptionHandler(value = Exception.class)
     public Resp handleException(Exception e) throws Exception{
         if (e instanceof ParamException) {
             ParamException paramException = (ParamException) e;
