@@ -1,5 +1,6 @@
 package com.lulu.reservation.comm.exception;
 
+import com.lulu.reservation.comm.Constants;
 import com.lulu.reservation.domain.response.Resp;
 import com.lulu.reservation.util.RespUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +26,7 @@ public class GlobalExceptionHandler {
             ParamException paramException = (ParamException) e;
             return RespUtil.errorResp(paramException.getCode(), paramException.getMessage());
         } else{
-            log.error("[系统异常] {}", e);
-            throw e;
+            return RespUtil.errorResp(Constants.ApiErr.UNKNOWN_ERROR.getCode(), e.getLocalizedMessage());
         }
     }
 

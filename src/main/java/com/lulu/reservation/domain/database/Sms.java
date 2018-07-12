@@ -13,23 +13,22 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@Table(name = "t_sms")
 public class Sms {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String phone;
 
-    @Column
+    @Column(nullable = false)
     private Integer type;
 
-    @Column(name = "update_time")
+    @Column(nullable = false)
     private Long updateTime;
 
-    @Column
+    @Column(nullable = false)
     private Integer state;
 
     @Override

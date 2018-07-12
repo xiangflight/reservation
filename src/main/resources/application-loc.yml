@@ -4,4 +4,13 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  jackson:
+    serialization:
+      indent_output: true
+logging:
+  file: /Users/xiang/Desktop/reservation.log
 

@@ -4,4 +4,10 @@ spring:
     username: root
     password: Qj2018
     driver-class-name: com.mysql.jdbc.Driver
-
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  jackson:
+    serialization:
+      indent_output: true
