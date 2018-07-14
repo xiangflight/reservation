@@ -11,13 +11,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @version 2.0.1 创建时间: 2018/7/11 上午10:51
  * <p>
  * 类说明：
- * ${description}
+ *     WebMvc配置类
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("/index");
+        registry.addViewController("/login").setViewName("/login");
+        registry.addViewController("/index").setViewName("/index");
     }
 }

@@ -39,8 +39,8 @@ public class Constants {
         /**
          * 公共状态
          */
-        INVALID(0, "失效"),
-        VALID(1, "有效"),
+        VALID(0, "失效"),
+        INVALID(1, "有效"),
         DELETED(9999, "已删除");
 
         private Integer code;
