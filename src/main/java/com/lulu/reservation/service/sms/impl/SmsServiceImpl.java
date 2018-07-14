@@ -2,6 +2,7 @@ package com.lulu.reservation.service.sms.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.lulu.reservation.comm.Constants;
+import com.lulu.reservation.comm.config.JpushParameter;
 import com.lulu.reservation.comm.exception.ParamException;
 import com.lulu.reservation.domain.database.Sms;
 import com.lulu.reservation.domain.response.Resp;
@@ -33,9 +34,12 @@ public class SmsServiceImpl implements SmsService {
 
     private final SmsRepository smsRepository;
 
+    private final JpushParameter jpushParameter;
+
     @Autowired
-    public SmsServiceImpl(SmsRepository smsRepository) {
+    public SmsServiceImpl(SmsRepository smsRepository, JpushParameter jpushParameter) {
         this.smsRepository = smsRepository;
+        this.jpushParameter = jpushParameter;
     }
 
     @Override
@@ -54,17 +58,17 @@ public class SmsServiceImpl implements SmsService {
     private void sendRealCodeSms(String phone) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
-        String authorizedStr = Base64Utils.encodeToString(Constants.JG_SMS_AUTHORIZATION.getBytes());
-        httpHeaders.add("Authorization", "Basic " + authorizedStr);
-        final MediaType mediaType = MediaType.parseMediaType("application/json;charset=UTF-8");
+        String authorizedStr = Base64Utils.encodeToString(jpushParameter.getAuth().getBytes());
+        httpHeaders.add(Constants.HTTP_AUTHORIZATION, Constants.HTTP_BASIC + authorizedStr);
+        final MediaType mediaType = MediaType.parseMediaType(Constants.HTTP_MEDIA_TYPE);
         httpHeaders.setContentType(mediaType);
-        httpHeaders.add("Accept", MediaType.APPLICATION_JSON.toString());
+        httpHeaders.add(Constants.HTTP_ACCEPT, MediaType.APPLICATION_JSON.toString());
         HashMap<String, String> params = new HashMap<>(2);
-        params.put("mobile", phone);
-        params.put("temp_id", "1");
+        params.put(Constants.SMS_TEMPLATE_MOBILE, phone);
+        params.put(Constants.SMS_TEMPLATE_ID, jpushParameter.getTempId());
         final String jsonParams = JSON.toJSONString(params);
         HttpEntity<String> formEntity = new HttpEntity<>(jsonParams, httpHeaders);
-        String result = restTemplate.postForObject(Constants.SMS_URL, formEntity, String.class);
+        String result = restTemplate.postForObject(jpushParameter.getUrl(), formEntity, String.class);
         log.info("send sms result = {}", result);
         saveSms(phone);
     }
@@ -74,7 +78,7 @@ public class SmsServiceImpl implements SmsService {
      * @param phone 手机号
      */
     private void saveSms(String phone) {
-        Sms sms = new Sms();
+        Sms sms = Sms.newInstance();
         sms.setPhone(phone);
         sms.setType(Constants.SmsType.VERIFICATION_CODE.ordinal());
         sms.setUpdateTime(System.currentTimeMillis());

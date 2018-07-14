@@ -10,16 +10,21 @@ package com.lulu.reservation.comm;
 
 public class Constants {
 
-    public static final String SMS_URL = "https://api.sms.jpush.cn/v1/codes";
+    public static final String HTTP_AUTHORIZATION = "Authorization";
 
-    private static final String JG_APP_KEY = "0c5dcc959c39a0e1c3059580";
+    public static final String HTTP_BASIC = "Basic ";
 
-    private static final String JG_MASTER_KEY = "b4d762d444e0712864b3b975";
+    public static final String HTTP_ACCEPT = "Accept";
 
-    private static final String DELIMITER_COLON= ":";
+    public static final String HTTP_MEDIA_TYPE = "application/json;charset=UTF-8";
 
-    public static final String JG_SMS_AUTHORIZATION = JG_APP_KEY + DELIMITER_COLON + JG_MASTER_KEY;
+    public static final String SMS_TEMPLATE_MOBILE = "mobile";
 
+    public static final String SMS_TEMPLATE_ID = "temp_id";
+
+    /**
+     * 短信类型
+     */
     public enum SmsType {
         /**
          * 短信验证码
@@ -27,6 +32,9 @@ public class Constants {
         VERIFICATION_CODE
     }
 
+    /**
+     * 状态码
+     */
     public enum StatusErr {
         /**
          * 公共状态
@@ -52,6 +60,9 @@ public class Constants {
         }
     }
 
+    /**
+     * 错误码
+     */
     public enum ApiErr {
         /**
          * 系统状态值

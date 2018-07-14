@@ -14,3 +14,9 @@ spring:
 logging:
   file: /Users/xiang/Desktop/reservation.log
 
+jpush:
+  url: https://api.sms.jpush.cn/v1/codes
+  auth: 0c5dcc959c39a0e1c3059580:b4d762d444e0712864b3b975
+  temp-id: 1
+
+

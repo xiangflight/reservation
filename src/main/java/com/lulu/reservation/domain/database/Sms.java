@@ -40,4 +40,8 @@ public class Sms {
                 ", state=" + state +
                 '}';
     }
+
+    public static Sms newInstance() {
+        return new Sms();
+    }
 }
