@@ -24,9 +24,19 @@ public class Constants {
 
     public static final String WX_MP_AUTHORIZATION_URL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=snsapi_base&state=0#wechat_redirect";
 
-    public static final String WX_MP_GET_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code";
+    public static final String WX_MP_GET_OPENID_URL = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code";
+
+    public static final String WX_MP_GET_BASE_USER_INFO_URL = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=zh_CN";
+
+    public static final String WX_MP_GET_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s";
 
     public static final String SERVICE_ACCESS_URL_PREFIX = "http://zynei.com/reservation/";
+
+    public static final String URL_LOGIN = "http://zynei.com/reservation/login";
+
+    public static final String URL_RELAY = "http://zynei.com/reservation/wx/relay";
+
+    public static final String URL_INDEX = "http://zynei.com/reservation/index";
 
     /**
      * 短信类型

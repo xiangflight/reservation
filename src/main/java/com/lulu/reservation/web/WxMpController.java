@@ -1,8 +1,12 @@
 package com.lulu.reservation.web;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.lulu.reservation.comm.Constants;
 import com.lulu.reservation.comm.config.WechatParameter;
 import com.lulu.reservation.comm.exception.AesException;
+import com.lulu.reservation.domain.database.User;
+import com.lulu.reservation.repository.UserRepository;
 import com.lulu.reservation.util.Sha1;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -35,9 +39,12 @@ public class WxMpController {
 
     private final WechatParameter wechatParameter;
 
+    private final UserRepository userRepository;
+
     @Autowired
-    public WxMpController(WechatParameter wechatParameter) {
+    public WxMpController(WechatParameter wechatParameter, UserRepository userRepository) {
         this.wechatParameter = wechatParameter;
+        this.userRepository = userRepository;
     }
 
     @RequestMapping("/handler")
@@ -88,7 +95,7 @@ public class WxMpController {
 
     @GetMapping("/auth")
     public ModelAndView auth() {
-        String url = Constants.SERVICE_ACCESS_URL_PREFIX + "wx/test";
+        String url = Constants.URL_RELAY;
         try {
             log.info("url: {}", url);
             final String encodeUrl = URLEncoder.encode(url, "UTF-8");
@@ -102,18 +109,72 @@ public class WxMpController {
         return null;
     }
 
-    @GetMapping("/test")
+    @GetMapping("/relay")
     public ModelAndView test(HttpServletRequest request) {
         final String code = request.getParameter("code");
         log.info("code: {}", code);
         try {
             if (StringUtils.isNotEmpty(code)) {
                 RestTemplate restTemplate = new RestTemplate();
-                String url = String.format(Constants.WX_MP_GET_ACCESS_TOKEN_URL, wechatParameter.getId(),
+                // 1. 获取openId
+                String getOpenIdUrl = String.format(Constants.WX_MP_GET_OPENID_URL, wechatParameter.getId(),
                         wechatParameter.getSecret(), code);
-                String response = restTemplate.getForObject(url, String.class);
-                log.info("response is {}", response);
-                return new ModelAndView("redirect:" + "http://zynei.com/reservation/login");
+                String response = restTemplate.getForObject(getOpenIdUrl, String.class);
+                log.info("openId response: {}", response);
+                JSONObject openIdJson = JSON.parseObject(response);
+                final String openid = openIdJson.getString("openid");
+                // 2. 获取access_token
+                String getTokenUrl = String.format(Constants.WX_MP_GET_ACCESS_TOKEN_URL, wechatParameter.getId(), wechatParameter.getSecret());
+                response = restTemplate.getForObject(getTokenUrl, String.class);
+                log.info("token response: {}", response);
+                JSONObject accessTokenJson = JSON.parseObject(response);
+                String accessToken = accessTokenJson.getString("access_token");
+                // 3. 打印 access_token 和 openid
+                log.info("access_token: {}, openid: {}", accessToken, openid);
+                // 4. 判断用户是否点击进来过
+                User existUser = userRepository.findByMpOpenid(openid);
+                if (existUser != null) {
+                    if (StringUtils.isNotEmpty(existUser.getPhone())) {
+                        return new ModelAndView("redirect:" + Constants.URL_INDEX);
+                    } else {
+                        String mpHeaderImg = existUser.getMpHeaderImg();
+                        return new ModelAndView("redirect:" + Constants.URL_LOGIN + "?img=" + mpHeaderImg);
+                    }
+                } else {
+                    String getUserInfoUrl = String.format(Constants.WX_MP_GET_BASE_USER_INFO_URL, accessToken, openid);
+                    String userInfo = new String(restTemplate.getForObject(getUserInfoUrl,
+                            String.class).getBytes("ISO-8859-1"), "UTF-8");
+                    log.info("user info: {}", userInfo);
+                    JSONObject baseInfoResponse = JSON.parseObject(userInfo);
+                    User user = User.newInstance();
+                    final String nickname = baseInfoResponse.getString("nickname");
+                    final int sex = baseInfoResponse.getIntValue("sex");
+                    final String language = baseInfoResponse.getString("language");
+                    final String city = baseInfoResponse.getString("city");
+                    final String province = baseInfoResponse.getString("province");
+                    final String country = baseInfoResponse.getString("country");
+                    final String headerImage = baseInfoResponse.getString("headimgurl");
+                    final long subscribeTime = baseInfoResponse.getLongValue("subscribe_time");
+                    final String unionId = baseInfoResponse.getString("unionid");
+                    final String remark = baseInfoResponse.getString("remark");
+                    final int groupId = baseInfoResponse.getIntValue("groupid");
+                    final String subscribeScene = baseInfoResponse.getString("subscribe_scene");
+                    user.setMpOpenid(openid);
+                    user.setMpNickname(nickname);
+                    user.setMpSex(sex);
+                    user.setMpLanguage(language);
+                    user.setMpCity(city);
+                    user.setMpProvince(province);
+                    user.setMpCountry(country);
+                    user.setMpHeaderImg(headerImage);
+                    user.setMpSubscribeTime(subscribeTime);
+                    user.setMpUnionId(unionId);
+                    user.setMpRemark(remark);
+                    user.setMpGroupId(groupId);
+                    user.setMpSubscribeScene(subscribeScene);
+                    userRepository.save(user);
+                    return new ModelAndView("redirect:" + Constants.URL_LOGIN + "?img=" + headerImage);
+                }
             }
         } catch (Exception e) {
             log.error("未获取到code");

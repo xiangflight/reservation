@@ -4,7 +4,7 @@ import com.lulu.reservation.comm.Constants;
 import com.lulu.reservation.comm.exception.ParamException;
 import com.lulu.reservation.domain.request.SmsRequest;
 import com.lulu.reservation.domain.response.Resp;
-import com.lulu.reservation.service.sms.SmsService;
+import com.lulu.reservation.service.sms.ISmsService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/sms")
 public class SmsController {
 
-    private final SmsService smsService;
+    private final ISmsService smsService;
 
     @Autowired
-    public SmsController(SmsService smsService) {
-        this.smsService = smsService;
+    public SmsController(ISmsService smsService) {
+        this.smsService= smsService;
     }
 
     @PostMapping("/verification/code")

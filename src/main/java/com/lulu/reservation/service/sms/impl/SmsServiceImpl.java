@@ -7,7 +7,7 @@ import com.lulu.reservation.comm.exception.ParamException;
 import com.lulu.reservation.domain.database.Sms;
 import com.lulu.reservation.domain.response.Resp;
 import com.lulu.reservation.repository.SmsRepository;
-import com.lulu.reservation.service.sms.SmsService;
+import com.lulu.reservation.service.sms.ISmsService;
 import com.lulu.reservation.util.PhoneFormatCheckUtil;
 import com.lulu.reservation.util.RespUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +30,7 @@ import java.util.HashMap;
  */
 @Slf4j
 @Service
-public class SmsServiceImpl implements SmsService {
+public class SmsServiceImpl implements ISmsService {
 
     private final SmsRepository smsRepository;
 

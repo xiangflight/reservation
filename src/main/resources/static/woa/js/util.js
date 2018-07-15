@@ -63,17 +63,18 @@ function GetRequest() {
 
 
 
-function dlcUrl(){
+function urlPrefix(){
     return 'http://zynei.com/reservation/';
 }
-function dlc_request(method, data, cb,type){
+function dlc_request(urlPostFix, data, cb,type){
     var data = data || {};
-    url = dlcUrl()+method;
+    url = urlPrefix() + urlPostFix;
     $.ajax({
         type: type?type:'post',
         url: url,
-        data: data,
+        data: JSON.stringify(data),
         dataType: 'json',
+        contentType: 'application/json',
         crossDomain:true,
         success:function(res){
             if(cb)cb(res);

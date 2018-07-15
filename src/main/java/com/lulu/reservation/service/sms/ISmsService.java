@@ -10,7 +10,7 @@ import com.lulu.reservation.domain.response.Resp;
  *     短信服务层
  */
 
-public interface SmsService {
+public interface ISmsService {
     /**
      * 发送短信验证码
      * @param phone 手机号

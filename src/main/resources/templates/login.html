@@ -78,10 +78,18 @@
 <script src="woa/js/jweixin-1.2.0.js"></script>
 
 <script>
-    $(function(){
-        userImg()
-    })
+    function getQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
 
+    var imgUrl= getQueryString("img");
+    if(imgUrl != null && imgUrl.toString().length > 1)
+    {
+        $(".loginImg").attr("src", imgUrl);
+    }
 </script>
 
 <script>
@@ -91,7 +99,7 @@
         timeout: 2000
     };
     //坐标URL
-    var derUrl = "http://apis.map.qq.com/ws/distance/v1"
+    var derUrl = "http://apis.map.qq.com/ws/distance/v1";
     //全局变量距离
     var oyfast = "";
 
@@ -168,6 +176,7 @@
         dlc_request('sms/verification/code', {
             phone: phone
         }, function(res) {
+            tooltipbox.show(res)
             if(res.code == 2000) {
                 var num = 120;
                 $("#getCode").html(num + 's');
@@ -183,11 +192,11 @@
                 }, 1000);
 
                 setTimeout(function() {
-                    tooltipbox.show(res.msg)
+                    tooltipbox.show(res.message)
                 }, 500)
 
             } else {
-                tooltipbox.show(res.msg);
+                tooltipbox.show(res.message);
             }
 
         });
@@ -220,21 +229,8 @@
         //     console.log(res);
         //     tooltipbox.show(res.msg);
         //     if(res.code == 1) {
-                window.location.href = "index.html";
+                window.location.href = "/reservation/index";
         //     }
         // });
     });
-
-    function userImg() {
-        dlc_request('/Wxsite/User/api', {
-            api_name: 'getUserInfo'
-        }, function(res) {
-            console.log(res);
-            //		alert(res.code)
-            if(res.code == 1) {
-                $(".loginImg").attr("src", res.data.head_img);
-            }
-
-        })
-    }
 </script>
