@@ -64,7 +64,7 @@ function GetRequest() {
 
 
 function dlcUrl(){
-    return 'http://develop.zynei.com/reservation/';
+    return 'http://zynei.com/reservation/';
 }
 function dlc_request(method, data, cb,type){
     var data = data || {};

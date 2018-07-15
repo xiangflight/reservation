@@ -17,4 +17,8 @@ import org.springframework.stereotype.Component;
 public class WechatParameter {
 
     private String token;
+
+    private String id;
+
+    private String secret;
 }
