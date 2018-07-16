@@ -49,6 +49,10 @@ public class User {
 
     private String mpSubscribeScene;
 
+    private Double latitude;
+
+    private Double longitude;
+
     public static User newInstance() {
         return new User();
     }
@@ -57,6 +61,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", phone='" + phone + '\'' +
                 ", mpOpenid='" + mpOpenid + '\'' +
                 ", mpNickname='" + mpNickname + '\'' +
                 ", mpSex=" + mpSex +
@@ -65,11 +70,13 @@ public class User {
                 ", mpProvince='" + mpProvince + '\'' +
                 ", mpCountry='" + mpCountry + '\'' +
                 ", mpHeaderImg='" + mpHeaderImg + '\'' +
-                ", mpSubscribeTime='" + mpSubscribeTime + '\'' +
+                ", mpSubscribeTime=" + mpSubscribeTime +
                 ", mpUnionId='" + mpUnionId + '\'' +
                 ", mpRemark='" + mpRemark + '\'' +
                 ", mpGroupId=" + mpGroupId +
-                ", mpSubscribeScene='" + mpSubscribeScene +
+                ", mpSubscribeScene='" + mpSubscribeScene + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 '}';
     }
 }

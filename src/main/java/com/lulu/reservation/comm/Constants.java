@@ -55,8 +55,8 @@ public class Constants {
         /**
          * 公共状态
          */
-        VALID(0, "失效"),
-        INVALID(1, "有效"),
+        INVALID(0, "失效"),
+        VALID(1, "有效"),
         DELETED(9999, "已删除");
 
         private Integer code;
@@ -88,7 +88,9 @@ public class Constants {
 
         EMPTY_PHONE_ERROR(2002, "手机号为空"),
 
-        FORMAT_PHONE_ERROR(2003, "手机号码格式错误");
+        FORMAT_PHONE_ERROR(2003, "手机号码格式错误"),
+
+        VERIFICATION_CODE_ERROR(2004, "验证码错误");
 
         private Integer code;
         private String msg;

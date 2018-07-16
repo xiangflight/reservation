@@ -21,4 +21,6 @@ public class JpushParameter {
     private String auth;
 
     private String tempId;
+
+    private String validate;
 }

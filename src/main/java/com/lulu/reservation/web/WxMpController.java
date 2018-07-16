@@ -110,7 +110,7 @@ public class WxMpController {
     }
 
     @GetMapping("/relay")
-    public ModelAndView test(HttpServletRequest request) {
+    public ModelAndView relay(HttpServletRequest request) {
         final String code = request.getParameter("code");
         log.info("code: {}", code);
         try {
@@ -138,7 +138,7 @@ public class WxMpController {
                         return new ModelAndView("redirect:" + Constants.URL_INDEX);
                     } else {
                         String mpHeaderImg = existUser.getMpHeaderImg();
-                        return new ModelAndView("redirect:" + Constants.URL_LOGIN + "?img=" + mpHeaderImg);
+                        return new ModelAndView("redirect:" + Constants.URL_LOGIN + "?img=" + mpHeaderImg + "&openid="+ openid);
                     }
                 } else {
                     String getUserInfoUrl = String.format(Constants.WX_MP_GET_BASE_USER_INFO_URL, accessToken, openid);
@@ -173,7 +173,7 @@ public class WxMpController {
                     user.setMpGroupId(groupId);
                     user.setMpSubscribeScene(subscribeScene);
                     userRepository.save(user);
-                    return new ModelAndView("redirect:" + Constants.URL_LOGIN + "?img=" + headerImage);
+                    return new ModelAndView("redirect:" + Constants.URL_LOGIN + "?img=" + headerImage + "&openid=" + openid);
                 }
             }
         } catch (Exception e) {

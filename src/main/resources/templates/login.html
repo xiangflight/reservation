@@ -78,21 +78,24 @@
 <script src="woa/js/jweixin-1.2.0.js"></script>
 
 <script>
-    function getQueryString(name)
-    {
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
         var r = window.location.search.substr(1).match(reg);
-        if(r!=null)return  unescape(r[2]); return null;
+        var q = window.location.pathname.substr(1).match(reg_rewrite);
+        if(r != null){
+            return unescape(r[2]);
+        }else if(q != null){
+            return unescape(q[2]);
+        }else{
+            return null;
+        }
     }
-
     var imgUrl= getQueryString("img");
     if(imgUrl != null && imgUrl.toString().length > 1)
     {
         $(".loginImg").attr("src", imgUrl);
     }
-</script>
-
-<script>
     var geolocation = new qq.maps.Geolocation("BQRBZ-Q7X6F-6VJJH-JVKWG-CUG6S-KWFLQ", "myapp");
     var positionNum = 0;
     var options = {
@@ -176,7 +179,7 @@
         dlc_request('sms/verification/code', {
             phone: phone
         }, function(res) {
-            tooltipbox.show(res)
+            tooltipbox.show(res);
             if(res.code == 2000) {
                 var num = 120;
                 $("#getCode").html(num + 's');
@@ -194,7 +197,6 @@
                 setTimeout(function() {
                     tooltipbox.show(res.message)
                 }, 500)
-
             } else {
                 tooltipbox.show(res.message);
             }
@@ -203,34 +205,33 @@
 
     });
 
+    var openid = getQueryString("openid");
     //获取用户个人信息判断手机是否绑定
     var btn_onOff = 0;
     $('.login-btn').on('click', function() {
-        // if(btn_onOff) return false;
-        // var phone = $('input[name=phone]').val();
-        // var dxCode = $('input[name=dxCode]').val();
-        // if(isNull(phone)) {
-        //     tooltipbox.show('手机号不能为空');
-        //     return false;
-        // } else if(!checkMobileAndTel(phone)) {
-        //     tooltipbox.show('手机号格式不正确');
-        //     return false;
-        // } else if(isNull(dxCode)) {
-        //     tooltipbox.show('短信验证码不能为空');
-        //     return false;
-        // }
-        // dlc_request('/Wxsite/User/api', {
-        //     'api_name':'setPhone',
-        //     'mobile':phone,
-        //     'code': dxCode,
-        //     longitude: lt,
-        //     latitude: lg
-        // }, function(res) {
-        //     console.log(res);
-        //     tooltipbox.show(res.msg);
-        //     if(res.code == 1) {
+        if(btn_onOff) return false;
+        var phone = $('input[name=phone]').val();
+        var dxCode = $('input[name=dxCode]').val();
+        if(isNull(phone)) {
+            tooltipbox.show('手机号不能为空');
+            return false;
+        } else if(!checkMobileAndTel(phone)) {
+            tooltipbox.show('手机号格式不正确');
+            return false;
+        } else if(isNull(dxCode)) {
+            tooltipbox.show('短信验证码不能为空');
+            return false;
+        }
+        dlc_request('user/login', {
+            phone: phone,
+            code: dxCode,
+            openid: openid,
+            longitude: lg,
+            latitude: lt
+        }, function(res) {
+            if(res.code == 2000) {
                 window.location.href = "/reservation/index";
-        //     }
-        // });
+            }
+        });
     });
 </script>

@@ -1,6 +1,7 @@
 package com.lulu.reservation.service.sms.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.lulu.reservation.comm.Constants;
 import com.lulu.reservation.comm.config.JpushParameter;
 import com.lulu.reservation.comm.exception.ParamException;
@@ -69,20 +70,24 @@ public class SmsServiceImpl implements ISmsService {
         final String jsonParams = JSON.toJSONString(params);
         HttpEntity<String> formEntity = new HttpEntity<>(jsonParams, httpHeaders);
         String result = restTemplate.postForObject(jpushParameter.getUrl(), formEntity, String.class);
-        log.info("send sms result = {}", result);
-        saveSms(phone);
+        log.info("result: {}", result);
+        JSONObject resultJson = JSON.parseObject(result);
+        String msgId = resultJson.getString("msg_id");
+        log.info("msgId: {}", msgId);
+        saveSms(phone, msgId);
     }
 
     /**
      * 存储短信
      * @param phone 手机号
      */
-    private void saveSms(String phone) {
+    private void saveSms(String phone, String msgId) {
         Sms sms = Sms.newInstance();
         sms.setPhone(phone);
         sms.setType(Constants.SmsType.VERIFICATION_CODE.ordinal());
         sms.setUpdateTime(System.currentTimeMillis());
         sms.setState(Constants.StatusErr.VALID.getCode());
+        sms.setMsgId(msgId);
         smsRepository.save(sms);
     }
 }

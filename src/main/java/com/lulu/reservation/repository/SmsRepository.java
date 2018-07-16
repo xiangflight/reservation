@@ -2,6 +2,8 @@ package com.lulu.reservation.repository;
 
 import com.lulu.reservation.domain.database.Sms;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  * @author 赵翔 xiangflight@foxmail.com
@@ -11,4 +13,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *     短信Repository
  */
 public interface SmsRepository extends JpaRepository<Sms, Long> {
+
+    /**
+     * 倒序第一个sms
+     * @param phone phone
+     * @return sms
+     */
+    Sms findFirstByPhoneOrderByIdDesc(String phone);
 }

@@ -31,13 +31,17 @@ public class Sms {
     @Column(nullable = false)
     private Integer state;
 
+    private String msgId;
+
     @Override
     public String toString() {
         return "Sms{" +
-                "phone='" + phone + '\'' +
+                "id=" + id +
+                ", phone='" + phone + '\'' +
                 ", type=" + type +
                 ", updateTime=" + updateTime +
                 ", state=" + state +
+                ", msgId='" + msgId + '\'' +
                 '}';
     }
 
