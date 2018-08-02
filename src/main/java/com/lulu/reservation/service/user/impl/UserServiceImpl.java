@@ -9,6 +9,7 @@ import com.lulu.reservation.domain.database.Sms;
 import com.lulu.reservation.domain.database.User;
 import com.lulu.reservation.domain.request.LoginRequest;
 import com.lulu.reservation.domain.response.Resp;
+import com.lulu.reservation.domain.response.data.UserInfoData;
 import com.lulu.reservation.repository.SmsRepository;
 import com.lulu.reservation.repository.UserRepository;
 import com.lulu.reservation.service.user.IUserService;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 /**
  * @author 赵翔 xiangflight@foxmail.com
@@ -90,7 +92,17 @@ public class UserServiceImpl implements IUserService {
         user.setLongitude(longitude);
         user.setLatitude(latitude);
         log.info("latitude: {}, longtitude: {}", latitude, longitude);
-        userRepository.save(user);
-        return RespUtil.successResp();
+        final User saveUser = userRepository.save(user);
+        return RespUtil.successResp(saveUser.getId());
+    }
+
+    @Override
+    public Resp info(String openId) {
+        final User user = userRepository.findByMpOpenid(openId);
+        UserInfoData userInfoData = UserInfoData.newInstance();
+        userInfoData.setNickname(user.getMpNickname());
+        userInfoData.setImage(user.getMpHeaderImg());
+        userInfoData.setAddinfo(user.getAddInfo());
+        return RespUtil.successResp(userInfoData);
     }
 }

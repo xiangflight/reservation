@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>附加资料</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no,email=no,address=no" />
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="woa/css/mui.picker.all.css">
+		<link rel="stylesheet" href="woa/css/common.css" />
+		<link rel="stylesheet" href="woa/css/main.css" />
+		<script type="text/javascript" src="woa/js/adaptive.js"></script>
+		<script>
+			window['adaptive'].desinWidth = 750;
+			window['adaptive'].baseFont = 28;
+			window['adaptive'].init();
+		</script>
+
+	</head>
+
+	<body>
+
+		<div style="background: #FFF;opacity: 0.65;position: relative;">
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">个人描述</span>
+				<input placeholder="请输入描述" id="userSay" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<!--<i class="return_last"></i>-->
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">职业</span>
+				<input placeholder="请选择职业" unselectable="on" onfocus="this.blur()" type="text" readonly="readonly" id="works" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">星座</span>
+				<input placeholder="请选择星座" unselectable="on" onfocus="this.blur()" type="text" readonly="readonly" id="xingz" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">喝酒</span>
+				<input placeholder="请选择" id="drink" unselectable="on" onfocus="this.blur()" type="text" readonly="readonly" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">抽烟</span>
+				<input placeholder="请输入" unselectable="on" onfocus="this.blur()" type="text" readonly="readonly" id="smoking" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">健身</span>
+				<input placeholder="请输入" unselectable="on" onfocus="this.blur()" type="text" readonly="readonly" id="sport" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">爱好</span>
+				<input placeholder="请输入" id="hobby" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last" style="visibility:hidden;"></i>
+			</div>
+			<div style="width: 100%;height: 0.68rem;text-align: center;color: #777;">
+				<span class="pos_r" style="top:0.16rem">隐私信息(方便客服联系使用)</span>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">微信号</span>
+				<input placeholder="选填" id="wxChat" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<!--<i class="return_last"></i>-->
+			</div>
+
+		</div>
+
+		<div class="w100 tac pos_r top06" style="height: auto;">
+			<input id="gotolast" type="button" value="完成" class="resh_next" style="color: #333;border-radius: 0.8rem;" />
+		</div>
+
+		<div class="w100 h100 pos_r top03"></div>
+
+		<div class="index-box-clear"></div>
+		<div class="index-box-bg-img">
+			<img src="woa/img/la1.jpg">
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="woa/js/jquery-1.8.3.min.js"></script>
+<script src="woa/js/mui.js"></script>
+<script src="woa/js/util.js"></script>
+<script src="woa/js/mui.min.js"></script>
+<script src="woa/js/mui.picker.min.js"></script>
+<script src="woa/js/mui.poppicker.js"></script>
+<script src="woa/js/tooltipbox.js"></script>
+
+<script>
+	
+	$(function(){
+		//获取静态信息
+		usexInfo();
+		
+		
+		
+		
+		//提交数据
+		$("#gotolast").on("click", function() {
+			
+			//个人描述
+			var describe  = $("#userSay").val();
+			//职业
+			var profession =$("#works").data("id");
+			//星座 
+			var constellation=$("#xingz").data("id");
+			//是否喝酒
+			var drink = $("#drink").data("id");
+			//是否抽烟
+			var smok = $("#smoking").data("id");
+			//是否健身
+			var fitness = $("#sport").data("id");
+			//爱好 
+			var hobby = $("#hobby").val();		
+			//微信号
+			var weixin_code = $("#wxChat").val();
+			if(isNull(describe)){
+				tooltipbox.show("个人描述未填写")
+				return false;
+			}
+			if(isNull(profession)){
+				tooltipbox.show("职业未选择")
+				return false;
+			}
+				if(isNull(constellation)){
+				tooltipbox.show("星座未选择")
+				return false;
+			}
+				if(isNull(drink)){
+				tooltipbox.show("是否喝酒未选择")
+				return false;
+			}
+			if(isNull(smok)){
+				tooltipbox.show("是否抽烟未选择")
+				return false;
+			}	if(isNull(fitness)){
+				tooltipbox.show("是否健身未选择")
+				return false;
+			}
+			
+			if(isNull(hobby)){
+				tooltipbox.show("爱好未填写")
+				return false;
+			}
+		
+				dlc_request('/Wxsite/User/api', {
+				api_name:'saveUserInfo',
+				describe:describe,
+				profession: profession,
+				constellation:constellation,
+				drink:drink,
+				smok:smok,
+				fitness:fitness,
+				hobby:hobby,
+				weixin_code:weixin_code,
+				
+			}, function(res) {
+				if(res.code == 1) {
+					
+					tooltipbox.show(res.msg)
+					setTimeout(function(){
+						location.href = "index.html"
+					},1000)
+					
+				} else {
+					tooltipbox.show(res.msg)
+				}
+
+			})
+			
+			
+			
+
+	})
+		
+		
+	})
+	
+	//获取遍历用户信息字段
+	function usexInfo(){
+	dlc_request('/Wxsite/User/api', {
+		api_name: 'getUserExtendsInfo'
+	}, function(res) {
+		console.log(res);
+		//		alert(res.code)
+		if(res.code == 1) {
+			//职业
+			var profession = res.data.profession;
+			$("#works").on("click", function() {
+				picker.setData(profession)
+				picker.show(function(SelectedItem) {
+					$("#works").val(SelectedItem[0].text);
+					$("#works").attr("data-id", SelectedItem[0].value)
+				})
+
+			})
+			//星座
+			$("#xingz").on("click", function() {
+				picker.setData(res.data.constellation)
+				picker.show(function(SelectedItem) {
+					$("#xingz").val(SelectedItem[0].text)
+					$("#xingz").attr("data-id", SelectedItem[0].value)
+				})
+
+			})
+			//是否喝酒
+			$("#drink").on("click", function() {
+				picker.setData(res.data.drink)
+				picker.show(function(SelectedItem) {
+					$("#drink").val(SelectedItem[0].text)
+					$("#drink").attr("data-id", SelectedItem[0].value)
+				})
+			})
+			//是否抽烟
+			$("#smoking").on("click", function() {
+				picker.setData(res.data.smok)
+				picker.show(function(SelectedItem) {
+					$("#smoking").val(SelectedItem[0].text)
+					$("#smoking").attr("data-id", SelectedItem[0].value)
+
+				})
+
+			})
+			//是否健身
+			$("#sport").on("click", function() {
+
+				picker.setData(res.data.fitness);
+				picker.show(function(SelectedItem) {
+					$("#sport").val(SelectedItem[0].text)
+					$("#sport").attr("data-id", SelectedItem[0].value)
+
+				})
+
+			})
+			
+			
+			
+
+		}
+
+	})
+	}
+
+	
+
+	var picker = new mui.PopPicker();
+
+	//职业
+	$("#works").on("click", function() {
+		picker.setData([{
+			value: "1",
+			text: "国企"
+		}, {
+			value: "2",
+			text: "外企"
+		}, {
+			value: "3",
+			text: "公务员"
+		}, {
+			value: "4",
+			text: "自由职业"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#works").val(SelectedItem[0].text)
+		})
+
+	})
+
+	$("#xingz").on("click", function() {
+		picker.setData([{
+			value: "1",
+			text: "摩羯座"
+		}, {
+			value: "2",
+			text: "水瓶座"
+		}, {
+			value: "3",
+			text: "狮子座"
+		}, {
+			value: "4",
+			text: "射手座"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#xingz").val(SelectedItem[0].text)
+		})
+
+	})
+
+	$("#drink").on("click", function() {
+		picker.setData([{
+			value: "1",
+			text: "喝酒"
+		}, {
+			value: "2",
+			text: "偶尔喝"
+		}, {
+			value: "3",
+			text: "不喝酒"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#drink").val(SelectedItem[0].text)
+		})
+
+	})
+
+	$("#smoking").on("click", function() {
+
+		picker.setData([{
+			value: "1",
+			text: "经常"
+		}, {
+			value: "2",
+			text: "偶尔"
+		}, {
+			value: "3",
+			text: "从不"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#smoking").val(SelectedItem[0].text)
+		})
+	})
+
+	$("#sport").on("click", function() {
+
+		picker.setData([{
+			value: "1",
+			text: "每天健身"
+		}, {
+			value: "2",
+			text: "偶尔健身"
+		}, {
+			value: "3",
+			text: "从不健身"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#sport").val(SelectedItem[0].text)
+		})
+
+	})
+</script>

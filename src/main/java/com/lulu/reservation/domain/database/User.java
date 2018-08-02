@@ -53,6 +53,8 @@ public class User {
 
     private Double longitude;
 
+    private Boolean addInfo;
+
     public static User newInstance() {
         return new User();
     }
@@ -77,6 +79,7 @@ public class User {
                 ", mpSubscribeScene='" + mpSubscribeScene + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", addInfo=" + addInfo +
                 '}';
     }
 }

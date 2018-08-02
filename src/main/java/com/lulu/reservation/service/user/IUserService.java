@@ -20,4 +20,11 @@ public interface IUserService {
      */
     Resp login(LoginRequest loginRequest);
 
+    /**
+     * 获取用户信息接口
+     * @param openId 用户openId
+     * @return Resp
+     */
+    Resp info(String openId);
+
 }

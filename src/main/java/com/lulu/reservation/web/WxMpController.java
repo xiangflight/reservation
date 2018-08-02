@@ -135,7 +135,7 @@ public class WxMpController {
                 User existUser = userRepository.findByMpOpenid(openid);
                 if (existUser != null) {
                     if (StringUtils.isNotEmpty(existUser.getPhone())) {
-                        return new ModelAndView("redirect:" + Constants.URL_INDEX);
+                        return new ModelAndView("redirect:" + Constants.URL_INDEX + "?openid=" + openid);
                     } else {
                         String mpHeaderImg = existUser.getMpHeaderImg();
                         return new ModelAndView("redirect:" + Constants.URL_LOGIN + "?img=" + mpHeaderImg + "&openid="+ openid);

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>中意nei的神秘约会</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no,email=no,address=no" />
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="woa/css/mui.picker.all.css">
+		<link rel="stylesheet" href="woa/css/common.css" />
+		<link rel="stylesheet" href="woa/css/main.css" />
+		<style>
+				.redire-checkbox {
+				margin: 0 0.86rem;
+				text-align: center;
+				font-size: 0.28rem;
+				position: absolute;
+				left: 0;
+				right: 0;
+				border-radius: 0.1rem;
+				background: #FFF;
+				top: 20%;
+				padding: 0.80rem 0.8rem;
+				display: block;
+				z-index: 9999;
+				height: 3rem;
+			}
+			.redire-checkbox-span {
+				position: relative;
+				margin-top: 0.19rem;
+				font-size: 0.3rem;
+			}
+		</style>
+		<script type="text/javascript" src="woa/js/adaptive.js"></script>
+		<script>
+			window['adaptive'].desinWidth = 750;
+			window['adaptive'].baseFont = 28;
+			window['adaptive'].init();
+		</script>
+
+	</head>
+
+	<body>
+
+		<div style="background: #000;height: auto;opacity: 0.65;">
+
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">年龄范围</span>
+				<input placeholder="请选择年龄范围" id="chooseYear" readonly="readonly" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">身高范围</span>
+				<input placeholder="请选择身高范围" readonly="readonly" id="talls" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">体重范围</span>
+				<input placeholder="请选择体重范围" readonly="readonly" id="chooseWeight" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">学历层次</span>
+				<input placeholder="请选择学历" readonly="readonly" id="chooseEducation" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">年收入数</span>
+				<input placeholder="请选择年收入" readonly="readonly" id="chooseEarn" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">约会时间</span>
+				<input placeholder="请选择时间段" readonly="readonly" id="myProvince" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+
+		</div>
+
+		<div class="w100 tac pos_r top04" style="height: auto;">
+
+			<input type="button" value="开始匹配" class="resh_next" style="color: #333;border-radius: 0.8rem;" />
+
+		</div>
+
+		<div class="w100 h100 pos_r top03"></div>
+
+		<div class="index-box-clear"></div>
+		<div class="index-box-bg-img">
+			<img src="woa/img/u2.jpg">
+		</div>
+
+		<!--弹窗提示-妹子-->
+			<div class="redire-checkbox">
+					<p class="redire-checkbox-span">你还没有填写个人信息!</p>
+					<p class="redire-checkbox-span">填好个人信息才能匹配哦~</p>
+
+				</div>
+	</body>
+</html>
+<script src="woa/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="woa/js/util.js"></script>
+<script type="text/javascript" src="woa/js/tooltipbox.js"></script>
+<script src="woa/js/user_api.js"></script>
+<script src="woa/js/mui.js"></script>
+<script src="woa/js/util.js"></script>
+<script src="woa/js/mui.min.js"></script>
+<script src="woa/js/mui.picker.min.js"></script>
+<script src="woa/js/mui.poppicker.js"></script>
+
+<script>
+	
+	//开始匹配
+	$(".resh_next").on("click",function(){
+		
+		showMask();
+		
+		
+		
+	})
+	
+	
+	
+	
+	
+	
+	
+
+	var picker = new mui.PopPicker();
+	$("#goWay").on("click", function() {
+
+		window.location.href = "index_information_lasts.html"
+
+	})
+
+	$("#goAppointment").on("click", function() {
+
+		window.location.href = "appointment.html"
+
+	})
+
+	$("#chooseYear").on("click", function() {
+
+		picker.setData([{
+			value: "1",
+			text: "20岁-25岁"
+		}, {
+			value: "2",
+			text: "25岁-30岁"
+		}, {
+			value: "3",
+			text: "30岁-35岁"
+		}, {
+			value: "4",
+			text: "35岁-40岁"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#chooseYear").val(SelectedItem[0].text)
+		})
+
+	})
+
+	//身高
+	$("#talls").on("click", function() {
+		picker.setData([{
+			value: "1",
+			text: "165cm-170cm"
+		}, {
+			value: "2",
+			text: "170cm-175cm"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#talls").val(SelectedItem[0].text)
+		})
+
+	})
+	//体重
+	$("#chooseWeight").on("click", function() {
+
+		picker.setData([{
+			value: "1",
+			text: "45kg-50kg"
+		}, {
+			value: "2",
+			text: "50kg-55kg"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#chooseWeight").val(SelectedItem[0].text)
+		})
+
+	})
+
+	//学历
+	$("#chooseEducation").on("click", function() {
+
+		picker.setData([{
+			value: "1",
+			text: "初中及以下"
+		}, {
+			value: "2",
+			text: "高中"
+		}, {
+			value: "3",
+			text: "大专"
+		}, {
+			value: "4",
+			text: "本科"
+		}, {
+			value: "5",
+			text: "研究生"
+		}, {
+			value: "6",
+			text: "硕士"
+		}, {
+			value: "7",
+			text: "博士"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#chooseEducation").val(SelectedItem[0].text)
+		})
+	})
+	//年收入
+	$("#chooseEarn").on("click", function() {
+
+		picker.setData([{
+			value: "1",
+			text: "5万元以下"
+		}, {
+			value: "2",
+			text: "5-10万元"
+		}, {
+			value: "3",
+			text: "10-15万元"
+		}, {
+			value: "4",
+			text: "15-20万元"
+		}, {
+			value: "5",
+			text: "20-25万元"
+		}, {
+			value: "6",
+			text: "50万元以上"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#chooseEarn").val(SelectedItem[0].text)
+		})
+
+	})
+	//省份
+	$("#myProvince").on("click", function() {
+
+		picker.setData([{
+			value: "1",
+			text: "广东省"
+		}, {
+			value: "2",
+			text: "湖南省"
+		}, {
+			value: "3",
+			text: "湖北省"
+		}, {
+			value: "4",
+			text: "江西省"
+		}, {
+			value: "5",
+			text: "浙江省"
+		}, {
+			value: "6",
+			text: "香港行政区"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#myProvince").val(SelectedItem[0].text)
+		})
+
+	})
+</script>

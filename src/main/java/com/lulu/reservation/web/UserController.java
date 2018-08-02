@@ -1,15 +1,13 @@
 package com.lulu.reservation.web;
 
+import com.lulu.reservation.domain.request.GetInfoRequest;
 import com.lulu.reservation.domain.request.LoginRequest;
 import com.lulu.reservation.domain.response.Resp;
 import com.lulu.reservation.service.user.IUserService;
 import com.lulu.reservation.util.RespUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author 赵翔 xiangflight@foxmail.com
@@ -34,5 +32,12 @@ public class UserController {
     public Resp login(@RequestBody LoginRequest loginRequest) {
         log.info("{}", loginRequest);
         return userService.login(loginRequest);
+    }
+
+    @PostMapping("/info")
+    public Resp info(@RequestBody GetInfoRequest getInfoRequest) {
+        final String openId = getInfoRequest.getOpenid();
+        log.info("Post Request is /info/{}", openId);
+        return userService.info(openId);
     }
 }

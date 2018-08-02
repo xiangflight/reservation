@@ -1,144 +1,145 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>主页</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<!--标准mui.css-->
-		<link rel="stylesheet" href="woa/css/mui.min.css">
-		<!--App自定义的css-->
-		<link rel="stylesheet" href="woa/css/app.css" />
-		<link rel="stylesheet" href="woa/css/common.css">
-		<link rel="stylesheet" href="woa/css/main.css" />
-		<link rel="stylesheet" href="woa/css/marquee.css" />
-		<script type="text/javascript" src="woa/js/adaptive.js"></script>
-		<script>
-			window['adaptive'].desinWidth = 750;
-			window['adaptive'].baseFont = 28;
-			window['adaptive'].init();
-		</script>
-		<style>
-			#container {
-				position: absolute!important;
-				height: 20rem;
-				width: 100%;
-				top: -0.9rem;
-			}
-		</style>
+<head>
+  <meta charset="utf-8">
+  <title>主页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!--标准mui.css-->
+  <link rel="stylesheet" href="woa/css/mui.min.css">
+  <!--App自定义的css-->
+  <link rel="stylesheet" href="woa/css/app.css"/>
+  <link rel="stylesheet" href="woa/css/common.css">
+  <link rel="stylesheet" href="woa/css/main.css"/>
+  <link rel="stylesheet" href="woa/css/marquee.css"/>
+  <script type="text/javascript" src="woa/js/adaptive.js"></script>
+  <script>
+      window['adaptive'].desinWidth = 750;
+      window['adaptive'].baseFont = 28;
+      window['adaptive'].init();
+  </script>
+  <style>
+    #container {
+      position: absolute !important;
+      height: 20rem;
+      width: 100%;
+      top: -0.9rem;
+    }
+  </style>
 
-	</head>
+</head>
 
-	<body>
+<body>
 
-		<div style="width: 100%;height: 0.9rem;background: #fff;opacity: 0.6;  border-bottom: 1px solid #e2e9f1;position: relative;">
+<div
+  style="width: 100%;height: 0.9rem;background: #fff;opacity: 0.6;  border-bottom: 1px solid #e2e9f1;position: relative;">
 
-		</div>
+</div>
 
-		<div style="width: 100%;height: 0.9rem;position: relative;top:-0.9rem">
+<div style="width: 100%;height: 0.9rem;position: relative;top:-0.9rem">
 
-			<nav class="mui-bar mui-bar-tab mtc">
-				<a class="mui-tab-item mui-active" href="#tabbar">
+  <nav class="mui-bar mui-bar-tab mtc">
+    <a class="mui-tab-item mui-active" href="#tabbar">
 
-					<span class="mui-tab-label">我的</span>
-				</a>
-				<a class="mui-tab-item" href="#tabbar-with-chat">
+      <span class="mui-tab-label">我的</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-chat">
 
-					<span class="mui-tab-label">中意nei</span>
-				</a>
-				<a class="mui-tab-item" href="#tabbar-with-map">
+      <span class="mui-tab-label">中意nei</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-map">
 
-					<span class="mui-tab-label">发现</span>
-				</a>
-			</nav>
+      <span class="mui-tab-label">发现</span>
+    </a>
+  </nav>
 
-		</div>
-		<div class="mui-content">
+</div>
+<div class="mui-content">
 
-			<div id="tabbar" class="mui-control-content mui-active">
+  <div id="tabbar" class="mui-control-content mui-active">
 
-				<div class="my-user-box" style="position: relative;top:-0.9rem;background: #FFF;opacity: 0.8;border-radius: 5px;">
-				</div>
-				<div class="my-user-boxs">
-					<div class="user-info-box">
-						<div class="user-info-img user-Icon">
-							<img src="woa/img/VIP.png" class="userInfo-img">
-						</div>
-						<span class="pos_r fl ml ml20 top04 font14 userName"></span>
-						<div class="user-Lev-icon" id="vipLevel" style="display: none;">
-							<img src='woa/img/VIP.png' style="width: 100%;height: 100%;">
-						</div>
-					</div>
-					<div class="user-bottom-info">
-						<div class="user-bottom-fl-box ">
-							<span class="font14"><i></i>活动中心</span><br/>
-							<span class="font14 activePanel" style="color: #797d88;"><i></i>前往线下活动</span>
-							<i class="pos_r fr top03" style="color:#60646f;">|</i>
-						</div>
-						<div class="user-bottom-fl-box">
-							<span class="font14"><i></i>会员中心</span><br/>
-							<span class="font14 activeVip" style="color: #797d88;"><i></i>成为Vip会员</span>
-						</div>
-					</div>
-				</div>
+    <div class="my-user-box" style="position: relative;top:-0.9rem;background: #FFF;opacity: 0.8;border-radius: 5px;">
+    </div>
+    <div class="my-user-boxs">
+      <div class="user-info-box">
+        <div class="user-info-img user-Icon">
+          <img src="woa/img/VIP.png" class="userInfo-img">
+        </div>
+        <span class="pos_r fl ml ml20 top04 font14 userName"></span>
+        <div class="user-Lev-icon" id="vipLevel" style="display: none;">
+          <img src='woa/img/VIP.png' style="width: 100%;height: 100%;">
+        </div>
+      </div>
+      <div class="user-bottom-info">
+        <div class="user-bottom-fl-box ">
+          <span class="font14"><i></i>活动中心</span><br/>
+          <span class="font14 activePanel" style="color: #797d88;"><i></i>前往线下活动</span>
+          <i class="pos_r fr top03" style="color:#60646f;">|</i>
+        </div>
+        <div class="user-bottom-fl-box">
+          <span class="font14"><i></i>会员中心</span><br/>
+          <span class="font14 activeVip" style="color: #797d88;"><i></i>成为Vip会员</span>
+        </div>
+      </div>
+    </div>
 
-				<div style="position: relative; width: 96%;height:4rem;margin: 0px auto;top:-3.5rem">
-				</div>
-				<!--功能板块9宫格-->
-				<div style="width: 96%;height: auto;position: relative;margin: 0px auto;top:-7.8rem">
-					<ul class="mui-table-view mui-grid-view mui-grid-9 top02">
-						<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-							<a href="#">
-								<span class="mui-icon mui-icon-location"></span>
-								<div class="mui-media-body font14">世界尽头的你</div>
-							</a>
-						</li>-->
-						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-							<a href="#" id="goUserInfo">
-								<span class="mui-icon mui-icon-search"></span>
-								<div class="mui-media-body font14">个人资料</div>
-							</a>
-						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-							<a href="#" id="goPipei">
-								<span class="mui-icon mui-icon-star"></span>
-								<div class="mui-media-body font14">我要匹配</div>
-							</a>
-						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-							<a href="index_rose.html">
-								<span class="mui-icon mui-icon-search"></span>
-								<div class="mui-media-body font14">我的玫瑰</div>
-							</a>
-						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-							<a href="#">
-								<span class="mui-icon mui-icon-star"></span>
-								<div class="mui-media-body font14">约会记录</div>
-							</a>
-						</li>
+    <div style="position: relative; width: 96%;height:4rem;margin: 0px auto;top:-3.5rem">
+    </div>
+    <!--功能板块9宫格-->
+    <div style="width: 96%;height: auto;position: relative;margin: 0px auto;top:-7.8rem">
+      <ul class="mui-table-view mui-grid-view mui-grid-9 top02">
+        <!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+          <a href="#">
+            <span class="mui-icon mui-icon-location"></span>
+            <div class="mui-media-body font14">世界尽头的你</div>
+          </a>
+        </li>-->
+        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+          <a href="#" id="goUserInfo">
+            <span class="mui-icon mui-icon-search"></span>
+            <div class="mui-media-body font14">个人资料</div>
+          </a>
+        </li>
+        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+          <a href="#" id="goPipei">
+            <span class="mui-icon mui-icon-star"></span>
+            <div class="mui-media-body font14">我要匹配</div>
+          </a>
+        </li>
+        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+          <a href="/reservation/guarantee">
+            <span class="mui-icon mui-icon-search"></span>
+            <div class="mui-media-body font14">守约金</div>
+          </a>
+        </li>
+        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+          <a href="#">
+            <span class="mui-icon mui-icon-star"></span>
+            <div class="mui-media-body font14">约会记录</div>
+          </a>
+        </li>
 
-						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-							<a href="tel:15986676753">
-								<span class="mui-icon mui-icon-phone"></span>
-								<div class="mui-media-body font14">客服</div>
-							</a>
-						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-							<a href="#">
-								<span class="mui-icon mui-icon-more"></span>
-								<div class="mui-media-body font14">更多开发中</div>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div class="index-box-clear"></div>
-				<div class="index-box-bg-img" id="picOne">
-					<img src="woa/img/u2.jpg">
-				</div>
-				<div class="index-box-bottom-line"></div>
-				<div class="index-box-bottom-lines">
+        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+          <a href="tel:15986676753">
+            <span class="mui-icon mui-icon-phone"></span>
+            <div class="mui-media-body font14">客服</div>
+          </a>
+        </li>
+        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+          <a href="#">
+            <span class="mui-icon mui-icon-more"></span>
+            <div class="mui-media-body font14">更多开发中</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="index-box-clear"></div>
+    <div class="index-box-bg-img" id="picOne">
+      <img src="woa/img/u2.jpg">
+    </div>
+    <div class="index-box-bottom-line"></div>
+    <div class="index-box-bottom-lines">
 					<span class="font14 pos_r top03 fl ml20" style="color:#797d88;" id="hovertreemarquee">
 						<div class="content">
 				<div class="container">
@@ -149,571 +150,574 @@
 						<ul class="marquee-content-items" style="color:skyblue;">
 							<li>是我不够坏？为啥还不约我...</li>
 							<li>今天想在Level吧看球赛，有没有小哥哥一起~~</li>
-							<!--<li>Item 2</li>
-							<li>Item 3</li>
-							<li>Item 4</li>
-							<li>Item 5</li>-->
+              <!--<li>Item 2</li>
+              <li>Item 3</li>
+              <li>Item 4</li>
+              <li>Item 5</li>-->
 						</ul>
 					</div>
 				</div>
 			</div>
 					</span>
-				</div>
-			</div>
-			<div id="tabbar-with-chat" class="mui-control-content tac">
-
-				<div class="banner-li">
-
-					<div id="slider" class="mui-slider" style="height: 3.5rem">
-						<div class="mui-slider-group mui-slider-loop">
-							<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-							<!--<div class="mui-slider-item mui-slider-item-duplicate">
-								<a href="#">
-									<img src="../img/banner.jpg" style="height: 3.5rem;">
-								</a>
-							</div>-->
-							<!-- 第一张 -->
-							<div class="mui-slider-item">
-								<a href="#">
-									<img src="woa/img/banner.jpg" style="height: 3.5rem;">
-								</a>
-							</div>
-							<!-- 第二张 -->
-							<!--<div class="mui-slider-item">
-								<a href="#">
-									<img src="../img/map1.jpg">
-								</a>
-							</div>-->
-							<!-- 第三张 -->
-							<!--<div class="mui-slider-item">
-								<a href="#">
-									<img src="../img/map1.jpg">
-								</a>
-							</div>-->
-							<!-- 第四张 -->
-
-							<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-							<!--<div class="mui-slider-item mui-slider-item-duplicate">
-								<a href="#">
-									<img src="../img/banner.jpg" style="height: 3.5rem;">
-								</a>
-							</div>-->
-						</div>
-						<!--<div class="mui-slider-indicator">
-							<div class="mui-indicator mui-active"></div>
-							<div class="mui-indicator"></div>
-							<div class="mui-indicator"></div>
-							<div class="mui-indicator"></div>
-						</div>-->
-					</div>
-
-				</div>
-
-				<div class="index-zy-nav-boxs" style="display: none;"></div>
-				<div class="index-zy-nav-box" style="display: none;">
-					<div class="nav-box-tip">
-						<div class="nav-box-tip-icon">
-							<img src="woa/img/ic_gerenzhongxin2x.png">
-						</div>
-						<span class="font12 pos_r top02 " style="color:#333">被邀之星</span>
-					</div>
-					<div class="nav-box-tip">
-						<div class="nav-box-tip-icon">
-							<img src="woa/img/ic_gerenzhongxin2x.png">
-						</div>
-						<span class="font12 pos_r top02" style="color:#333">男神区</span>
-					</div>
-					<div class="nav-box-tip">
-
-						<div class="nav-box-tip-icon">
-							<img src="woa/img/ic_gerenzhongxin2x.png">
-						</div>
-						<span class="font12 pos_r top02" style="color:#333">女神区</span>
-					</div>
-					<div class="nav-box-tip">
-
-						<div class="nav-box-tip-icon">
-							<img src="woa/img/ic_gerenzhongxin2x.png">
-						</div>
-						<span class="font12 pos_r top02" style="color:#333">开发中</span>
-					</div>
-				</div>
-
-				<div class="img-box-info" style="top: -0.9rem;">
-					<div class="zy-boximg-left">
-						<img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eo2nk9s8GOOf0Pxk5yZSThsDlkgw6fgsdEVwcgZR8TTSL0XmD8WmJXvwIxxCbKDBicGjLPlEEynAXQ/132">
-						<!--<img src="../img/u1.jpg">-->
-					</div>
-
-					<div class="img-box-infos">
-						<div class="img-box-infos-sile" id="oneUser" data-id="19">
-							<div class="img-box-infos-line"></div>
-							<div class="img-box-infos-lines">
-								<span class="pos_r fl ml20 font14 top01" style="color: #333;">杨荞语</span><br/>
-								<span class="pos_r fl ml20 font12 " style="color: #797d88;">想遇见个小哥哥~</span>
-							</div>
-
-							<div class="img-box-infos-line-img">
-								<img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eo2nk9s8GOOf0Pxk5yZSThsDlkgw6fgsdEVwcgZR8TTSL0XmD8WmJXvwIxxCbKDBicGjLPlEEynAXQ/132">
-								<!--<img src="../../../static/img/user.jpg" style="width: 100%;height: 100%;">-->
-							</div>
-						</div>
-
-						<div class="img-box-infos-sile top01">
-							<div class="img-box-infos-line"></div>
-							<div class="img-box-infos-lines">
-								<span class="pos_r fl ml20 font14 top01" style="color: #333;">盟词</span><br/>
-								<span class="pos_r fl ml20 font12 " style="color: #797d88;">治愈系小姐姐</span>
-							</div>
-							<div class="img-box-infos-line-img">
-								<img src="userInfo/img/mc.jpg">
-
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<!--<div class="line-title">
-					<span class="font14">专题推荐</span>
-					<span class="pos_r fr mr20">更多</span>
-				</div>
-				<div class="img-box-wrap top04"></div>
-				<div class="img-box-wraps">
-					<a class="title-line-img" href="userInfo/girls_mc.html">
-						<div class="title-line-img-top">
-							<img src="userInfo/img/mc.jpg">
-						</div>
-						<div class="font12 w100  tac pos_r" style="height: 0.5rem;color:#797d88;">
-							<span>盟词小姐姐</span>
-						</div>
-
-					</a>
-
-					
-				
-				</div>-->
-				<!--
-				<div class="img-box-wrap" style="top: -2.5rem;"></div>
-				<div class="img-box-wraps" style="top:-5.3rem">
-					<div class="title-line-img">
-						<div class="title-line-img-top">
-							<img src="../img/u2.jpg">
-						</div>
-						<div class="font12 w100  tac pos_r" style="height: 0.5rem;">
-							<span>XXXXXXXXX</span>
-						</div>
-
-					</div>
-
-					<div class="title-line-img" style="margin-left: 0.12rem;margin-right: 0.12rem;">
-						<div class="title-line-img-top">
-							<img src="../img/u2.jpg">
-						</div>
-
-						<div class="font12 w100 pos_r tac" style="height: 0.5rem;">
-							<span>XXXXXXXXX</span>
-						</div>
-
-					</div>
-					<div class="title-line-img">
-						<div class="title-line-img-top">
-							<img src="../img/u2.jpg">
-						</div>
-
-						<div class="font12 w100 pos_r tac" style="height: 0.5rem;">
-							<span>XXXXXXXXX</span>
-						</div>
-					</div>
-				</div>-->
-
-				<div class="index-box-clear"></div>
-				<div class="index-box-bg-img" id="picTwo">
-					<img src="woa/img/la3.jpg">
-				</div>
-
-			</div>
-			<div id="tabbar-with-map" class="mui-control-content">
-
-				<div id="container"></div>
-
-				<div id="joinMs" style="width: 1rem;height: 1rem;border-radius: 100%; position: absolute;z-index: 999;background: #000;top: 0.5rem;left: 0.5rem;">
-					<!--<span>随机匹配</span>-->
-				</div>
-				<div class="mBox" style="display: none;"></div>
-
-			</div>
-		</div>
-	</body>
-	<script src="woa/js/jquery-1.8.3.min.js"></script>
-	<script src="woa/js/mui.js"></script>
-	<script type="text/javascript" src="woa/js/util.js"></script>
-	<script type="text/javascript" src="woa/js/tooltipbox.js"></script>
-	<script src="woa/js/user_api.js"></script>
-	<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
-	<script src="woa/js/marquee.js"></script>
-	<script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
-	<script src="woa/js/jweixin-1.2.0.js"></script>
-
-	<script>
-		var isApprove = "";
-		var isCity = "";
-		var isDescribe = "";
-        var myId = "";
-		$(function() {
-
-			wxUserInfo();
-
-			createMarquee({
-				duration: 30000,
-			});
-
-			$("#oneUser").on('click', function() {
-				
-				var userId = $(this).data("id");
-				location.href="userInfo/girls_mc.html?id="+userId;
-
-			})
-			
-			
-			
-			
-			
-			$("#joinMs").on("click",function(){
-				dlc_request('/Wxsite/User/api', {
-				api_name: 'blindDate'
-			}, function(res) {
-				
-				console.log(res.msg)
-			})
-				
-				
-				
-			})
-			
-			
-			
-
-		})
-
-		//		function oppositeUserInfo(){
-		//			dlc_request('/Wxsite/User/api', {
-		//				api_name: 'oppositeUserInfo'
-		//			}, function(res) {
-		//				
-		//				console.log(res)
-		//				
-		//				
-		//			})
-		//			
-		//			
-		//		}
-
-		function wxUserInfo() {
-			dlc_request('/Wxsite/User/api', {
-				api_name: 'getUserInfo'
-			}, function(res) {
-
-				console.log(res, 22222);
-
-				if(res.code == 1) {
-					$(".userName").html(res.data.nickname);
-					$(".userInfo-img").attr("src", res.data.head_img);
-
-					var pictureList = res.data.picture;
-
-										var picOne = pictureList[0];
-//										console.log(picOne,33333333)
-										$("#picOne img").attr("src",picOne);
-										var picTwo = pictureList[1];
-										$("#picTwo img").attr("src",picTwo);
-					//					//判断是否是会员 
-					var isVip = res.data.type;
-					var id = res.data.user_id;
-					    myId =id;
-
-					var city = res.data.city;
-					isCity = city;
-
-					console.log(res.data.city)
-
-					var describe = res.data.describe;
-					isDescribe = describe;
-
-					console.log(isVip, "会员类型");
-
-					if(isVip == 1) {
-						//普通玩家
-						$("#vipLevel").hide();
-					} else if(isVip == 2) {
-						//会员玩家
-						$("#vipLevel").show();
-					}
-					//赋值全局-判断是否填写了个人资料
-					isApprove = res.data.approve
-					//					if(isApprove == 0) {
-					//						tooltipbox.show("请前往个人资料完善个人信息,才能体验到更多的功能")
-					//					}
-
-				}
-
-			})
-		}
-	</script>
-
-	<script>
-		var geolocation = new qq.maps.Geolocation("BQRBZ-Q7X6F-6VJJH-JVKWG-CUG6S-KWFLQ", "myapp");
-		var positionNum = 0;
-		var options = {
-			timeout: 2000
-		};
-
-		function showPosition(position) {
-			positionNum++;
-			position;
-			lat = position.lat;
-			lng = position.lng;
-			//alert('具体地址：' + position.addr + '经度：' + lat + '纬度' + lng);
-			var center = new qq.maps.LatLng(lat, lng);
-			var map = new qq.maps.Map(document.getElementById('container'), {
-				center: center,
-				zoom: 13,
-				//  zoomControl: false,
-				draggable: true, //手势控制, 用来设置地图是否能够鼠标拖拽，默认值为“可以”；
-				scrollwheel: true, //用来配置地图是否能够通过鼠标滚轮操作进行放大，默认值为“可以”；
-				disableDoubleClickZoom: false, // 用来配置地图是否可以通过鼠标双击进行放大，默认值为“可以”。
-				disableDefaultUI: true
-			});
-
-			//创建marker
-			var marker = new qq.maps.Marker({
-				position: center,
-				map: map
-			});
-
-			//自定义标注图标
-			//自定义标注图标
-			var anchor = new qq.maps.Point(55, 55),
-				size = new qq.maps.Size(42, 95),
-				origin = new qq.maps.Point(0, 0),
-				markerIcon = new qq.maps.MarkerImage(
-					"woa/img/ic_position_012x.png",
-					size,
-					origin,
-					anchor
-				);
-			marker.setIcon(markerIcon);
-
-			dlc_request('/Wxsite/User/api', {
-				api_name: 'oppositeUserInfo',
-				latitude: lng,
-				longitude: lat
-			}, function(res) {
-
-				var boyList = res.data.boy;
-				var girlList = res.data.girl;
-				for(var i in boyList) {
-
-					//					alert(JSON.stringify(boyList[i]) + 11);
-					var iconItem_bike = new markerBoy(boyList[i]);
-					iconItem_bike.init();
-					iconItem_bike.setClick();
-				}
-				for(var i in girlList) {
-
-					var iconItem_car = new markerGirl(girlList[i]);
-					iconItem_car.init();
-					iconItem_car.setClick();
-				}
-
-				function markerBoy(item) {
-					var tmp = new Object;
-					//					var listClass = item.class;
-					//					
-					//alert(item.latitude)
-
-					var listStatus = item.status;
-					tmp.init = function() {
-						var site = new qq.maps.LatLng(item.longitude, item.latitude);
-						var markers = new qq.maps.Marker({
-							position: site,
-							map: map,
-						});
-
-						//自定义标注图标
-
-						//生成单车图标
-						var anchor = new qq.maps.Point(55, 55),
-							size = new qq.maps.Size(41, 43),
-							origin = new qq.maps.Point(0, 0),
-							markerIcon = new qq.maps.MarkerImage("woa/img/ic_bike2.png", size, origin, anchor);
-
-						//这个是标注的点
-						markers.setIcon(markerIcon);
-						tmp.id = item.user_id;
-						tmp.name = item.nickname;
-						tmp.imgUrl = item.head_img;
-						tmp.lat = item.longitude;
-						tmp.lng = item.latitude;
-
-						tmp.setClick = function() {
-							qq.maps.event.addListener(markers, 'click', function(e) {
-
-								alert(item.user_id + "坐标ID")
-
-								dlc_request('/Wxsite/User/api', {
-									api_name: 'getUserInfoById',
-									user_id: item.user_id,
-
-								}, function(res) {
-
-									alert(JSON.stringify(res) + "用户坐标数据")
-
-								})
-
-								//								var lats = item.lat;
-								//								var lngs = item.lng;
-								//								addressFast(lat, lng, lats, lngs);
-
-								setTimeout(function() {
-									$('.mBox').html('<div class="equipment_info bgc2 pb20 ml20 mr20 pl20 pr20 pt20 mt10 border-r1 bor_shadow"><div class="equipment_info_mes"><div class="bdb equipment_address"><h4 class="font14" style="font-weight:500">' + item.nickname + '</h4><div class="mt20 position_img colb3 font16"><img src="' + item.head_img + '" />' + oyfast + 'm</div></div><div class="mt10"><ul class="equipment_info_three_column"><li><div class="colb3 mb10">类型</div><div>单车</div></li><li class="tic"><div class="colb3 mb10">序列号</div><div>' + item.macno + '</div></li><li class="tir"><div class="colb3 mb10">状态</div><div class="rad_color4">' + itemStatus + '</div></li></ul></div></div><div class="equipment_info_img"><img data-lat="' + item.lat + '" data-lng="' + item.lng + '" data-name="' + item.device_title + '" data-address="' + item.address_spe + '" src="../img/ic_daohang2x.png" /><span class="clclose">x</span></div></div>');
-									$('.mBox').show();
-
-								}, 500)
-								//想要打印对应的点击地址
-								//calculateDistance(lat,lng,tmp.lat,tmp.lng);
-
-							})
-						}
-
-					};
-
-					return tmp;
-				}
-
-				function markerGirl(item) {
-
-					var tmp = new Object;
-					//					var listClass = item.class;
-					//					var listStatus = item.status;
-					tmp.init = function() {
-						var site = new qq.maps.LatLng(item.longitude, item.latitude);
-						var markers = new qq.maps.Marker({
-							position: site,
-							map: map,
-						});
-
-						//自定义标注图标
-						var anchor = new qq.maps.Point(55, 55),
-							size = new qq.maps.Size(41, 43),
-							origin = new qq.maps.Point(0, 0),
-							markerIcon = new qq.maps.MarkerImage("woa/img/ic_car2.png", size, origin, anchor);
-
-						//这个是标注的点
-						markers.setIcon(markerIcon);
-						tmp.id = item.user_id;
-						tmp.name = item.nickname;
-						tmp.imgUrl = item.head_img;
-						tmp.lat = item.longitude;
-						tmp.lng = item.latitude;
-						tmp.setClick = function() {
-							qq.maps.event.addListener(markers, 'click', function(e) {
-								//								var lats = item.lat;
-								//								var lngs = item.lng;
-								//								addressFast(lat, lng, lats, lngs);
-								//								alert(item.nickname)
-								alert(item.user_id)
-								dlc_request('/Wxsite/User/api', {
-									api_name: 'getUserInfoById',
-									user_id: item.user_id,
-
-								}, function(res) {
-
-									alert(JSON.stringify(res) + "用户坐标数据")
-
-								})
-
-								setTimeout(function() {
-									$('.mBox').html('<div class="equipment_info bgc2 ml20 pb20 mr20 pl20 pr20 pt20 mt10 border-r1 bor_shadow"><div class="equipment_info_mes"><div class="bdb equipment_address"><h4 class="font14" style="font-weight:500">' + item.address_spe + '</h4><div class="mt20 position_img colb3 font16"><img src="../img/ic_weizhi2x.png" />' + oyfast + 'm</div></div><div class="mt10"><ul class="equipment_info_three_column"><li><div class="colb3 mb10">类型</div><div>汽车</div></li><li class="tic"><div class="colb3 mb10">序列号</div><div>' + item.macno + '</div></li><li class="tir"><div class="colb3 mb10">状态</div><div class="rad_color4">' + itemStatus + '</div></li></ul></div></div><div class="equipment_info_img"><img data-lat="' + item.lat + '" data-lng="' + item.lng + '" data-name="' + item.device_title + '" data-address="' + item.address_spe + '" src="../img/ic_daohang2x.png" /><span class="clclose">x</span></div></div>');
-									$('.mBox').show();
-								}, 500)
-
-								//想要打印对应的点击地址
-								//calculateDistance(lat,lng,tmp.lat,tmp.lng);
-							})
-
-						}
-
-					};
-
-					return tmp;
-
-				}
-
-			})
-
-		}
-
-		function showErr() {
-			positionNum++;
-			console.log('定位失败！');
-			setInterval(function() {
-				geolocation.getLocation(showPosition, showErr, options);
-			}, 2000)
-		};
-		geolocation.getLocation(showPosition, showErr, options);
-
-//		mui.init({
-//			swipeBack: false //启用右滑关闭功能
-//		});
-//		var slider = mui("#slider");
-//		slider.slider({
-//			interval: 5000
-//		});
-		//前往活动中心
-		$(".activePanel").on("click", function() {
-			tooltipbox.show("活动筹备中,敬请期待")
-			//location.href = "activityCenter.html";
-
-		})
-		//前往会员中心
-		$(".activeVip").on("click", function() {
-			//location.href = "vip.html";
-			if(isApprove == 0) {
-				tooltipbox.show("请先前往个人资料完善个人信息...");
-				return false
-			} else {
-				location.href = "vip.html";
-			}
-		})
-
-		//前往匹配
-		$("#goPipei").on("click", function() {
-			if(isApprove == 0) {
-				tooltipbox.show("请先前往个人资料完善个人信息...");
-				return false
-			} else {
-				location.href = "index_information_last.html";
-			}
-		})
-
-		//前往个人资料
-		$("#goUserInfo").on("click", function() {
-
-			alert(isCity);
-
-			if(isCity == undefined || isCity == "" || isCity == null) {
-				alert("资料1未填写")
-				location.href = "index_information.html";
-			} else if(isDescribe == undefined || isDescribe == "" || isDescribe == null) {
-				location.href = "index_moreInformation.html";
-				alert("资料2未填写")
-			} else {
-				alert("用户信息已认证")
-				location.href = "myInfo.html?id="+myId
-			}
-
-			//href="index_information.html"
-		})
-	</script>
+    </div>
+  </div>
+  <div id="tabbar-with-chat" class="mui-control-content tac">
+
+    <div class="banner-li">
+
+      <div id="slider" class="mui-slider" style="height: 3.5rem">
+        <div class="mui-slider-group mui-slider-loop">
+          <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+          <!--<div class="mui-slider-item mui-slider-item-duplicate">
+            <a href="#">
+              <img src="../img/banner.jpg" style="height: 3.5rem;">
+            </a>
+          </div>-->
+          <!-- 第一张 -->
+          <div class="mui-slider-item">
+            <a href="#">
+              <img src="woa/img/banner.jpg" style="height: 3.5rem;">
+            </a>
+          </div>
+          <!-- 第二张 -->
+          <!--<div class="mui-slider-item">
+            <a href="#">
+              <img src="../img/map1.jpg">
+            </a>
+          </div>-->
+          <!-- 第三张 -->
+          <!--<div class="mui-slider-item">
+            <a href="#">
+              <img src="../img/map1.jpg">
+            </a>
+          </div>-->
+          <!-- 第四张 -->
+
+          <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+          <!--<div class="mui-slider-item mui-slider-item-duplicate">
+            <a href="#">
+              <img src="../img/banner.jpg" style="height: 3.5rem;">
+            </a>
+          </div>-->
+        </div>
+        <!--<div class="mui-slider-indicator">
+          <div class="mui-indicator mui-active"></div>
+          <div class="mui-indicator"></div>
+          <div class="mui-indicator"></div>
+          <div class="mui-indicator"></div>
+        </div>-->
+      </div>
+
+    </div>
+
+    <div class="index-zy-nav-boxs" style="display: none;"></div>
+    <div class="index-zy-nav-box" style="display: none;">
+      <div class="nav-box-tip">
+        <div class="nav-box-tip-icon">
+          <img src="woa/img/ic_gerenzhongxin2x.png">
+        </div>
+        <span class="font12 pos_r top02 " style="color:#333">被邀之星</span>
+      </div>
+      <div class="nav-box-tip">
+        <div class="nav-box-tip-icon">
+          <img src="woa/img/ic_gerenzhongxin2x.png">
+        </div>
+        <span class="font12 pos_r top02" style="color:#333">男神区</span>
+      </div>
+      <div class="nav-box-tip">
+
+        <div class="nav-box-tip-icon">
+          <img src="woa/img/ic_gerenzhongxin2x.png">
+        </div>
+        <span class="font12 pos_r top02" style="color:#333">女神区</span>
+      </div>
+      <div class="nav-box-tip">
+
+        <div class="nav-box-tip-icon">
+          <img src="woa/img/ic_gerenzhongxin2x.png">
+        </div>
+        <span class="font12 pos_r top02" style="color:#333">开发中</span>
+      </div>
+    </div>
+
+    <div class="img-box-info" style="top: -0.9rem;">
+      <div class="zy-boximg-left">
+        <img
+          src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eo2nk9s8GOOf0Pxk5yZSThsDlkgw6fgsdEVwcgZR8TTSL0XmD8WmJXvwIxxCbKDBicGjLPlEEynAXQ/132">
+        <!--<img src="../img/u1.jpg">-->
+      </div>
+
+      <div class="img-box-infos">
+        <div class="img-box-infos-sile" id="oneUser" data-id="19">
+          <div class="img-box-infos-line"></div>
+          <div class="img-box-infos-lines">
+            <span class="pos_r fl ml20 font14 top01" style="color: #333;">杨荞语</span><br/>
+            <span class="pos_r fl ml20 font12 " style="color: #797d88;">想遇见个小哥哥~</span>
+          </div>
+
+          <div class="img-box-infos-line-img">
+            <img
+              src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eo2nk9s8GOOf0Pxk5yZSThsDlkgw6fgsdEVwcgZR8TTSL0XmD8WmJXvwIxxCbKDBicGjLPlEEynAXQ/132">
+            <!--<img src="../../../static/img/user.jpg" style="width: 100%;height: 100%;">-->
+          </div>
+        </div>
+
+        <div class="img-box-infos-sile top01">
+          <div class="img-box-infos-line"></div>
+          <div class="img-box-infos-lines">
+            <span class="pos_r fl ml20 font14 top01" style="color: #333;">盟词</span><br/>
+            <span class="pos_r fl ml20 font12 " style="color: #797d88;">治愈系小姐姐</span>
+          </div>
+          <div class="img-box-infos-line-img">
+            <img src="userInfo/img/mc.jpg">
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--<div class="line-title">
+      <span class="font14">专题推荐</span>
+      <span class="pos_r fr mr20">更多</span>
+    </div>
+    <div class="img-box-wrap top04"></div>
+    <div class="img-box-wraps">
+      <a class="title-line-img" href="userInfo/girls_mc.html">
+        <div class="title-line-img-top">
+          <img src="userInfo/img/mc.jpg">
+        </div>
+        <div class="font12 w100  tac pos_r" style="height: 0.5rem;color:#797d88;">
+          <span>盟词小姐姐</span>
+        </div>
+
+      </a>
+
+
+
+    </div>-->
+    <!--
+    <div class="img-box-wrap" style="top: -2.5rem;"></div>
+    <div class="img-box-wraps" style="top:-5.3rem">
+      <div class="title-line-img">
+        <div class="title-line-img-top">
+          <img src="../img/u2.jpg">
+        </div>
+        <div class="font12 w100  tac pos_r" style="height: 0.5rem;">
+          <span>XXXXXXXXX</span>
+        </div>
+
+      </div>
+
+      <div class="title-line-img" style="margin-left: 0.12rem;margin-right: 0.12rem;">
+        <div class="title-line-img-top">
+          <img src="../img/u2.jpg">
+        </div>
+
+        <div class="font12 w100 pos_r tac" style="height: 0.5rem;">
+          <span>XXXXXXXXX</span>
+        </div>
+
+      </div>
+      <div class="title-line-img">
+        <div class="title-line-img-top">
+          <img src="../img/u2.jpg">
+        </div>
+
+        <div class="font12 w100 pos_r tac" style="height: 0.5rem;">
+          <span>XXXXXXXXX</span>
+        </div>
+      </div>
+    </div>-->
+
+    <div class="index-box-clear"></div>
+    <div class="index-box-bg-img" id="picTwo">
+      <img src="woa/img/la3.jpg">
+    </div>
+
+  </div>
+  <div id="tabbar-with-map" class="mui-control-content">
+
+    <div id="container"></div>
+
+    <div id="joinMs"
+         style="width: 1rem;height: 1rem;border-radius: 100%; position: absolute;z-index: 999;background: #000;top: 0.5rem;left: 0.5rem;">
+      <!--<span>随机匹配</span>-->
+    </div>
+    <div class="mBox" style="display: none;"></div>
+
+  </div>
+</div>
+</body>
+<script src="woa/js/jquery-1.8.3.min.js"></script>
+<script src="woa/js/mui.js"></script>
+<script type="text/javascript" src="woa/js/util.js"></script>
+<script type="text/javascript" src="woa/js/tooltipbox.js"></script>
+<script src="woa/js/user_api.js"></script>
+<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+<script src="woa/js/marquee.js"></script>
+<script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+<script src="woa/js/jweixin-1.2.0.js"></script>
+
+<script>
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        var q = window.location.pathname.substr(1).match(reg_rewrite);
+        if (r != null) {
+            return unescape(r[2]);
+        } else if (q != null) {
+            return unescape(q[2]);
+        } else {
+            return null;
+        }
+    }
+    var openid = getQueryString("openid");
+    var isApprove = "";
+    var isCity = "";
+    var isDescribe = "";
+    var myId = "";
+    $(function () {
+        wxUserInfo();
+        createMarquee({
+            duration: 30000,
+        });
+
+        $("#oneUser").on('click', function () {
+
+            var userId = $(this).data("id");
+            location.href = "userInfo/girls_mc.html?id=" + userId;
+
+        })
+
+
+        $("#joinMs").on("click", function () {
+            dlc_request('/Wxsite/User/api', {
+                api_name: 'blindDate'
+            }, function (res) {
+
+                console.log(res.msg)
+            })
+
+
+        })
+
+
+    })
+
+    //		function oppositeUserInfo(){
+    //			dlc_request('/Wxsite/User/api', {
+    //				api_name: 'oppositeUserInfo'
+    //			}, function(res) {
+    //
+    //				console.log(res)
+    //
+    //
+    //			})
+    //
+    //
+    //		}
+
+    function wxUserInfo() {
+        dlc_request('user/info', {
+            openid: openid
+        }, function (res) {
+            if (res.code == 2000) {
+                $(".userName").html(res.data.nickname);
+                $(".userInfo-img").attr("src", res.data.image);
+
+//                 var pictureList = res.data.picture;
+//
+//                 var picOne = pictureList[0];
+// //										console.log(picOne,33333333)
+//                 $("#picOne img").attr("src", picOne);
+//                 var picTwo = pictureList[1];
+//                 $("#picTwo img").attr("src", picTwo);
+//                 //					//判断是否是会员
+//                 var isVip = res.data.type;
+//                 var id = res.data.user_id;
+//                 myId = id;
+//
+//                 var city = res.data.city;
+//                 isCity = city;
+//
+//                 console.log(res.data.city)
+//
+//                 var describe = res.data.describe;
+//                 isDescribe = describe;
+//
+//                 console.log(isVip, "会员类型");
+//
+//                 if (isVip == 1) {
+//                     //普通玩家
+//                     $("#vipLevel").hide();
+//                 } else if (isVip == 2) {
+//                     //会员玩家
+//                     $("#vipLevel").show();
+//                 }
+//                 //赋值全局-判断是否填写了个人资料
+                isApprove = res.data.addinfo
+                //					if(isApprove == 0) {
+                //						tooltipbox.show("请前往个人资料完善个人信息,才能体验到更多的功能")
+                //					}
+
+            }
+
+        })
+    }
+</script>
+
+<script>
+    var geolocation = new qq.maps.Geolocation("BQRBZ-Q7X6F-6VJJH-JVKWG-CUG6S-KWFLQ", "myapp");
+    var positionNum = 0;
+    var options = {
+        timeout: 2000
+    };
+
+    function showPosition(position) {
+        positionNum++;
+        position;
+        lat = position.lat;
+        lng = position.lng;
+        //alert('具体地址：' + position.addr + '经度：' + lat + '纬度' + lng);
+        var center = new qq.maps.LatLng(lat, lng);
+        var map = new qq.maps.Map(document.getElementById('container'), {
+            center: center,
+            zoom: 13,
+            //  zoomControl: false,
+            draggable: true, //手势控制, 用来设置地图是否能够鼠标拖拽，默认值为“可以”；
+            scrollwheel: true, //用来配置地图是否能够通过鼠标滚轮操作进行放大，默认值为“可以”；
+            disableDoubleClickZoom: false, // 用来配置地图是否可以通过鼠标双击进行放大，默认值为“可以”。
+            disableDefaultUI: true
+        });
+
+        //创建marker
+        var marker = new qq.maps.Marker({
+            position: center,
+            map: map
+        });
+
+        //自定义标注图标
+        //自定义标注图标
+        var anchor = new qq.maps.Point(55, 55),
+            size = new qq.maps.Size(42, 95),
+            origin = new qq.maps.Point(0, 0),
+            markerIcon = new qq.maps.MarkerImage(
+                "woa/img/ic_position_012x.png",
+                size,
+                origin,
+                anchor
+            );
+        marker.setIcon(markerIcon);
+
+        // dlc_request('/Wxsite/User/api', {
+        //     api_name: 'oppositeUserInfo',
+        //     latitude: lng,
+        //     longitude: lat
+        // }, function (res) {
+        //
+        //     var boyList = res.data.boy;
+        //     var girlList = res.data.girl;
+        //     for (var i in boyList) {
+        //
+        //         //					alert(JSON.stringify(boyList[i]) + 11);
+        //         var iconItem_bike = new markerBoy(boyList[i]);
+        //         iconItem_bike.init();
+        //         iconItem_bike.setClick();
+        //     }
+        //     for (var i in girlList) {
+        //
+        //         var iconItem_car = new markerGirl(girlList[i]);
+        //         iconItem_car.init();
+        //         iconItem_car.setClick();
+        //     }
+        //
+        //     function markerBoy(item) {
+        //         var tmp = new Object;
+        //         //					var listClass = item.class;
+        //         //
+        //         //alert(item.latitude)
+        //
+        //         var listStatus = item.status;
+        //         tmp.init = function () {
+        //             var site = new qq.maps.LatLng(item.longitude, item.latitude);
+        //             var markers = new qq.maps.Marker({
+        //                 position: site,
+        //                 map: map,
+        //             });
+        //
+        //             //自定义标注图标
+        //
+        //             //生成单车图标
+        //             var anchor = new qq.maps.Point(55, 55),
+        //                 size = new qq.maps.Size(41, 43),
+        //                 origin = new qq.maps.Point(0, 0),
+        //                 markerIcon = new qq.maps.MarkerImage("woa/img/ic_bike2.png", size, origin, anchor);
+        //
+        //             //这个是标注的点
+        //             markers.setIcon(markerIcon);
+        //             tmp.id = item.user_id;
+        //             tmp.name = item.nickname;
+        //             tmp.imgUrl = item.head_img;
+        //             tmp.lat = item.longitude;
+        //             tmp.lng = item.latitude;
+        //
+        //             tmp.setClick = function () {
+        //                 qq.maps.event.addListener(markers, 'click', function (e) {
+        //
+        //                     alert(item.user_id + "坐标ID")
+        //
+        //                     dlc_request('/Wxsite/User/api', {
+        //                         api_name: 'getUserInfoById',
+        //                         user_id: item.user_id,
+        //
+        //                     }, function (res) {
+        //
+        //                         alert(JSON.stringify(res) + "用户坐标数据")
+        //
+        //                     })
+        //
+        //                     //								var lats = item.lat;
+        //                     //								var lngs = item.lng;
+        //                     //								addressFast(lat, lng, lats, lngs);
+        //
+        //                     setTimeout(function () {
+        //                         $('.mBox').html('<div class="equipment_info bgc2 pb20 ml20 mr20 pl20 pr20 pt20 mt10 border-r1 bor_shadow"><div class="equipment_info_mes"><div class="bdb equipment_address"><h4 class="font14" style="font-weight:500">' + item.nickname + '</h4><div class="mt20 position_img colb3 font16"><img src="' + item.head_img + '" />' + oyfast + 'm</div></div><div class="mt10"><ul class="equipment_info_three_column"><li><div class="colb3 mb10">类型</div><div>单车</div></li><li class="tic"><div class="colb3 mb10">序列号</div><div>' + item.macno + '</div></li><li class="tir"><div class="colb3 mb10">状态</div><div class="rad_color4">' + itemStatus + '</div></li></ul></div></div><div class="equipment_info_img"><img data-lat="' + item.lat + '" data-lng="' + item.lng + '" data-name="' + item.device_title + '" data-address="' + item.address_spe + '" src="../img/ic_daohang2x.png" /><span class="clclose">x</span></div></div>');
+        //                         $('.mBox').show();
+        //
+        //                     }, 500)
+        //                     //想要打印对应的点击地址
+        //                     //calculateDistance(lat,lng,tmp.lat,tmp.lng);
+        //
+        //                 })
+        //             }
+        //
+        //         };
+        //
+        //         return tmp;
+        //     }
+        //
+        //     function markerGirl(item) {
+        //
+        //         var tmp = new Object;
+        //         //					var listClass = item.class;
+        //         //					var listStatus = item.status;
+        //         tmp.init = function () {
+        //             var site = new qq.maps.LatLng(item.longitude, item.latitude);
+        //             var markers = new qq.maps.Marker({
+        //                 position: site,
+        //                 map: map,
+        //             });
+        //
+        //             //自定义标注图标
+        //             var anchor = new qq.maps.Point(55, 55),
+        //                 size = new qq.maps.Size(41, 43),
+        //                 origin = new qq.maps.Point(0, 0),
+        //                 markerIcon = new qq.maps.MarkerImage("woa/img/ic_car2.png", size, origin, anchor);
+        //
+        //             //这个是标注的点
+        //             markers.setIcon(markerIcon);
+        //             tmp.id = item.user_id;
+        //             tmp.name = item.nickname;
+        //             tmp.imgUrl = item.head_img;
+        //             tmp.lat = item.longitude;
+        //             tmp.lng = item.latitude;
+        //             tmp.setClick = function () {
+        //                 qq.maps.event.addListener(markers, 'click', function (e) {
+        //                     //								var lats = item.lat;
+        //                     //								var lngs = item.lng;
+        //                     //								addressFast(lat, lng, lats, lngs);
+        //                     //								alert(item.nickname)
+        //                     alert(item.user_id)
+        //                     dlc_request('/Wxsite/User/api', {
+        //                         api_name: 'getUserInfoById',
+        //                         user_id: item.user_id,
+        //
+        //                     }, function (res) {
+        //
+        //                         alert(JSON.stringify(res) + "用户坐标数据")
+        //
+        //                     })
+        //
+        //                     setTimeout(function () {
+        //                         $('.mBox').html('<div class="equipment_info bgc2 ml20 pb20 mr20 pl20 pr20 pt20 mt10 border-r1 bor_shadow"><div class="equipment_info_mes"><div class="bdb equipment_address"><h4 class="font14" style="font-weight:500">' + item.address_spe + '</h4><div class="mt20 position_img colb3 font16"><img src="../img/ic_weizhi2x.png" />' + oyfast + 'm</div></div><div class="mt10"><ul class="equipment_info_three_column"><li><div class="colb3 mb10">类型</div><div>汽车</div></li><li class="tic"><div class="colb3 mb10">序列号</div><div>' + item.macno + '</div></li><li class="tir"><div class="colb3 mb10">状态</div><div class="rad_color4">' + itemStatus + '</div></li></ul></div></div><div class="equipment_info_img"><img data-lat="' + item.lat + '" data-lng="' + item.lng + '" data-name="' + item.device_title + '" data-address="' + item.address_spe + '" src="../img/ic_daohang2x.png" /><span class="clclose">x</span></div></div>');
+        //                         $('.mBox').show();
+        //                     }, 500)
+        //
+        //                     //想要打印对应的点击地址
+        //                     //calculateDistance(lat,lng,tmp.lat,tmp.lng);
+        //                 })
+        //
+        //             }
+        //
+        //         };
+        //
+        //         return tmp;
+        //
+        //     }
+        //
+        // })
+
+    }
+
+    function showErr() {
+        positionNum++;
+        console.log('定位失败！');
+        setInterval(function () {
+            geolocation.getLocation(showPosition, showErr, options);
+        }, 2000)
+    };
+    geolocation.getLocation(showPosition, showErr, options);
+
+    //		mui.init({
+    //			swipeBack: false //启用右滑关闭功能
+    //		});
+    //		var slider = mui("#slider");
+    //		slider.slider({
+    //			interval: 5000
+    //		});
+    //前往活动中心
+    $(".activePanel").on("click", function () {
+        tooltipbox.show("活动筹备中,敬请期待")
+        // location.href = "activityCenter.html";
+    })
+    //前往会员中心
+    $(".activeVip").on("click", function () {
+        //location.href = "vip.html";
+        if (isApprove == 0) {
+            tooltipbox.show("请先前往个人资料完善个人信息...");
+            return false
+        } else {
+            location.href = "vip.html";
+        }
+    })
+
+    //前往匹配
+    $("#goPipei").on("click", function () {
+        if (isApprove == 0) {
+            tooltipbox.show("请先前往个人资料完善个人信息...");
+            return false
+        } else {
+            location.href = "/reservation/match";
+        }
+    })
+
+    //前往个人资料
+    $("#goUserInfo").on("click", function () {
+
+        alert(isCity);
+
+        if (isCity == undefined || isCity == "" || isCity == null) {
+            alert("资料1未填写")
+            location.href = "/reservation/personal";
+        } else if (isDescribe == undefined || isDescribe == "" || isDescribe == null) {
+            location.href = "index_moreInformation.html";
+            alert("资料2未填写")
+        } else {
+            alert("用户信息已认证")
+            location.href = "myInfo.html?id=" + myId
+        }
+    })
+</script>
 
 </html>

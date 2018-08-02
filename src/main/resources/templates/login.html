@@ -230,7 +230,7 @@
             latitude: lt
         }, function(res) {
             if(res.code == 2000) {
-                window.location.href = "/reservation/index";
+                window.location.href = "/reservation/index?openid=" + openid;
             }
         });
     });

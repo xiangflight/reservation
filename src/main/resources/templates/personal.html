@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>填写资料</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no,email=no,address=no" />
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<!--<link rel="stylesheet" href="../css/mui.min.css" />-->
+		<link rel="stylesheet" href="woa/css/mui.picker.all.css">
+		<!--		<link rel="stylesheet" href="../css/mui.poppicker.css">-->
+		<link rel="stylesheet" href="woa/css/common.css" />
+		<link rel="stylesheet" href="woa/css/main.css" />
+		<script type="text/javascript" src="woa/js/adaptive.js"></script>
+		<script>
+			window['adaptive'].desinWidth = 750;
+			window['adaptive'].baseFont = 28;
+			window['adaptive'].init();
+		</script>
+
+	</head>
+
+	<body>
+
+		<div style="opacity: 0.7;position: relative;">
+			<div class="add_icon_line">
+				<div class="add_icon">
+
+					<form class="flex" method="post" enctype="multipart/form-data" id="form0">
+						<img src="" class="avatar0" style="width:1.3rem;height:1.3rem;position: absolute;top:0" alt="" />
+						<input type="hidden" hidden name="api_name" value="uploadImg">
+						<input type="file" style="width: 1.3rem;height: 1.3rem;opacity: 0;" id="file0" accept="image/jpg,image/png, image/jpeg" name="img" value="">
+					</form>
+
+				</div>
+				<div class="add_icon">
+					<form class="flex" method="post" enctype="multipart/form-data" id="form1">
+						<img src="" class="avatar1" style="width:1.3rem;height:1.3rem;position: absolute;top:0" alt="" />
+						<input type="hidden" hidden name="api_name" value="uploadImg">
+						<input type="file" style="width: 1.3rem;height: 1.3rem;opacity: 0;" id="file1" accept="image/jpg,image/png, image/jpeg" name="img" value="">
+					</form>
+				</div>
+				<div class="add_icon">
+					<form class="flex" method="post" enctype="multipart/form-data" id="form2">
+						<img src="" class="avatar2" style="width:1.3rem;height:1.3rem;position: absolute;top:0" alt="" />
+						<input type="hidden" hidden name="api_name" value="uploadImg">
+						<input type="file" style="width: 1.3rem;height: 1.3rem;opacity: 0;" id="file2" accept="image/jpg,image/png, image/jpeg" name="img" value="">
+					</form>
+				</div>
+				<span class="pos_r fl ml20 font12" style="top: 1.2rem;color: #333;">(上传个人照片)</span>
+			</div>
+
+			<div style="width: 100%;height: 0.68rem;text-align: center;color: #777;background: #FFF;">
+				<span class="pos_r" style="top:0.16rem">基础资料</span>
+			</div>
+
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">昵称</span>
+				<input placeholder="请输入昵称" type="text" id="name" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last" style="visibility:hidden;"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">性别</span>
+				<input placeholder="请选择性别" unselectable="on" onfocus="this.blur()" type="text" readonly="readonly" id="sex" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">年龄</span>
+				<input placeholder="请输入年龄" id="year" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last" style="visibility:hidden;"></i>
+			</div>
+
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">身高</span>
+				<input placeholder="请输入身高(cm)" id="tall" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last" style="visibility:hidden;"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">体重</span>
+				<input placeholder="请输入体重(kg)" id="weight" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last" style="visibility:hidden;"></i>
+			
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">学历</span>
+				<input placeholder="请选择学历" id="education" unselectable="on" onfocus="this.blur()" type="text" readonly="readonly" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">年入</span>
+				<input placeholder="请选择年收入" id="earn" unselectable="on" onfocus="this.blur()" type="text" readonly="readonly" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">家乡</span>
+				<input placeholder="请输入xx省XX市XX区" id="citySpec" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last" style="visibility:hidden;"></i>
+			</div>
+
+			<div class="item  plr24 flex-sb h100  font14">
+				<span class="col3 font12">真诚社交,若发现资料虚假,一经举报直接拉黑</span>
+			</div>
+
+		</div>
+
+		<div class="w100 tac pos_r top04" style="height: auto;">
+
+			<input id="makeLove" type="button" value="完善更多资料" class="resh_next" style="color: #333;border-radius: 0.8rem;" />
+
+		</div>
+		<div class="w100 h100 pos_r top03"></div>
+
+		<div class="index-box-clear"></div>
+		<div class="index-box-bg-img">
+			<img src="woa/img/u2.jpg">
+		</div>
+	</body>
+</html>
+<script src="woa/js/jquery-1.8.3.min.js"></script>
+<script src="woa/js/tooltipbox.js"></script>
+<script src="woa/js/user_api.js"></script>
+<script src="woa/js/mui.js"></script>
+<script src="woa/js/util.js"></script>
+<script src="woa/js/mui.min.js"></script>
+<script src="woa/js/mui.picker.min.js"></script>
+<script src="woa/js/mui.poppicker.js"></script>
+<script src="woa/js/JForm.js"></script>
+<script src="woa/js/h_common.js"></script>
+<script src="woa/js/jquery.form.js"></script>
+
+<script>
+	//数组图片
+	var imgList = "";
+	var picker = new mui.PopPicker();
+
+	$(function() {
+
+		//读取静态数据
+		usexInfo();
+
+		$('#file0').on('change', function() {
+			var reader = new FileReader();
+			reader.readAsDataURL(event.target.files[0]);
+			reader.onload = function(e) {
+				$('.avatar0').attr('src', e.target.result);
+
+			};
+			formSubmit();
+		})
+
+		$('#file1').on('change', function() {
+
+			var reader = new FileReader();
+			reader.readAsDataURL(event.target.files[0]);
+			reader.onload = function(e) {
+				$('.avatar1').attr('src', e.target.result);
+
+			};
+			formSubmit1();
+		})
+
+		$('#file2').on('change', function() {
+
+			var reader = new FileReader();
+			reader.readAsDataURL(event.target.files[0]);
+			reader.onload = function(e) {
+				$('.avatar2').attr('src', e.target.result);
+
+			};
+			formSubmit2();
+		})
+
+		$("#makeLove").on("click", function() {
+			//window.location.href = "index_moreInformation.html"
+			//用户图片
+			var picture = imgList;
+			//名字
+			var nickname = $("#name").val();
+			//性别
+			var sex = $("#sex").data("id");
+			//年龄
+			var age = $("#year").val();
+			//身高
+			var height = $("#tall").val();
+			//体重
+			var weight = $("#weight").val();
+			//学历
+			var education = $("#education").data("id");
+			//收入
+			var annual_income = $("#earn").data("id");
+			//家乡
+			var city = $("#citySpec").val();
+			if(isNull(picture)) {
+				tooltipbox.show("个人图片未上传")
+				return false;
+			}
+			if(isNull(nickname)) {
+				tooltipbox.show("个人昵称未填写")
+				return false;
+			}
+			if(isNull(sex)) {
+				tooltipbox.show("性别未选择")
+				return false;
+			}
+			if(isNull(age)) {
+				tooltipbox.show("年龄未填写")
+				return false;
+			}
+			if(isNull(height)) {
+				tooltipbox.show("身高未填写")
+				return false;
+			}
+			if(isNull(weight)) {
+				tooltipbox.show("体重未填写")
+				return false;
+			}
+			if(isNull(education)) {
+				tooltipbox.show("学历未选择")
+				return false;
+			}
+			if(isNull(annual_income)) {
+				tooltipbox.show("收入未选择")
+				return false;
+			}
+			if(isNull(city)) {
+				tooltipbox.show("家乡未填写")
+				return false;
+			}
+
+			dlc_request('/Wxsite/User/api', {
+				api_name:'saveFirstUserInfo',
+				picture:picture,
+				nickname: nickname,
+				sex:sex,
+				age:age,
+				height:height,
+				weight:weight,
+				education:education,
+				annual_income:annual_income,
+				city:city
+				
+			}, function(res) {
+				if(res.code == 1) {
+					location.href = "/reservation/personalmore"
+				} else {
+					tooltipbox.show(res.msg)
+				}
+
+			})
+
+		})
+
+	})
+
+	function formSubmit() {
+		//上传图像
+		$('#form0').ajaxSubmit({
+			type: 'POST',
+			url: '/Wxsite/Home/doUploadImg',
+			dataType: 'json',
+			beforeSubmit: function() {
+				var imgValue = $('#file0').val();
+				if(imgValue == '') {
+					dlctipbox.show('请选择图片');
+					return false;
+				}
+				loadingShow();
+			},
+			success: function(res) {
+				loadingHide();
+				if(res.code == 1) {
+					dlctipbox.show('上传成功');
+					var imgpath = res.data.fullpath;
+					imgList += imgpath + ',';
+
+					console.log(res);
+					//						$('.avatar0').attr('src', e.target.result);
+
+				} else {
+					dlctipbox.show(res.msg);
+
+				}
+			}
+		});
+		return false; //阻止表单默认提交
+	}
+
+	function formSubmit1() {
+		//上传图像
+		$('#form1').ajaxSubmit({
+			type: 'POST',
+			url: '/Wxsite/Home/doUploadImg',
+			dataType: 'json',
+			beforeSubmit: function() {
+				var imgValue = $('#file1').val();
+				if(imgValue == '') {
+					dlctipbox.show('请选择图片');
+					return false;
+				}
+				loadingShow();
+			},
+			success: function(res) {
+				loadingHide();
+				if(res.code == 1) {
+					dlctipbox.show('上传成功');
+					var imgpath = res.data.fullpath;
+					imgList += imgpath + ',';
+					//						$('.avatar0').attr('src', e.target.result);
+
+				} else {
+					dlctipbox.show(res.msg);
+
+				}
+			}
+		});
+		return false; //阻止表单默认提交
+	}
+
+	function formSubmit2() {
+		//上传图像
+		$('#form2').ajaxSubmit({
+			type: 'POST',
+			url: '/Wxsite/Home/doUploadImg',
+			dataType: 'json',
+			beforeSubmit: function() {
+				var imgValue = $('#file2').val();
+				if(imgValue == '') {
+					dlctipbox.show('请选择图片');
+					return false;
+				}
+				loadingShow();
+			},
+			success: function(res) {
+				loadingHide();
+				if(res.code == 1) {
+					dlctipbox.show('上传成功');
+					var imgpath = res.data.fullpath;
+					imgList += imgpath + ',';
+					//						$('.avatar0').attr('src', e.target.result);
+
+				} else {
+					dlctipbox.show(res.msg);
+
+				}
+			}
+		});
+		return false; //阻止表单默认提交
+	}
+  // 性别
+  $("#sex").on("click", function() {
+
+      picker.setData([{
+          value: "1",
+          text: "男"
+      }, {
+          value: "2",
+          text: "女"
+      }])
+      picker.show(function(SelectedItem) {
+          $("#sex").val(SelectedItem[0].text)
+          $("#sex").attr("data-id", SelectedItem[0].value)
+
+      })
+  })
+  // 学历
+  $("#education").on("click", function() {
+      picker.setData([
+          {
+              value: "1",
+              text: "高中"
+          },
+          {
+              value: "2",
+              text: "大专"
+          },
+          {
+              vaule: "3",
+              text: "本科"
+          },
+          {
+              value: "4",
+              text: "硕士"
+          },
+          {
+              value: "5",
+              text: "博士"
+          }
+      ])
+      picker.show(function(SelectedItem) {
+          $("#education").val(SelectedItem[0].text)
+          $("#education").attr("data-id", SelectedItem[0].value)
+      })
+  })
+  // 年收入
+  $("#earn").on("click", function() {
+      picker.setData([
+          {
+              value: "1",
+              text: "10万+"
+          },
+          {
+              value: "2",
+              text: "20万+"
+          },
+          {
+              value: "3",
+              text: "30万+"
+          },
+          {
+              value: "4",
+              text: "50万+"
+          },
+          {
+              value: "5",
+              text: "100万+"
+          }
+      ])
+      picker.show(function(SelectedItem) {
+          $("#earn").val(SelectedItem[0].text);
+          $("#earn").attr("data-id", SelectedItem[0].value)
+      })
+
+  })
+</script>
