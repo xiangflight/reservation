@@ -95,14 +95,24 @@
 <script src="woa/js/tooltipbox.js"></script>
 
 <script>
+  function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    var q = window.location.pathname.substr(1).match(reg_rewrite);
+    if (r != null) {
+      return unescape(r[2]);
+    } else if (q != null) {
+      return unescape(q[2]);
+    } else {
+      return null;
+    }
+  }
+  var openid = getQueryString("openid");
 	
 	$(function(){
 		//获取静态信息
 		usexInfo();
-		
-		
-		
-		
 		//提交数据
 		$("#gotolast").on("click", function() {
 			
@@ -151,25 +161,22 @@
 				return false;
 			}
 		
-				dlc_request('/Wxsite/User/api', {
-				api_name:'saveUserInfo',
-				describe:describe,
-				profession: profession,
-				constellation:constellation,
-				drink:drink,
-				smok:smok,
-				fitness:fitness,
-				hobby:hobby,
-				weixin_code:weixin_code,
-				
+			dlc_request('/user/put/info/more', {
+			  openid: openid,
+				description: describe,
+				occupation: profession,
+        constellation: constellation,
+        drink: drink,
+        smoke: smok,
+        fitness: fitness,
+        hobby: hobby,
+        wechatId: weixin_code
 			}, function(res) {
-				if(res.code == 1) {
-					
-					tooltipbox.show(res.msg)
+				if(res.code == 2000) {
+					tooltipbox.show(res.message)
 					setTimeout(function(){
-						location.href = "index.html"
+						location.href = "/reservation/index?openid=" + openid
 					},1000)
-					
 				} else {
 					tooltipbox.show(res.msg)
 				}
@@ -186,66 +193,115 @@
 	
 	//获取遍历用户信息字段
 	function usexInfo(){
-	dlc_request('/Wxsite/User/api', {
-		api_name: 'getUserExtendsInfo'
+	dlc_request('user/info/get', {
+		openid: openid
 	}, function(res) {
-		console.log(res);
-		//		alert(res.code)
-		if(res.code == 1) {
-			//职业
-			var profession = res.data.profession;
-			$("#works").on("click", function() {
-				picker.setData(profession)
-				picker.show(function(SelectedItem) {
-					$("#works").val(SelectedItem[0].text);
-					$("#works").attr("data-id", SelectedItem[0].value)
-				})
+		console.log(res.message);
+		if(res.code == 2000) {
+		  $("#userSay").val(res.data.description)
+      $("#hobby").val(res.data.hobby)
+      $("#wxChat").val(res.data.wechatId)
+      $("#works").on("click", function() {
+        picker.setData([{
+          value: "1",
+          text: "国企"
+        }, {
+          value: "2",
+          text: "外企"
+        }, {
+          value: "3",
+          text: "公务员"
+        }, {
+          value: "4",
+          text: "自由职业"
+        }])
 
-			})
-			//星座
-			$("#xingz").on("click", function() {
-				picker.setData(res.data.constellation)
-				picker.show(function(SelectedItem) {
-					$("#xingz").val(SelectedItem[0].text)
-					$("#xingz").attr("data-id", SelectedItem[0].value)
-				})
+        picker.show(function(SelectedItem) {
+          $("#works").val(SelectedItem[0].text)
+          $("#works").attr("data-id", SelectedItem[0].value)
+        })
 
-			})
-			//是否喝酒
-			$("#drink").on("click", function() {
-				picker.setData(res.data.drink)
-				picker.show(function(SelectedItem) {
-					$("#drink").val(SelectedItem[0].text)
-					$("#drink").attr("data-id", SelectedItem[0].value)
-				})
-			})
-			//是否抽烟
-			$("#smoking").on("click", function() {
-				picker.setData(res.data.smok)
-				picker.show(function(SelectedItem) {
-					$("#smoking").val(SelectedItem[0].text)
-					$("#smoking").attr("data-id", SelectedItem[0].value)
+      })
 
-				})
+      $("#xingz").on("click", function() {
+        picker.setData([{
+          value: "1",
+          text: "摩羯座"
+        }, {
+          value: "2",
+          text: "水瓶座"
+        }, {
+          value: "3",
+          text: "狮子座"
+        }, {
+          value: "4",
+          text: "射手座"
+        }])
 
-			})
-			//是否健身
-			$("#sport").on("click", function() {
+        picker.show(function(SelectedItem) {
+          $("#xingz").val(SelectedItem[0].text)
+          $("#xingz").attr("data-id", SelectedItem[0].value)
+        })
 
-				picker.setData(res.data.fitness);
-				picker.show(function(SelectedItem) {
-					$("#sport").val(SelectedItem[0].text)
-					$("#sport").attr("data-id", SelectedItem[0].value)
+      })
 
-				})
+      $("#drink").on("click", function() {
+        picker.setData([{
+          value: "1",
+          text: "喝酒"
+        }, {
+          value: "2",
+          text: "偶尔喝"
+        }, {
+          value: "3",
+          text: "不喝酒"
+        }])
 
-			})
-			
-			
-			
+        picker.show(function(SelectedItem) {
+          $("#drink").val(SelectedItem[0].text)
+          $("#drink").attr("data-id", SelectedItem[0].value)
+        })
 
+      })
+
+      $("#smoking").on("click", function() {
+        picker.setData([{
+          value: "1",
+          text: "经常"
+        }, {
+          value: "2",
+          text: "偶尔"
+        }, {
+          value: "3",
+          text: "从不"
+        }])
+
+        picker.show(function(SelectedItem) {
+          $("#smoking").val(SelectedItem[0].text)
+          $("#smoking").attr("data-id", SelectedItem[0].value)
+        })
+      })
+
+      $("#sport").on("click", function() {
+
+        picker.setData([{
+          value: "1",
+          text: "每天健身"
+        }, {
+          value: "2",
+          text: "偶尔健身"
+        }, {
+          value: "3",
+          text: "从不健身"
+        }])
+
+        picker.show(function(SelectedItem) {
+          $("#sport").val(SelectedItem[0].text)
+          $("#sport").attr("data-id", SelectedItem[0].value)
+        })
+
+      })
 		}
-
 	})
 	}
 
@@ -271,6 +327,7 @@
 
 		picker.show(function(SelectedItem) {
 			$("#works").val(SelectedItem[0].text)
+      $("#works").attr("data-id", SelectedItem[0].value)
 		})
 
 	})
@@ -292,6 +349,7 @@
 
 		picker.show(function(SelectedItem) {
 			$("#xingz").val(SelectedItem[0].text)
+      $("#xingz").attr("data-id", SelectedItem[0].value)
 		})
 
 	})
@@ -310,12 +368,12 @@
 
 		picker.show(function(SelectedItem) {
 			$("#drink").val(SelectedItem[0].text)
+      $("#drink").attr("data-id", SelectedItem[0].value)
 		})
 
 	})
 
 	$("#smoking").on("click", function() {
-
 		picker.setData([{
 			value: "1",
 			text: "经常"
@@ -329,6 +387,7 @@
 
 		picker.show(function(SelectedItem) {
 			$("#smoking").val(SelectedItem[0].text)
+      $("#smoking").attr("data-id", SelectedItem[0].value)
 		})
 	})
 
@@ -347,6 +406,7 @@
 
 		picker.show(function(SelectedItem) {
 			$("#sport").val(SelectedItem[0].text)
+      $("#sport").attr("data-id", SelectedItem[0].value)
 		})
 
 	})

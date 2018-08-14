@@ -1,6 +1,8 @@
 package com.lulu.reservation.service.user;
 
+import com.lulu.reservation.domain.request.BaseInfoRequest;
 import com.lulu.reservation.domain.request.LoginRequest;
+import com.lulu.reservation.domain.request.MoreInfoRequest;
 import com.lulu.reservation.domain.response.Resp;
 
 /**
@@ -26,5 +28,19 @@ public interface IUserService {
      * @return Resp
      */
     Resp info(String openId);
+
+    /**
+     * 上传用户基本信息
+     * @param baseInfoRequest 用户基本信息
+     * @return Resp
+     */
+    Resp baseInfo(BaseInfoRequest baseInfoRequest);
+
+    /**
+     * 上传用户附加信息
+     * @param moreInfoRequest 用户附加信息
+     * @return Resp
+     */
+    Resp moreInfo(MoreInfoRequest moreInfoRequest);
 
 }

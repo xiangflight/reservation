@@ -678,45 +678,21 @@
     //		});
     //前往活动中心
     $(".activePanel").on("click", function () {
-        tooltipbox.show("活动筹备中,敬请期待")
-        // location.href = "activityCenter.html";
+
     })
     //前往会员中心
     $(".activeVip").on("click", function () {
-        //location.href = "vip.html";
-        if (isApprove == 0) {
-            tooltipbox.show("请先前往个人资料完善个人信息...");
-            return false
-        } else {
-            location.href = "vip.html";
-        }
+        location.href = "vip.html";
     })
 
     //前往匹配
     $("#goPipei").on("click", function () {
-        if (isApprove == 0) {
-            tooltipbox.show("请先前往个人资料完善个人信息...");
-            return false
-        } else {
-            location.href = "/reservation/match";
-        }
+        location.href = "/reservation/match";
     })
 
     //前往个人资料
     $("#goUserInfo").on("click", function () {
-
-        alert(isCity);
-
-        if (isCity == undefined || isCity == "" || isCity == null) {
-            alert("资料1未填写")
-            location.href = "/reservation/personal";
-        } else if (isDescribe == undefined || isDescribe == "" || isDescribe == null) {
-            location.href = "index_moreInformation.html";
-            alert("资料2未填写")
-        } else {
-            alert("用户信息已认证")
-            location.href = "myInfo.html?id=" + myId
-        }
+        location.href = "/reservation/personal?openid=" + openid;
     })
 </script>
 

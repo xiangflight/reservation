@@ -7,7 +7,9 @@ import com.lulu.reservation.comm.config.JpushParameter;
 import com.lulu.reservation.comm.exception.ParamException;
 import com.lulu.reservation.domain.database.Sms;
 import com.lulu.reservation.domain.database.User;
+import com.lulu.reservation.domain.request.BaseInfoRequest;
 import com.lulu.reservation.domain.request.LoginRequest;
+import com.lulu.reservation.domain.request.MoreInfoRequest;
 import com.lulu.reservation.domain.response.Resp;
 import com.lulu.reservation.domain.response.data.UserInfoData;
 import com.lulu.reservation.repository.SmsRepository;
@@ -104,5 +106,35 @@ public class UserServiceImpl implements IUserService {
         userInfoData.setImage(user.getMpHeaderImg());
         userInfoData.setAddinfo(user.getAddInfo());
         return RespUtil.successResp(userInfoData);
+    }
+
+    @Override
+    public Resp baseInfo(BaseInfoRequest baseInfoRequest) {
+        final User user = userRepository.findByMpOpenid(baseInfoRequest.getOpenid());
+        user.setNickname(baseInfoRequest.getNickname());
+        user.setSex(baseInfoRequest.getSex());
+        user.setAge(baseInfoRequest.getAge());
+        user.setTall(baseInfoRequest.getTall());
+        user.setWeight(baseInfoRequest.getWeight());
+        user.setEducation(baseInfoRequest.getEducation());
+        user.setEarn(baseInfoRequest.getEarn());
+        user.setHometown(baseInfoRequest.getHometown());
+        userRepository.save(user);
+        return RespUtil.successResp();
+    }
+
+    @Override
+    public Resp moreInfo(MoreInfoRequest moreInfoRequest) {
+        final User user = userRepository.findByMpOpenid(moreInfoRequest.getOpenid());
+        user.setDescription(moreInfoRequest.getDescription());
+        user.setOccupation(moreInfoRequest.getOccupation());
+        user.setConstellation(moreInfoRequest.getConstellation());
+        user.setDrink(moreInfoRequest.getDrink());
+        user.setSmoke(moreInfoRequest.getSmoke());
+        user.setFitness(moreInfoRequest.getFitness());
+        user.setHobby(moreInfoRequest.getHobby());
+        user.setWechatId(moreInfoRequest.getWechatId());
+        userRepository.save(user);
+        return RespUtil.successResp();
     }
 }

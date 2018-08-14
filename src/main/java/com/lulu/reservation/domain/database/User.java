@@ -3,6 +3,7 @@ package com.lulu.reservation.domain.database;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * @author 赵翔 xiangflight@foxmail.com
@@ -55,8 +56,59 @@ public class User {
 
     private Boolean addInfo;
 
+    private String avatar;
+
+    private String nickname;
+
+    private Integer sex;
+
+    private Integer age;
+
+    private Float tall;
+
+    private Float weight;
+
+    private Integer education;
+
+    private Integer earn;
+
+    private String hometown;
+
+    private String description;
+
+    private Integer occupation;
+
+    private Integer constellation;
+
+    private Integer drink;
+
+    private Integer smoke;
+
+    private Integer fitness;
+
+    private String hobby;
+
+    private String wechatId;
+
     public static User newInstance() {
         return new User();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof User)) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equals(mpOpenid, user.mpOpenid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mpOpenid);
     }
 
     @Override
@@ -80,6 +132,23 @@ public class User {
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", addInfo=" + addInfo +
+                ", avatar='" + avatar + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", sex=" + sex +
+                ", age=" + age +
+                ", tall=" + tall +
+                ", weight=" + weight +
+                ", education=" + education +
+                ", earn=" + earn +
+                ", hometown='" + hometown + '\'' +
+                ", description='" + description + '\'' +
+                ", occupation=" + occupation +
+                ", constellation=" + constellation +
+                ", drink=" + drink +
+                ", smoke=" + smoke +
+                ", fitness=" + fitness +
+                ", hobby='" + hobby + '\'' +
+                ", wechatId='" + wechatId + '\'' +
                 '}';
     }
 }

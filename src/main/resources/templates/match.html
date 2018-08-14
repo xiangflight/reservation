@@ -76,12 +76,6 @@
 				<input placeholder="请选择年收入" readonly="readonly" id="chooseEarn" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
 				<i class="return_last"></i>
 			</div>
-			<div class="item bdb plr24 flex-sb h100 bw font14">
-				<span class="col3">约会时间</span>
-				<input placeholder="请选择时间段" readonly="readonly" id="myProvince" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
-				<i class="return_last"></i>
-			</div>
-
 		</div>
 
 		<div class="w100 tac pos_r top04" style="height: auto;">
@@ -96,13 +90,6 @@
 		<div class="index-box-bg-img">
 			<img src="woa/img/u2.jpg">
 		</div>
-
-		<!--弹窗提示-妹子-->
-			<div class="redire-checkbox">
-					<p class="redire-checkbox-span">你还没有填写个人信息!</p>
-					<p class="redire-checkbox-span">填好个人信息才能匹配哦~</p>
-
-				</div>
 	</body>
 </html>
 <script src="woa/js/jquery-1.8.3.min.js"></script>
@@ -119,19 +106,8 @@
 	
 	//开始匹配
 	$(".resh_next").on("click",function(){
-		
 		showMask();
-		
-		
-		
 	})
-	
-	
-	
-	
-	
-	
-	
 
 	var picker = new mui.PopPicker();
 	$("#goWay").on("click", function() {
@@ -217,12 +193,9 @@
 			text: "本科"
 		}, {
 			value: "5",
-			text: "研究生"
-		}, {
-			value: "6",
 			text: "硕士"
 		}, {
-			value: "7",
+			value: "6",
 			text: "博士"
 		}])
 
@@ -255,34 +228,6 @@
 
 		picker.show(function(SelectedItem) {
 			$("#chooseEarn").val(SelectedItem[0].text)
-		})
-
-	})
-	//省份
-	$("#myProvince").on("click", function() {
-
-		picker.setData([{
-			value: "1",
-			text: "广东省"
-		}, {
-			value: "2",
-			text: "湖南省"
-		}, {
-			value: "3",
-			text: "湖北省"
-		}, {
-			value: "4",
-			text: "江西省"
-		}, {
-			value: "5",
-			text: "浙江省"
-		}, {
-			value: "6",
-			text: "香港行政区"
-		}])
-
-		picker.show(function(SelectedItem) {
-			$("#myProvince").val(SelectedItem[0].text)
 		})
 
 	})

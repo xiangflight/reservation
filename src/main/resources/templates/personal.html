@@ -32,28 +32,25 @@
 		<div style="opacity: 0.7;position: relative;">
 			<div class="add_icon_line">
 				<div class="add_icon">
-
 					<form class="flex" method="post" enctype="multipart/form-data" id="form0">
-						<img src="" class="avatar0" style="width:1.3rem;height:1.3rem;position: absolute;top:0" alt="" />
-						<input type="hidden" hidden name="api_name" value="uploadImg">
-						<input type="file" style="width: 1.3rem;height: 1.3rem;opacity: 0;" id="file0" accept="image/jpg,image/png, image/jpeg" name="img" value="">
-					</form>
-
-				</div>
-				<div class="add_icon">
-					<form class="flex" method="post" enctype="multipart/form-data" id="form1">
-						<img src="" class="avatar1" style="width:1.3rem;height:1.3rem;position: absolute;top:0" alt="" />
-						<input type="hidden" hidden name="api_name" value="uploadImg">
-						<input type="file" style="width: 1.3rem;height: 1.3rem;opacity: 0;" id="file1" accept="image/jpg,image/png, image/jpeg" name="img" value="">
+						<img src="" class="avatar" style="width:1.3rem;height:1.3rem;position: absolute;top:0" alt="" />
+						<input type="file" style="width: 1.3rem;height: 1.3rem;opacity: 0;" id="file" accept="image/jpg,image/png, image/jpeg" name="file" value="">
 					</form>
 				</div>
-				<div class="add_icon">
-					<form class="flex" method="post" enctype="multipart/form-data" id="form2">
-						<img src="" class="avatar2" style="width:1.3rem;height:1.3rem;position: absolute;top:0" alt="" />
-						<input type="hidden" hidden name="api_name" value="uploadImg">
-						<input type="file" style="width: 1.3rem;height: 1.3rem;opacity: 0;" id="file2" accept="image/jpg,image/png, image/jpeg" name="img" value="">
-					</form>
-				</div>
+				<!--<div class="add_icon">-->
+					<!--<form class="flex" method="post" enctype="multipart/form-data" id="form1">-->
+						<!--<img src="" class="avatar1" style="width:1.3rem;height:1.3rem;position: absolute;top:0" alt="" />-->
+						<!--<input type="hidden" hidden name="api_name" value="uploadImg">-->
+						<!--<input type="file" style="width: 1.3rem;height: 1.3rem;opacity: 0;" id="file1" accept="image/jpg,image/png, image/jpeg" name="img" value="">-->
+					<!--</form>-->
+				<!--</div>-->
+				<!--<div class="add_icon">-->
+					<!--<form class="flex" method="post" enctype="multipart/form-data" id="form2">-->
+						<!--<img src="" class="avatar2" style="width:1.3rem;height:1.3rem;position: absolute;top:0" alt="" />-->
+						<!--<input type="hidden" hidden name="api_name" value="uploadImg">-->
+						<!--<input type="file" style="width: 1.3rem;height: 1.3rem;opacity: 0;" id="file2" accept="image/jpg,image/png, image/jpeg" name="img" value="">-->
+					<!--</form>-->
+				<!--</div>-->
 				<span class="pos_r fl ml20 font12" style="top: 1.2rem;color: #333;">(上传个人照片)</span>
 			</div>
 
@@ -138,6 +135,20 @@
 <script src="woa/js/jquery.form.js"></script>
 
 <script>
+  function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    var q = window.location.pathname.substr(1).match(reg_rewrite);
+    if (r != null) {
+      return unescape(r[2]);
+    } else if (q != null) {
+      return unescape(q[2]);
+    } else {
+      return null;
+    }
+  }
+  var openid = getQueryString("openid");
 	//数组图片
 	var imgList = "";
 	var picker = new mui.PopPicker();
@@ -145,38 +156,116 @@
 	$(function() {
 
 		//读取静态数据
-		usexInfo();
+		userinfo();
 
-		$('#file0').on('change', function() {
+		function userinfo() {
+		  dlc_request('user/info/get', {
+		    openid: openid
+      }, function(res) {
+		    console.log(res.message)
+		    if (res.code == 2000) {
+		      // avatar
+          $('.avatar').attr('src', res.data.avatar)
+          $("#name").val(res.data.nickname)
+          $("#year").val(res.data.age)
+          $("#tall").val(res.data.tall)
+          $("#weight").val(res.data.weight)
+          $("#citySpec").val(res.data.hometown)
+          // 性别
+          $("#sex").on("click", function() {
+
+            picker.setData([{
+              value: "1",
+              text: "男"
+            }, {
+              value: "2",
+              text: "女"
+            }])
+            picker.show(function(SelectedItem) {
+              $("#sex").val(SelectedItem[0].text)
+              $("#sex").attr("data-id", SelectedItem[0].value)
+
+            })
+          })
+          // 学历
+          $("#education").on("click", function() {
+            picker.setData([
+              {
+                value: "1",
+                text: "初中及以下"
+              },
+              {
+                value: "2",
+                text: "高中"
+              },
+              {
+                vaule: "3",
+                text: "大专"
+              },
+              {
+                value: "4",
+                text: "本科"
+              },
+              {
+                value: "5",
+                text: "硕士"
+              },
+              {
+                value: "6",
+                text: "博士"
+              }
+            ])
+            picker.show(function(SelectedItem) {
+              $("#education").val(SelectedItem[0].text)
+              $("#education").attr("data-id", SelectedItem[0].value)
+            })
+          })
+          // 年收入
+          $("#earn").on("click", function() {
+            picker.setData([
+              {
+                value: "1",
+                text: "5万元以下"
+              },
+              {
+                value: "2",
+                text: "5-10万元"
+              },
+              {
+                value: "3",
+                text: "10-15万"
+              },
+              {
+                value: "4",
+                text: "15-20万"
+              },
+              {
+                value: "5",
+                text: "20-25万"
+              },
+              {
+                value: "6",
+                text: "50万元以上"
+              }
+            ])
+            picker.show(function(SelectedItem) {
+              $("#earn").val(SelectedItem[0].text);
+              $("#earn").attr("data-id", SelectedItem[0].value)
+            })
+
+          })
+        }
+      })
+    }
+
+		$('#file').on('change', function() {
 			var reader = new FileReader();
 			reader.readAsDataURL(event.target.files[0]);
 			reader.onload = function(e) {
-				$('.avatar0').attr('src', e.target.result);
+				$('.avatar').attr('src', e.target.result);
 
 			};
 			formSubmit();
-		})
-
-		$('#file1').on('change', function() {
-
-			var reader = new FileReader();
-			reader.readAsDataURL(event.target.files[0]);
-			reader.onload = function(e) {
-				$('.avatar1').attr('src', e.target.result);
-
-			};
-			formSubmit1();
-		})
-
-		$('#file2').on('change', function() {
-
-			var reader = new FileReader();
-			reader.readAsDataURL(event.target.files[0]);
-			reader.onload = function(e) {
-				$('.avatar2').attr('src', e.target.result);
-
-			};
-			formSubmit2();
 		})
 
 		$("#makeLove").on("click", function() {
@@ -199,10 +288,7 @@
 			var annual_income = $("#earn").data("id");
 			//家乡
 			var city = $("#citySpec").val();
-			if(isNull(picture)) {
-				tooltipbox.show("个人图片未上传")
-				return false;
-			}
+
 			if(isNull(nickname)) {
 				tooltipbox.show("个人昵称未填写")
 				return false;
@@ -236,39 +322,33 @@
 				return false;
 			}
 
-			dlc_request('/Wxsite/User/api', {
-				api_name:'saveFirstUserInfo',
-				picture:picture,
-				nickname: nickname,
-				sex:sex,
-				age:age,
-				height:height,
-				weight:weight,
-				education:education,
-				annual_income:annual_income,
-				city:city
-				
+			dlc_request('user/put/info/base', {
+				openid: openid,
+        nickname: nickname,
+        sex: sex,
+        age: age,
+        tall: height,
+        weight: weight,
+        education: education,
+        earn: annual_income,
+        hometown: city
 			}, function(res) {
-				if(res.code == 1) {
-					location.href = "/reservation/personalmore"
+				if(res.code == 2000) {
+					location.href = "/reservation/personalmore?openid=" + openid
 				} else {
 					tooltipbox.show(res.msg)
 				}
-
 			})
-
 		})
-
 	})
 
 	function formSubmit() {
 		//上传图像
 		$('#form0').ajaxSubmit({
+      url: 'http://zynei.com/reservation/user/img/upload/' + openid,
 			type: 'POST',
-			url: '/Wxsite/Home/doUploadImg',
-			dataType: 'json',
 			beforeSubmit: function() {
-				var imgValue = $('#file0').val();
+        var imgValue = $('#file').val();
 				if(imgValue == '') {
 					dlctipbox.show('请选择图片');
 					return false;
@@ -277,84 +357,17 @@
 			},
 			success: function(res) {
 				loadingHide();
-				if(res.code == 1) {
+				if(res.code == 2000) {
 					dlctipbox.show('上传成功');
-					var imgpath = res.data.fullpath;
-					imgList += imgpath + ',';
-
 					console.log(res);
-					//						$('.avatar0').attr('src', e.target.result);
-
 				} else {
-					dlctipbox.show(res.msg);
-
+					dlctipbox.show(res.message);
 				}
 			}
 		});
 		return false; //阻止表单默认提交
 	}
 
-	function formSubmit1() {
-		//上传图像
-		$('#form1').ajaxSubmit({
-			type: 'POST',
-			url: '/Wxsite/Home/doUploadImg',
-			dataType: 'json',
-			beforeSubmit: function() {
-				var imgValue = $('#file1').val();
-				if(imgValue == '') {
-					dlctipbox.show('请选择图片');
-					return false;
-				}
-				loadingShow();
-			},
-			success: function(res) {
-				loadingHide();
-				if(res.code == 1) {
-					dlctipbox.show('上传成功');
-					var imgpath = res.data.fullpath;
-					imgList += imgpath + ',';
-					//						$('.avatar0').attr('src', e.target.result);
-
-				} else {
-					dlctipbox.show(res.msg);
-
-				}
-			}
-		});
-		return false; //阻止表单默认提交
-	}
-
-	function formSubmit2() {
-		//上传图像
-		$('#form2').ajaxSubmit({
-			type: 'POST',
-			url: '/Wxsite/Home/doUploadImg',
-			dataType: 'json',
-			beforeSubmit: function() {
-				var imgValue = $('#file2').val();
-				if(imgValue == '') {
-					dlctipbox.show('请选择图片');
-					return false;
-				}
-				loadingShow();
-			},
-			success: function(res) {
-				loadingHide();
-				if(res.code == 1) {
-					dlctipbox.show('上传成功');
-					var imgpath = res.data.fullpath;
-					imgList += imgpath + ',';
-					//						$('.avatar0').attr('src', e.target.result);
-
-				} else {
-					dlctipbox.show(res.msg);
-
-				}
-			}
-		});
-		return false; //阻止表单默认提交
-	}
   // 性别
   $("#sex").on("click", function() {
 
@@ -405,29 +418,28 @@
       picker.setData([
           {
               value: "1",
-              text: "10万+"
+              text: "10 ~ 20万"
           },
           {
               value: "2",
-              text: "20万+"
+              text: "20 ～ 30万"
           },
           {
               value: "3",
-              text: "30万+"
+              text: "30 ～ 50万"
           },
           {
               value: "4",
-              text: "50万+"
+              text: "50 ～ 100万"
           },
           {
               value: "5",
-              text: "100万+"
+              text: "100万以上"
           }
       ])
       picker.show(function(SelectedItem) {
           $("#earn").val(SelectedItem[0].text);
           $("#earn").attr("data-id", SelectedItem[0].value)
       })
-
   })
 </script>

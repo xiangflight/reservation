@@ -38,6 +38,10 @@ public class Constants {
 
     public static final String URL_INDEX = "http://zynei.com/reservation/index";
 
+    public static final String UPLOAD_FILE_DIR = "/home/dev/tomcat/webapps/file/";
+
+    public static final String AVATAR_PREFIX = "http://zynei.com/file/";
+
     /**
      * 短信类型
      */
