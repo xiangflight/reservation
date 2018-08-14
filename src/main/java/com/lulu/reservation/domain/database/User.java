@@ -90,25 +90,10 @@ public class User {
 
     private String wechatId;
 
+    private Integer state;
+
     public static User newInstance() {
         return new User();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof User)) {
-            return false;
-        }
-        User user = (User) o;
-        return Objects.equals(mpOpenid, user.mpOpenid);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(mpOpenid);
     }
 
     @Override
@@ -149,6 +134,7 @@ public class User {
                 ", fitness=" + fitness +
                 ", hobby='" + hobby + '\'' +
                 ", wechatId='" + wechatId + '\'' +
+                ", state=" + state +
                 '}';
     }
 }

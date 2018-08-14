@@ -76,6 +76,7 @@ function dlc_request(urlPostFix, data, cb,type){
         dataType: 'json',
         contentType: 'application/json',
         crossDomain:true,
+        timeout: 12000,
         success:function(res){
             if(cb)cb(res);
         },

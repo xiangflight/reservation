@@ -103,24 +103,80 @@
 <script src="woa/js/mui.poppicker.js"></script>
 
 <script>
+
+  function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    var q = window.location.pathname.substr(1).match(reg_rewrite);
+    if (r != null) {
+      return unescape(r[2]);
+    } else if (q != null) {
+      return unescape(q[2]);
+    } else {
+      return null;
+    }
+  }
+  var openid = getQueryString("openid");
 	
 	//开始匹配
 	$(".resh_next").on("click",function(){
-		showMask();
+    var age = $("#chooseYear").data("id");
+    var height = $("#talls").data("id");
+    var weight = $("#chooseWeight").data("id");
+    var education = $("#chooseEducation").data("id");
+    var earn = $("#chooseEarn").data("id");
+    if(isNull(age)) {
+      tooltipbox.show("年龄范围未选择")
+      return false;
+    }
+    if(isNull(height)) {
+      tooltipbox.show("身高范围未选择")
+      return false;
+    }
+    if(isNull(weight)) {
+      tooltipbox.show("体重范围未选择")
+      return false;
+    }
+    if(isNull(education)) {
+      tooltipbox.show("学历层次未选择")
+      return false;
+    }
+    if(isNull(earn)) {
+      tooltipbox.show("年收入数未选择")
+      return false;
+    }
+    showMask();
+    dlc_request('user/match', {
+      openid: openid,
+      age: age,
+      height: height,
+      weight: weight,
+      education: education,
+      earn: earn
+    }, function(res) {
+      console.log(res.message);
+      if(res.code == 2000) {
+        hideMask()
+        location.href = "/reservation/index?openid=" + openid
+      } else {
+        hideMask()
+      }
+    })
 	})
 
 	var picker = new mui.PopPicker();
-	$("#goWay").on("click", function() {
-
-		window.location.href = "index_information_lasts.html"
-
-	})
-
-	$("#goAppointment").on("click", function() {
-
-		window.location.href = "appointment.html"
-
-	})
+	// $("#goWay").on("click", function() {
+  //
+	// 	window.location.href = "index_information_lasts.html"
+  //
+	// })
+  //
+	// $("#goAppointment").on("click", function() {
+  //
+	// 	window.location.href = "appointment.html"
+  //
+	// })
 
 	$("#chooseYear").on("click", function() {
 
@@ -140,6 +196,7 @@
 
 		picker.show(function(SelectedItem) {
 			$("#chooseYear").val(SelectedItem[0].text)
+      $("#chooseYear").attr("data-id", SelectedItem[0].value)
 		})
 
 	})
@@ -156,6 +213,7 @@
 
 		picker.show(function(SelectedItem) {
 			$("#talls").val(SelectedItem[0].text)
+      $("#talls").attr("data-id", SelectedItem[0].value)
 		})
 
 	})
@@ -172,6 +230,7 @@
 
 		picker.show(function(SelectedItem) {
 			$("#chooseWeight").val(SelectedItem[0].text)
+      $("#chooseWeight").attr("data-id", SelectedItem[0].value)
 		})
 
 	})
@@ -201,6 +260,7 @@
 
 		picker.show(function(SelectedItem) {
 			$("#chooseEducation").val(SelectedItem[0].text)
+      $("#chooseEducation").attr("data-id", SelectedItem[0].value)
 		})
 	})
 	//年收入
@@ -228,6 +288,7 @@
 
 		picker.show(function(SelectedItem) {
 			$("#chooseEarn").val(SelectedItem[0].text)
+      $("#chooseEarn").attr("data-id", SelectedItem[0].value)
 		})
 
 	})
