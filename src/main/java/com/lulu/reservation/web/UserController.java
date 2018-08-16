@@ -139,7 +139,7 @@ public class UserController {
                 if (user.getSex() != other) {
                     continue;
                 }
-                log.info("进到匹配池中匹配异性...");
+                log.info("match others...");
                 final Integer age = user.getAge();
                 final Float tall = user.getTall();
                 final Float weight = user.getWeight();

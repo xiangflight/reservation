@@ -171,89 +171,56 @@
           $("#tall").val(res.data.tall)
           $("#weight").val(res.data.weight)
           $("#citySpec").val(res.data.hometown)
-          // 性别
-          $("#sex").on("click", function() {
-
-            picker.setData([{
-              value: "1",
-              text: "男"
-            }, {
-              value: "2",
-              text: "女"
-            }])
-            picker.show(function(SelectedItem) {
-              $("#sex").val(SelectedItem[0].text)
-              $("#sex").attr("data-id", SelectedItem[0].value)
-
-            })
-          })
-          // 学历
-          $("#education").on("click", function() {
-            picker.setData([
-              {
-                value: "1",
-                text: "初中及以下"
-              },
-              {
-                value: "2",
-                text: "高中"
-              },
-              {
-                vaule: "3",
-                text: "大专"
-              },
-              {
-                value: "4",
-                text: "本科"
-              },
-              {
-                value: "5",
-                text: "硕士"
-              },
-              {
-                value: "6",
-                text: "博士"
-              }
-            ])
-            picker.show(function(SelectedItem) {
-              $("#education").val(SelectedItem[0].text)
-              $("#education").attr("data-id", SelectedItem[0].value)
-            })
-          })
-          // 年收入
-          $("#earn").on("click", function() {
-            picker.setData([
-              {
-                value: "1",
-                text: "5万元以下"
-              },
-              {
-                value: "2",
-                text: "5-10万元"
-              },
-              {
-                value: "3",
-                text: "10-15万"
-              },
-              {
-                value: "4",
-                text: "15-20万"
-              },
-              {
-                value: "5",
-                text: "20-25万"
-              },
-              {
-                value: "6",
-                text: "50万元以上"
-              }
-            ])
-            picker.show(function(SelectedItem) {
-              $("#earn").val(SelectedItem[0].text);
-              $("#earn").attr("data-id", SelectedItem[0].value)
-            })
-
-          })
+          $("#sex").val(res.data.sex == 1? "男": "女");
+          $("#sex").attr("data-id",res.data.sex)
+          var education = res.data.education
+          switch (education) {
+            case 1:
+              $("#education").val("初中及以下")
+              break;
+            case 2:
+              $("#education").val("高中")
+              break;
+            case 3:
+              $("#education").val("大专")
+              break;
+            case 4:
+              $("#education").val("本科")
+              break;
+            case 5:
+              $("#education").val("硕士")
+              break;
+            case 6:
+              $("#education").val("博士")
+              break;
+            default:
+              break;
+          }
+          $("#education").attr("data-id", education)
+          var earn = res.data.earn
+          switch (earn) {
+            case 1:
+              $("#earn").val("5万元以下")
+              break;
+            case 2:
+              $("#earn").val("5-10万元")
+              break;
+            case 3:
+              $("#earn").val("10-15万")
+              break;
+            case 4:
+              $("#earn").val("15-20万")
+              break;
+            case 5:
+              $("#earn").val("20-25万")
+              break;
+            case 6:
+              $("#earn").val("50万元以上")
+              break;
+            default:
+              break;
+          }
+          $("#earn").attr("data-id", earn)
         }
       })
     }
@@ -336,7 +303,7 @@
 				if(res.code == 2000) {
 					location.href = "/reservation/personalmore?openid=" + openid
 				} else {
-					tooltipbox.show(res.msg)
+					tooltipbox.show(res.message)
 				}
 			})
 		})
@@ -389,22 +356,26 @@
       picker.setData([
           {
               value: "1",
-              text: "高中"
+              text: "初中及以下"
           },
           {
               value: "2",
-              text: "大专"
+              text: "高中"
           },
           {
               vaule: "3",
-              text: "本科"
+              text: "大专"
           },
           {
               value: "4",
-              text: "硕士"
+              text: "本科"
           },
           {
               value: "5",
+              text: "硕士"
+          },
+          {
+              value: "6",
               text: "博士"
           }
       ])
@@ -415,31 +386,35 @@
   })
   // 年收入
   $("#earn").on("click", function() {
-      picker.setData([
-          {
-              value: "1",
-              text: "10 ~ 20万"
-          },
-          {
-              value: "2",
-              text: "20 ～ 30万"
-          },
-          {
-              value: "3",
-              text: "30 ～ 50万"
-          },
-          {
-              value: "4",
-              text: "50 ～ 100万"
-          },
-          {
-              value: "5",
-              text: "100万以上"
-          }
-      ])
-      picker.show(function(SelectedItem) {
-          $("#earn").val(SelectedItem[0].text);
-          $("#earn").attr("data-id", SelectedItem[0].value)
-      })
+    picker.setData([
+      {
+        value: "1",
+        text: "5万元以下"
+      },
+      {
+        value: "2",
+        text: "5-10万元"
+      },
+      {
+        value: "3",
+        text: "10-15万"
+      },
+      {
+        value: "4",
+        text: "15-20万"
+      },
+      {
+        value: "5",
+        text: "20-25万"
+      },
+      {
+        value: "6",
+        text: "50万元以上"
+      }
+    ])
+    picker.show(function(SelectedItem) {
+      $("#earn").val(SelectedItem[0].text);
+      $("#earn").attr("data-id", SelectedItem[0].value)
+    })
   })
 </script>

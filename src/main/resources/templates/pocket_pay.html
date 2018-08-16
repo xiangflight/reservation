@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>充值预交</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no,email=no,address=no" />
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="woa/css/common.css" />
+		<link rel="stylesheet" href="woa/css/main.css" />
+		<script type="text/javascript" src="woa/js/adaptive.js"></script>
+		<script>
+			window['adaptive'].desinWidth = 750;
+			window['adaptive'].baseFont = 28;
+			window['adaptive'].init();
+		</script>
+		<style>
+			.recharge .sel_money label {
+				float: left;
+				margin-right: 0.1rem;
+				margin-bottom: 0.2rem;
+			}
+			
+			.recharge .sel_money label:nth-of-type(3n) {
+				margin-right: 0;
+			}
+			
+			.recharge .sel_money label span {
+				width: 2.2rem;
+				height: 1rem;
+				color:#ccc;
+				background: #FFF;
+				font-size: 0.26rem;
+				border-radius: 0.08rem;
+				text-align: center;
+				border: 1px solid #ccc;
+			}
+			
+			.recharge .sel_money label input:checked+span {
+				color: #fff;
+			}
+			
+			.recharge .sel_money label input:checked+span {
+				background-color:#E5E5E5;
+				color: #333;
+				text-align: center;
+				font-size: 0.26rem;
+			}
+			
+			.recharge .sel_money .clearfix {
+				padding: 0.2rem 0;
+			}
+		</style>
+
+	</head>
+
+	<body class="recharge">
+	
+		
+		
+		<div class="bw w100 pos_r" style="height:100%;">
+			<span class="pos_a " style="font-family: '微软雅黑';font-weight:400; font-size: 0.4rem;left: 0.2rem;top:0.6rem">违约预缴金</span>
+			<span class="pos_a " style="font-family: '微软雅黑';font-size: 0.24rem;left: 0.2rem;top:1.2rem;color: #999;">支付类型:(目前暂时只支持微信支付)</span>
+
+			<div class="sel_money plr24 " style="position: relative;top:2rem">
+
+				<div class="clearfix" id="payList">
+					<label>
+						<input type="radio" hidden name="money"/>
+						<span class="flex">99元</span>
+					</label>
+					<label>
+						<input type="radio" hidden name="money"/>
+						<span class="flex">99元</span>
+					</label>
+					<label>
+						<input type="radio" hidden name="money"/>
+						<span class="flex">99元</span>
+					</label>
+					<label>
+						<input type="radio" hidden name="money"/>
+						<span class="flex">99元</span>
+					</label>
+					<label>
+						<input type="radio" hidden name="money"/>
+						<span class="flex">99元</span>
+					</label>
+				</div>
+
+			</div>
+			
+			
+			<div style="width: 80%;height: auto;position: absolute;bottom:2rem;left: 10%;text-align: center;color: #999;font-size: 0.16rem;">
+				<span>点击立即支付即代表您已经接受<span style="color: #282828;" id="pocketRule">《违约预缴金支付协议》</span></span>
+				
+			</div>
+			
+			
+			
+
+			<div class="w100 tac pos_a " style="height: auto;bottom: 1rem;">
+				<input type="button" id="goPay" value="充值" class="resh_next font14" style="color: #FFF;border-radius: 0.05rem;background:#000;">
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+<script src="woa/js/jquery-1.8.3.min.js"></script>
+<script src="woa/js/util.js"></script>
+<script src="woa/js/user_api.js"></script>
+<script src="woa/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="woa/js/tooltipbox.js"></script>
+
+<script>
+	$(function() {
+		
+		
+		//--前往违约条款界面--
+		$("#pocketRule").on("click",function(){
+			window.location.href="/reservation/pocketrule"
+		})
+		
+		//加载用户数据
+		wxUserInfo()
+		//首次加载充值列表
+		payList()
+		$("#goPay").on("click", function() {
+			var moneyId = $('input[name=money]:checked').data("id");
+			wxPay(moneyId)
+		})
+
+	})
+
+	//微信支付
+	function wxPay(moneyId) {
+		dlc_request('/Wxsite/User/api', {
+			api_name: 'payToRentDevice',
+			rule_id: moneyId
+		}, function(res) {
+
+			if(res.code == -1) {
+				tooltipbox.show(res.msg);
+			} else if(res.code == 1) {
+				//下单号
+				var order_no = res.data.order_no;
+				var wechatpay = res.data.wechat_pay;
+				function onBridgeReady() {
+					WeixinJSBridge.invoke(
+						'getBrandWCPayRequest', {
+							"appId": wechatpay.appId,
+							"timeStamp": wechatpay.timeStamp,
+							"nonceStr": wechatpay.nonceStr,
+							"package": wechatpay.package,
+							"signType": wechatpay.signType,
+							"paySign": wechatpay.paySign
+						},
+						function(res) {
+							
+							alert(res.err_msg);
+							
+							if(res.err_msg == "get_brand_wcpay_request:ok") {
+								window.location.href = "pay_success.html";
+							}
+							// 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+						}
+					);
+				}
+				if(typeof WeixinJSBridge == "undefined") {
+					if(document.addEventListener) {
+						document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+					} else if(document.attachEvent) {
+						document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+						document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+					}
+				} else {
+					onBridgeReady();
+				}
+
+				//				} else {
+				//					tooltipbox.show(res.data.wechatpay.return_msg);
+				//				}
+
+			}
+
+		})
+
+	}
+
+	//充值遍历
+	function payList() {
+		dlc_request('/Wxsite/User/api', {
+			api_name: 'getItemList',
+			page: 1,
+			pagesize: 20
+		}, function(res) {
+			var payList = res.data.datalist;
+			for(i in payList) {
+				var money = parseInt(payList[i].money)
+				$("#payList").append('<label><input type="radio" hidden name="money" data-id="' + payList[i].rule_id + '"/><span class="flex">' + money + '朵玫瑰<br/>' + money + '元</span></label>')
+			}
+
+		})
+
+	}
+
+	function wxUserInfo() {
+		dlc_request('/Wxsite/User/api', {
+			api_name: 'getUserInfo'
+		}, function(res) {
+			if(res.code == 1) {
+				$(".userName").html(res.data.nickname);
+				$(".userInfo-img").attr("src", res.data.head_img);
+				$("#roleNum").html(res.data.money);
+
+			}
+
+		})
+	}
+</script>

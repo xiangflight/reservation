@@ -178,17 +178,10 @@
 						location.href = "/reservation/index?openid=" + openid
 					},1000)
 				} else {
-					tooltipbox.show(res.msg)
+					tooltipbox.show(res.message)
 				}
-
 			})
-			
-			
-			
-
 	})
-		
-		
 	})
 	
 	//获取遍历用户信息字段
@@ -201,106 +194,82 @@
 		  $("#userSay").val(res.data.description)
       $("#hobby").val(res.data.hobby)
       $("#wxChat").val(res.data.wechatId)
-      $("#works").on("click", function() {
-        picker.setData([{
-          value: "1",
-          text: "国企"
-        }, {
-          value: "2",
-          text: "外企"
-        }, {
-          value: "3",
-          text: "公务员"
-        }, {
-          value: "4",
-          text: "自由职业"
-        }])
-
-        picker.show(function(SelectedItem) {
-          $("#works").val(SelectedItem[0].text)
-          $("#works").attr("data-id", SelectedItem[0].value)
-        })
-
-      })
-
-      $("#xingz").on("click", function() {
-        picker.setData([{
-          value: "1",
-          text: "摩羯座"
-        }, {
-          value: "2",
-          text: "水瓶座"
-        }, {
-          value: "3",
-          text: "狮子座"
-        }, {
-          value: "4",
-          text: "射手座"
-        }])
-
-        picker.show(function(SelectedItem) {
-          $("#xingz").val(SelectedItem[0].text)
-          $("#xingz").attr("data-id", SelectedItem[0].value)
-        })
-
-      })
-
-      $("#drink").on("click", function() {
-        picker.setData([{
-          value: "1",
-          text: "喝酒"
-        }, {
-          value: "2",
-          text: "偶尔喝"
-        }, {
-          value: "3",
-          text: "不喝酒"
-        }])
-
-        picker.show(function(SelectedItem) {
-          $("#drink").val(SelectedItem[0].text)
-          $("#drink").attr("data-id", SelectedItem[0].value)
-        })
-
-      })
-
-      $("#smoking").on("click", function() {
-        picker.setData([{
-          value: "1",
-          text: "经常"
-        }, {
-          value: "2",
-          text: "偶尔"
-        }, {
-          value: "3",
-          text: "从不"
-        }])
-
-        picker.show(function(SelectedItem) {
-          $("#smoking").val(SelectedItem[0].text)
-          $("#smoking").attr("data-id", SelectedItem[0].value)
-        })
-      })
-
-      $("#sport").on("click", function() {
-
-        picker.setData([{
-          value: "1",
-          text: "每天健身"
-        }, {
-          value: "2",
-          text: "偶尔健身"
-        }, {
-          value: "3",
-          text: "从不健身"
-        }])
-
-        picker.show(function(SelectedItem) {
-          $("#sport").val(SelectedItem[0].text)
-          $("#sport").attr("data-id", SelectedItem[0].value)
-        })
-
-      })
+      var occupation = res.data.occupation
+			$("#works").attr("data-id", occupation)
+      switch (occupation) {
+        case 1:
+          $("#works").val("国企")
+          break;
+        case 2:
+          $("works").val("外企")
+          break;
+        case 3:
+          $("works").val("公务员")
+          break;
+        case 4:
+          $("works").val("自由职业")
+        default:
+          break;
+      }
+      var constellation = res.data.constellation
+      $("#xingz").attr("data-id", constellation)
+      switch (constellation) {
+        case 1:
+          $("#xingz").val("摩羯座")
+          break;
+        case 2:
+          $("#xingz").val("水瓶座")
+          break;
+        case 3:
+          $("#xingz").val("狮子座")
+          break;
+        case 4:
+          $("#xingz").val("射手座")
+          break;
+      }
+      var drink = res.data.drink
+      $("#drink").attr("data-id", drink)
+      switch (drink) {
+        case 1:
+          $("#drink").val("喝酒")
+          break;
+        case 2:
+          $("#drink").val("偶尔喝")
+          break;
+        case 3:
+          $("#drink").val("不喝酒")
+          break;
+      }
+      var smoke = res.data.smoke
+      $("#smoking").attr("data-id", smoke)
+      switch (smoke) {
+        case 1:
+          $("#smoking").val("经常")
+          break;
+        case 2:
+          $("#smoking").val("偶尔")
+          break;
+        case 3:
+          $("#smoking").val("从不")
+          break;
+        default:
+          break;
+      }
+      var fitness = res.data.fitness;
+		  $("#sport").attr("data-id", fitness)
+      switch (fitness) {
+        case 1:
+          $("#sport").val("每天健身")
+          break;
+        case 2:
+          $("#sport").val("偶尔健身")
+          break;
+        case 3:
+          $("#sport").val("从不健身")
+          break;
+        default:
+          break;
+      }
 		}
 	})
 	}
@@ -365,12 +334,10 @@
 			value: "3",
 			text: "不喝酒"
 		}])
-
 		picker.show(function(SelectedItem) {
 			$("#drink").val(SelectedItem[0].text)
       $("#drink").attr("data-id", SelectedItem[0].value)
 		})
-
 	})
 
 	$("#smoking").on("click", function() {
@@ -384,7 +351,6 @@
 			value: "3",
 			text: "从不"
 		}])
-
 		picker.show(function(SelectedItem) {
 			$("#smoking").val(SelectedItem[0].text)
       $("#smoking").attr("data-id", SelectedItem[0].value)
@@ -392,7 +358,6 @@
 	})
 
 	$("#sport").on("click", function() {
-
 		picker.setData([{
 			value: "1",
 			text: "每天健身"
@@ -403,7 +368,6 @@
 			value: "3",
 			text: "从不健身"
 		}])
-
 		picker.show(function(SelectedItem) {
 			$("#sport").val(SelectedItem[0].text)
       $("#sport").attr("data-id", SelectedItem[0].value)

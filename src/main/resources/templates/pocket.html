@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>违约预缴金</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="woa/css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" href="woa/css/app.css" />
+		<link rel="stylesheet" href="woa/css/common.css">
+		<link rel="stylesheet" href="woa/css/main.css" />
+		<script type="text/javascript" src="woa/js/adaptive.js"></script>
+		<script>
+			window['adaptive'].desinWidth = 750;
+			window['adaptive'].baseFont = 28;
+			window['adaptive'].init();
+		</script>
+		<style>
+				.redire-checkbox {
+				margin: 0 0.86rem;
+				text-align: center;
+				font-size: 0.28rem;
+				position: absolute;
+				left: 0;
+				right: 0;
+				border-radius: 0.1rem;
+				background: #FFF;
+				top: 20%;
+				padding: 0.80rem 0.8rem;
+				display: block;
+				z-index: 9999;
+				height: 3.6rem;
+				box-shadow:0px 2px 21px 0px rgba(255, 255, 255, 0.6);
+				
+				display: none;
+
+			}
+			.redire-checkbox-span {
+				position: relative;
+				font-size: 0.3rem;
+			}
+			.tipsBox{
+				display: none;
+			}
+			
+			
+		</style>
+		
+	</head>
+
+	<body style="background: #FFF;">
+            <span class="pos_a " style="font-family: '微软雅黑';font-weight:400; font-size: 0.4rem;left: 0.2rem;top:0.6rem">违约预缴金</span>
+            <span class="pos_a " style="font-family: '微软雅黑';color: #aaa;left: 0.2rem;top:1rem;line-height: 0.4rem;padding: 0.25rem;">违约预缴金可用于支付约会违约，如用户合理的赴约，可于当然内进行发起退款，最迟在5个工作日的完成退款操作..</span>
+            <span class="pos_a " style="font-family: '微软雅黑';color: #aaa;left: 0.2rem;top:3rem;line-height: 0.4rem;padding: 0.25rem;">当前余额</span>
+            <div class="pos_a" style="width: 90%;height: 0.45rem; top:3.8rem;left: 5%;border-bottom: 0.01rem solid #E0E0E0;">
+            	<span style="font-family: '微软雅黑';font-size: 0.4rem;color: #333;">￥0.00</span>
+            </div>
+            
+		 <button  type="button" style="width: 90%;height: 0.9rem;background: #282828;border-radius: 0.05rem;text-align: center;top:5.5rem;left:5%;color: #FFF;" id="payPrice">预存违约金</button>
+		<div class="pos_a" style="width: 90%;height: auto;text-align: center;top:6.8rem;left:5%;color: #999;" id="returnPrice">退还违约预缴金 ></div>
+		</div>
+		
+		
+		
+		
+		<!--弹窗-->
+		<div class="redire-checkbox tipsBox" style="display: none;">
+			<p class="redire-checkbox-span" style="font-size: 0.3rem;color: #333;">无可退款违约预缴金</p>
+			<p class="redire-checkbox-span" style="font-size: 0.24rem;margin-top: 0.2rem;">您的违约预缴金目前低于99元或等于0元，目前无法发起退还</p>
+		
+		 <button  type="button" id="canelBtn" style="width: 80%;height:0.8rem;color: #282828;border: 0.05rem solid #282828;border-radius: 0.05rem;position: relative;top:0.3rem;font-family: '微软雅黑';font-size: 0.28rem;">我知道了</div>
+		</button>
+		
+		
+		
+	</body>
+	<script src="woa/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="woa/js/util.js"></script>
+	<script type="text/javascript" src="woa/js/tooltipbox.js"></script>
+	<script src="woa/js/user_api.js"></script>
+	<script src="woa/js/util.js"></script>
+
+	<script>
+		$(function(){
+			
+			//预存预缴金
+			$("#payPrice").on("click",function(){
+				
+
+				window.location.href="/reservation/pocketpay"
+	
+			})
+			//退还预交金
+			$("#returnPrice").on("click",function(){
+				$(".tipsBox").show()
+				 showMask()
+			})
+			
+			
+			//退款失败窗口
+			$("#canelBtn").on("click",function(){
+				
+				hideMask();
+				
+				$(".tipsBox").hide()
+				
+				
+				
+			})
+			
+		})
+		
+		
+		//返回上一次
+	</script>
+
+</html>
