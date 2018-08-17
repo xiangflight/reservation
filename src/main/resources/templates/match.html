@@ -30,13 +30,20 @@
 				padding: 0.80rem 0.8rem;
 				display: block;
 				z-index: 9999;
-				height: 3rem;
+				height: 2rem;
+				box-shadow:0px 2px 21px 0px rgba(255, 255, 255, 0.6);
+
 			}
 			.redire-checkbox-span {
 				position: relative;
 				margin-top: 0.19rem;
 				font-size: 0.3rem;
 			}
+			.tipsBox{
+				display: none;
+			}
+			
+			
 		</style>
 		<script type="text/javascript" src="woa/js/adaptive.js"></script>
 		<script>
@@ -53,29 +60,41 @@
 
 			<div class="item bdb plr24 flex-sb h100 bw font14">
 				<span class="col3">年龄范围</span>
-				<input placeholder="请选择年龄范围" id="chooseYear" readonly="readonly" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<input placeholder="请选择年龄范围" unselectable="on" onfocus="this.blur()" id="chooseYear" readonly="readonly" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
 				<i class="return_last"></i>
 			</div>
 			<div class="item bdb plr24 flex-sb h100 bw font14">
 				<span class="col3">身高范围</span>
-				<input placeholder="请选择身高范围" readonly="readonly" id="talls" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<input placeholder="请选择身高范围" unselectable="on" onfocus="this.blur()" readonly="readonly" id="talls" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
 				<i class="return_last"></i>
 			</div>
 			<div class="item bdb plr24 flex-sb h100 bw font14">
 				<span class="col3">体重范围</span>
-				<input placeholder="请选择体重范围" readonly="readonly" id="chooseWeight" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<input placeholder="请选择体重范围" unselectable="on" onfocus="this.blur()" readonly="readonly" id="chooseWeight" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
 				<i class="return_last"></i>
 			</div>
 			<div class="item bdb plr24 flex-sb h100 bw font14">
 				<span class="col3">学历层次</span>
-				<input placeholder="请选择学历" readonly="readonly" id="chooseEducation" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<input placeholder="请选择学历" unselectable="on" onfocus="this.blur()" readonly="readonly" id="chooseEducation" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
 				<i class="return_last"></i>
 			</div>
 			<div class="item bdb plr24 flex-sb h100 bw font14">
 				<span class="col3">年收入数</span>
-				<input placeholder="请选择年收入" readonly="readonly" id="chooseEarn" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<input placeholder="请选择年收入" unselectable="on" onfocus="this.blur()" readonly="readonly" id="chooseEarn" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
 				<i class="return_last"></i>
 			</div>
+			<div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">约会时间</span>
+				<input placeholder="请选择时间段" unselectable="on" onfocus="this.blur()" readonly="readonly" id="myTime" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+       
+        	 <div class="item bdb plr24 flex-sb h100 bw font14">
+				<span class="col3">约会区域</span>
+				<input placeholder="请选择区域" unselectable="on" onfocus="this.blur()" readonly="readonly" id="chooseArea" class="tae w80 font14" style="text-align: left; text-indent: 0.2rem;color:#777">
+				<i class="return_last"></i>
+			</div>
+       
 		</div>
 
 		<div class="w100 tac pos_r top04" style="height: auto;">
@@ -90,7 +109,13 @@
 		<div class="index-box-bg-img">
 			<img src="woa/img/u2.jpg">
 		</div>
-	</body>
+
+		<!--弹窗提示-->
+		<div class="redire-checkbox tipsBox">
+			<p class="redire-checkbox-span" style="font-size: 0.32rem;">你已成功参与匹配!</p>
+			<p class="redire-checkbox-span" style="font-size: 0.28rem;">请耐心等待匹配结果,结果将以通知的模式发送到给您~</p>
+		</div>
+  </body>
 </html>
 <script src="woa/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="woa/js/util.js"></script>
@@ -118,7 +143,7 @@
     }
   }
   var openid = getQueryString("openid");
-	
+
 	//开始匹配
 	$(".resh_next").on("click",function(){
     var age = $("#chooseYear").data("id");
@@ -157,26 +182,27 @@
     }, function(res) {
       console.log(res.message);
       if(res.code == 2000) {
-        hideMask()
-        location.href = "/reservation/index?openid=" + openid
+        $(".tipsBox").show()
+        showMask();
       } else {
         hideMask()
+        location.href = "/reservation/index?openid=" + openid
       }
     })
 	})
 
 	var picker = new mui.PopPicker();
-	// $("#goWay").on("click", function() {
-  //
-	// 	window.location.href = "index_information_lasts.html"
-  //
-	// })
-  //
-	// $("#goAppointment").on("click", function() {
-  //
-	// 	window.location.href = "appointment.html"
-  //
-	// })
+	$("#goWay").on("click", function() {
+
+		window.location.href = "index_information_lasts.html"
+
+	})
+
+	$("#goAppointment").on("click", function() {
+
+		window.location.href = "appointment.html"
+
+	})
 
 	$("#chooseYear").on("click", function() {
 
@@ -290,6 +316,75 @@
 			$("#chooseEarn").val(SelectedItem[0].text)
       $("#chooseEarn").attr("data-id", SelectedItem[0].value)
 		})
+
+	})
+	//时间段
+	$("#myTime").on("click", function() {
+
+		picker.setData([{
+			value: "1",
+			text: "10:00-11:00 AM"
+		}, {
+			value: "2",
+			text: "11:00-12:00 AM"
+		}, {
+			value: "3",
+			text: "12:00-13:00 PM"
+		}, {
+			value: "4",
+			text: "13:00-14:00 PM"
+		}, {
+			value: "5",
+			text: "14:00-15:00 PM"
+		}, {
+			value: "6",
+			text: "15:00-16:00 PM"
+		}, {
+			value: "7",
+			text: "16:00-17:00 PM"
+		}, {
+			value: "8",
+			text: "17:00-18:00 PM"
+		}, {
+			value: "9",
+			text: "18:00-19:00 PM"
+		}, {
+			value: "10",
+			text: "19:00-20:00 PM"
+		}, {
+			value: "11",
+			text: "20:00-21:00 PM"
+		}, {
+			value: "12",
+			text: "21:00-22:00 PM"
+		}
+		])
+
+		picker.show(function(SelectedItem) {
+			$("#myTime").val(SelectedItem[0].text)
+      $("#myTime").attr("data-id", SelectedItem[0].value)
+		})
+
+	//约会区域
+	$("#chooseArea").on("click", function() {
+
+		picker.setData([{
+			value: "1",
+			text: "南山区"
+		}, {
+			value: "2",
+			text: "福田区"
+		}])
+
+		picker.show(function(SelectedItem) {
+			$("#chooseArea").val(SelectedItem[0].text)
+      $("#chooseArea").attr("data-id", SelectedItem[0].value)
+		})
+
+	})
+
+
+
 
 	})
 </script>

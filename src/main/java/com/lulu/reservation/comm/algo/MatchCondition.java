@@ -22,4 +22,8 @@ public class MatchCondition {
 
     private int earn;
 
+    private int time;
+
+    private int district;
+
 }

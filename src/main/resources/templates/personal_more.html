@@ -173,7 +173,6 @@
         wechatId: weixin_code
 			}, function(res) {
 				if(res.code == 2000) {
-					tooltipbox.show(res.message)
 					setTimeout(function(){
 						location.href = "/reservation/index?openid=" + openid
 					},1000)
