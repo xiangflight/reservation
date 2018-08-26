@@ -5,13 +5,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.lulu.reservation.comm.Constants;
 import com.lulu.reservation.comm.config.JpushParameter;
 import com.lulu.reservation.comm.exception.ParamException;
+import com.lulu.reservation.domain.database.Reservation;
 import com.lulu.reservation.domain.database.Sms;
 import com.lulu.reservation.domain.database.User;
 import com.lulu.reservation.domain.request.BaseInfoRequest;
 import com.lulu.reservation.domain.request.LoginRequest;
 import com.lulu.reservation.domain.request.MoreInfoRequest;
+import com.lulu.reservation.domain.request.ReservationRequest;
 import com.lulu.reservation.domain.response.Resp;
+import com.lulu.reservation.domain.response.data.ReservationData;
 import com.lulu.reservation.domain.response.data.UserInfoData;
+import com.lulu.reservation.repository.ReservationRepository;
 import com.lulu.reservation.repository.SmsRepository;
 import com.lulu.reservation.repository.UserRepository;
 import com.lulu.reservation.service.user.IUserService;
@@ -46,11 +50,14 @@ public class UserServiceImpl implements IUserService {
 
     private final UserRepository userRepository;
 
+    private final ReservationRepository reservationRepository;
+
     @Autowired
-    public UserServiceImpl(SmsRepository smsRepository, JpushParameter jpushParameter, UserRepository userRepository) {
+    public UserServiceImpl(SmsRepository smsRepository, JpushParameter jpushParameter, UserRepository userRepository, ReservationRepository reservationRepository) {
         this.smsRepository = smsRepository;
         this.jpushParameter = jpushParameter;
         this.userRepository = userRepository;
+        this.reservationRepository = reservationRepository;
     }
 
     @Override
@@ -136,5 +143,19 @@ public class UserServiceImpl implements IUserService {
         user.setWechatId(moreInfoRequest.getWechatId());
         userRepository.save(user);
         return RespUtil.successResp();
+    }
+
+    @Override
+    public Resp reservationInfo(ReservationRequest reservationRequest) {
+        final Long reservationId = reservationRequest.getId();
+        Reservation reservation = reservationRepository.findById(reservationId).get();
+        ReservationData reservationData = new ReservationData();
+        reservationData.setLocation(reservation.getLocation());
+        reservationData.setTime(reservation.getReserveTime());
+        final Long otherId = reservation.getOther();
+        final User user = userRepository.findById(otherId).get();
+        reservationData.setImage(user.getAvatar());
+        reservationData.setOpenid(user.getMpOpenid());
+        return RespUtil.successResp(reservationData);
     }
 }

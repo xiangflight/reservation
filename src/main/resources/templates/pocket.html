@@ -57,27 +57,27 @@
             <span class="pos_a " style="font-family: '微软雅黑';color: #aaa;left: 0.2rem;top:1rem;line-height: 0.4rem;padding: 0.25rem;">违约预缴金可用于支付约会违约，如用户合理的赴约，可于当然内进行发起退款，最迟在5个工作日的完成退款操作..</span>
             <span class="pos_a " style="font-family: '微软雅黑';color: #aaa;left: 0.2rem;top:3rem;line-height: 0.4rem;padding: 0.25rem;">当前余额</span>
             <div class="pos_a" style="width: 90%;height: 0.45rem; top:3.8rem;left: 5%;border-bottom: 0.01rem solid #E0E0E0;">
-            	<span style="font-family: '微软雅黑';font-size: 0.4rem;color: #333;">￥0.00</span>
+              <span id="money" style="font-family: '微软雅黑';font-size: 0.4rem;color: #333;">¥0.00</span>
             </div>
             
 		 <button  type="button" style="width: 90%;height: 0.9rem;background: #282828;border-radius: 0.05rem;text-align: center;top:5.5rem;left:5%;color: #FFF;" id="payPrice">预存违约金</button>
-		<div class="pos_a" style="width: 90%;height: auto;text-align: center;top:6.8rem;left:5%;color: #999;" id="returnPrice">退还违约预缴金 ></div>
+		<div class="pos_a" style="width: 90%;height: auto;text-align: center;top:6.8rem;left:5%;color: #999;" id="returnPrice">退还违约预缴金</div>
 		</div>
-		
-		
-		
-		
+
 		<!--弹窗-->
 		<div class="redire-checkbox tipsBox" style="display: none;">
 			<p class="redire-checkbox-span" style="font-size: 0.3rem;color: #333;">无可退款违约预缴金</p>
 			<p class="redire-checkbox-span" style="font-size: 0.24rem;margin-top: 0.2rem;">您的违约预缴金目前低于99元或等于0元，目前无法发起退还</p>
 		
-		 <button  type="button" id="canelBtn" style="width: 80%;height:0.8rem;color: #282828;border: 0.05rem solid #282828;border-radius: 0.05rem;position: relative;top:0.3rem;font-family: '微软雅黑';font-size: 0.28rem;">我知道了</div>
-		</button>
-		
-		
-		
-	</body>
+      <button  type="button" id="canelBtn" style="width: 80%;height:0.8rem;color: #282828;border: 0.05rem solid #282828;border-radius: 0.05rem;position: relative;top:0.3rem;font-family: '微软雅黑';font-size: 0.28rem;">我知道了</button>
+    </div>
+    <div class="redire-checkbox tipsBox1" style="display: none;">
+      <p class="redire-checkbox-span" style="font-size: 0.3rem;color: #333;">退款成功</p>
+      <p class="redire-checkbox-span" style="font-size: 0.24rem;margin-top: 0.2rem;">您的预交金将于5个工作日内退还，请耐心等待～</p>
+
+      <button  type="button" id="cancelBtn" style="width: 80%;height:0.8rem;color: #282828;border: 0.05rem solid #282828;border-radius: 0.05rem;position: relative;top:0.3rem;font-family: '微软雅黑';font-size: 0.28rem;">我知道了</button>
+    </div>
+  </body>
 	<script src="woa/js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="woa/js/util.js"></script>
 	<script type="text/javascript" src="woa/js/tooltipbox.js"></script>
@@ -85,36 +85,79 @@
 	<script src="woa/js/util.js"></script>
 
 	<script>
+    function getQueryString(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+      var q = window.location.pathname.substr(1).match(reg_rewrite);
+      if (r != null) {
+        return unescape(r[2]);
+      } else if (q != null) {
+        return unescape(q[2]);
+      } else {
+        return null;
+      }
+    }
+    var openid = getQueryString("openid");
+
+    var money = null;
+
+    userInfo();
+
+    function userInfo() {
+      dlc_request('user/info/get',
+        {openid: openid},
+        function(res) {
+          if (res.code == 2000) {
+            money = res.data.money;
+            if (isNull(money)) {
+              $("#money").html("¥0.00")
+            } else {
+              $("#money").html("¥" + money)
+            }
+          } else {
+            console.log(res.message)
+          }
+        }
+      )
+    }
+
 		$(function(){
-			
 			//预存预缴金
 			$("#payPrice").on("click",function(){
-				
+				window.location.href="/reservation/pocketpay?openid=" + openid;
+			})
 
-				window.location.href="/reservation/pocketpay"
-	
-			})
 			//退还预交金
+
 			$("#returnPrice").on("click",function(){
-				$(".tipsBox").show()
-				 showMask()
+			  showMask()
+        if (isNull(money) || money < 0.01) {
+          $(".tipsBox").show()
+        } else {
+          dlc_request('pay/refund',
+            {openid: openid},
+            function(res) {
+              if (res.code == 2000) {
+                $(".tipsBox1").show()
+              } else {
+                console.log(res.message)
+              }
+            }
+          )
+        }
 			})
-			
-			
 			//退款失败窗口
 			$("#canelBtn").on("click",function(){
-				
 				hideMask();
-				
 				$(".tipsBox").hide()
-				
-				
-				
 			})
-			
+      $("#cancelBtn").on("click",function(){
+        hideMask();
+        $(".tipsBox1").hide()
+        userInfo()
+      })
 		})
-		
-		
 		//返回上一次
 	</script>
 

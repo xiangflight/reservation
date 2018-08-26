@@ -24,6 +24,22 @@ public class MatchCondition {
 
     private int time;
 
-    private int district;
+    private int area;
 
+    public static MatchCondition newInstance() {
+        return new MatchCondition();
+    }
+
+    @Override
+    public String toString() {
+        return "MatchCondition{" +
+                "ageRange=" + ageRange +
+                ", heightRange=" + heightRange +
+                ", weightRange=" + weightRange +
+                ", education=" + education +
+                ", earn=" + earn +
+                ", time=" + time +
+                ", area=" + area +
+                '}';
+    }
 }

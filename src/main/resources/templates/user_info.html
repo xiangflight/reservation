@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>个人基本资料</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="woa/css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" href="woa/css/app.css" />
+		<link rel="stylesheet" href="woa/css/common.css">
+		<link rel="stylesheet" href="woa/css/main.css" />
+		<script type="text/javascript" src="woa/js/adaptive.js"></script>
+		<script>
+			window['adaptive'].desinWidth = 750;
+			window['adaptive'].baseFont = 28;
+			window['adaptive'].init();
+		</script>
+		<style>
+			.user_img {
+				width: 6.1rem;
+				height: 6.1rem;
+				position: relative;
+				margin: 0px auto;
+				border-radius: 0.1rem;
+			}
+			
+			.user_info {
+				width: 6.1rem;
+				height: auto;
+				position: relative;
+				position: relative;
+				margin: 0px auto;
+				line-height: 0.5rem;
+			}
+			
+			a {
+				text-decoration: underline;
+				color: #FE5939;
+			}
+			
+			.user_btn_left {
+				width: 2.8rem;
+				height: 0.8rem;
+				border-radius: 0.8rem;
+				text-align: center;
+				font-size: 0.28rem;
+				border: 0.01rem solid #FE5939;
+				color: #FE5939;
+				position: relative;
+				float: left;
+			}
+			
+			.user_btn_right {
+				width: 2.8rem;
+				height: 0.8rem;
+				border-radius: 0.8rem;
+				text-align: center;
+				font-size: 0.28rem;
+				background: #FE5939;
+				border: 0.01rem solid #FE5939;
+				color: #FFF;
+				position: relative;
+				float: right;
+			}
+			
+			.top_box {
+				width: 100%;
+				text-align: left;
+				line-height: 0.5rem;
+				font-size: 0.28rem;
+				color: #333;
+				font-weight: 600;
+				position: relative;
+			}
+			
+			.top_box p {
+				margin-left: 0.2rem;
+			}
+			
+			.address {
+				width: 0.24rem;
+				height: 0.29rem;
+				background: url(woa/img/dw.png) no-repeat;
+				background-size: 100% 100%;
+				position: relative;
+				float: left;
+				margin-right: 0.1rem;
+				top: 0.1rem
+			}
+			
+			.tipx_box {
+				background: #F5F5F5;
+				color: #333;
+				font-size: 0.28rem;
+				width: 2rem;
+				height: 0.6rem;
+				border-radius: 0.6rem;
+				position: relative;
+				float: left;
+				margin-right: 0.2rem;
+				margin-top: 0.2rem;
+			}
+			
+			.imgList-box img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.liaoBtn {
+				width: 100%;
+				height: 0.9rem;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				background: #f2f5fe;
+				text-align: center;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class="user_img" style="width: 100%;height:auto;">
+
+			<div id="slider" class="mui-slider" style="height: auto">
+				<div class="mui-slider-group mui-slider-loop">
+					<div class="mui-slider-item">
+						<a href="#" id="banner1">
+							<img src="" style="min-width: 100%;min-height:100%;">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="user_info bw " style="width: 100%; height: 1.5rem;font-size: 0.28rem;opacity: 0.8;">
+
+			<div class="pos_r top03">
+				<span class="pos_r fl ml20"><span class="nickName">白素</span><br/>
+					<p class="pos_r fl font14" style="color: #999;"><span class="yearOld">22</span>岁/<span class="height">165</span>cm/<span class="xingZuo">处女座</span>/<span class="work">金融</span></p>
+				</span>
+
+				<span class="pos_r fr mr20"><i class="address"></i>地址:可不能随便给滴~</span>
+			</div>
+		</div>
+		</div>
+
+		<div class="bw w100  pos_r mt20" style="height: auto;opacity: 0.8;">
+
+			<div style="width: 100%;height: auto;">
+				<p class="pos_r font14 plr24 top03" style="color: #333;">基础资料</p>
+
+				<div class="w100 h300 plr24 mt30">
+
+					<input type="button" id="tall" value="" class="tipx_box font14">
+					<input type="button" id="education" value="" class="tipx_box font14">
+					<input type="button" id="annual_income" value="" class="tipx_box font14">
+					<input type="button" id="profession" value="" class="tipx_box font14">
+					<input type="button" id="drink" value="" class="tipx_box font14">
+					<input type="button" id="smok" value="" class="tipx_box font14">
+					<input type="button" id="fitness" value="" class="tipx_box font14">
+
+				</div>
+
+			</div>
+		</div>
+
+	
+
+		</div>
+
+		<!--<div class="liaoBtn">
+			<span class="font14 pos_r top02" style="color: #e20000;"></span>
+
+		</div>-->
+
+	</body>
+
+	<script src="woa/js/jquery-1.8.3.min.js"></script>
+	<script src="woa/js/mui.js"></script>
+	<script src="woa/js/tooltipbox.js"></script>
+	<script type="text/javascript" src="woa/js/util.js"></script>
+	<script src="woa/js/user_api.js"></script>
+	<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+	<script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+	<script src="woa/js/jweixin-1.2.0.js"></script>
+
+	<script>
+    function getQueryString(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+      var q = window.location.pathname.substr(1).match(reg_rewrite);
+      if (r != null) {
+        return unescape(r[2]);
+      } else if (q != null) {
+        return unescape(q[2]);
+      } else {
+        return null;
+      }
+    }
+    var openid = getQueryString("openid");
+//		mui.init({
+//			swipeBack: false //启用右滑关闭功能
+//		});
+//		var slider = mui("#slider");
+//		slider.slider({
+//			interval: 5000
+//		});
+
+		//返回上一次
+
+		var url = window.location.href;
+		//获取URL的ID
+		var Request = new Object();
+		Request = GetRequest();
+		//设计套餐ID
+
+		var userId = Request['id'];
+		//经纬度全局坐标
+		var latitude = "";
+		var longitude = "";
+
+		$(function() {
+		  userInfos(openid);
+    })
+
+    function userInfos(id) {
+      dlc_request('user/info/get', {
+        openid: id
+      }, function(res) {
+        console.log(res)
+        if(res.code == 2000) {
+          latitude = res.data.latitude;
+          longitude = res.data.longitude;
+          $("#banner1 img").attr("src",res.data.avatar)
+          $(".nickName").html(res.data.nickname);
+          $(".yearOld").html(res.data.age);
+          $(".height").html(res.data.tall);
+          $("#tall").val(res.data.tall + "cm");
+          var constellation = res.data.constellation;
+          switch (constellation) {
+            case 1:
+              $(".xingZuo").html("射手座")
+              break;
+            case 2:
+              $(".xingZuo").html("摩羯座")
+              break;
+            case 3:
+              $(".xingZuo").html("水瓶座")
+              break;
+            case 4:
+              $(".xingZuo").html("双鱼座")
+              break;
+            case 5:
+              $(".xingZuo").html("白羊座")
+              break;
+            case 6:
+              $(".xingZuo").html("金牛座")
+              break;
+            case 7:
+              $(".xingZuo").html("双子座")
+              break;
+            case 8:
+              $(".xingZuo").html("巨蟹座")
+              break;
+            case 9:
+              $(".xingZuo").html("狮子座")
+              break;
+            case 10:
+              $(".xingZuo").html("处女座")
+              break;
+            case 11:
+              $(".xingZuo").html("天秤座")
+              break;
+            case 12:
+              $(".xingZuo").html("天蝎座")
+              break;
+          }
+          var occupation = res.data.occupation;
+          switch (occupation) {
+            case 1:
+              $(".work").html("国企")
+              $("#profession").val("国企")
+              break;
+            case 2:
+              $(".work").html("外企")
+              $("#profession").val("外企")
+              break;
+            case 3:
+              $(".work").html("公务员")
+              $("#profession").val("公务员")
+              break;
+            case 4:
+              $(".work").html("自由职业")
+              $("#profession").val("自由职业")
+            default:
+              break;
+          }
+          var education = res.data.education;
+          switch (education) {
+            case 1:
+              $("#education").val("初中及以下")
+              break;
+            case 2:
+              $("#education").val("高中")
+              break;
+            case 3:
+              $("#education").val("大专")
+              break;
+            case 4:
+              $("#education").val("本科")
+              break;
+            case 5:
+              $("#education").val("硕士")
+              break;
+            case 6:
+              $("#education").val("博士")
+              break;
+            default:
+              break;
+          }
+          var earn = res.data.earn;
+          switch (earn) {
+            case 1:
+              $("#annual_income").val("5万元以下")
+              break;
+            case 2:
+              $("#annual_income").val("5-10万元")
+              break;
+            case 3:
+              $("#annual_income").val("10-15万")
+              break;
+            case 4:
+              $("#annual_income").val("15-20万")
+              break;
+            case 5:
+              $("#annual_income").val("20-25万")
+              break;
+            case 6:
+              $("#annual_income").val("50万元以上")
+              break;
+            default:
+              break;
+          }
+          var drink = res.data.drink;
+          switch (drink) {
+            case 1:
+              $("#drink").val("喝酒")
+              break;
+            case 2:
+              $("#drink").val("偶尔喝酒")
+              break;
+            case 3:
+              $("#drink").val("不喝酒")
+              break;
+          }
+          var smoke = res.data.smoke;
+          switch (smoke) {
+            case 1:
+              $("#smok").val("经常抽烟")
+              break;
+            case 2:
+              $("#smok").val("偶尔抽烟")
+              break;
+            case 3:
+              $("#smok").val("从不抽烟")
+              break;
+            default:
+              break;
+          }
+          var fitness = res.data.fitness;
+          switch (fitness) {
+            case 1:
+              $("#fitness").val("每天健身")
+              break;
+            case 2:
+              $("#fitness").val("偶尔健身")
+              break;
+            case 3:
+              $("#fitness").val("从不健身")
+              break;
+            default:
+              break;
+          }
+        }
+      })
+
+    }
+	</script>
+	
+
+</html>

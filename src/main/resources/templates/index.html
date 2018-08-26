@@ -38,7 +38,6 @@
 </div>
 
 <div style="width: 100%;height: 0.9rem;position: relative;top:-0.9rem">
-
   <nav class="mui-bar mui-bar-tab mtc">
     <a class="mui-tab-item mui-active" href="#tabbar">
 
@@ -53,7 +52,6 @@
       <span class="mui-tab-label">发现</span>
     </a>
   </nav>
-
 </div>
 <div class="mui-content">
 
@@ -108,7 +106,7 @@
           </a>
         </li>
         <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-          <a href="/reservation/pocket">
+          <a href="#" id="guarantee">
             <span class="mui-icon mui-icon-search"></span>
             <div class="mui-media-body font14">守约金</div>
           </a>
@@ -136,7 +134,7 @@
     </div>
     <div class="index-box-clear"></div>
     <div class="index-box-bg-img" id="picOne">
-      <img src="woa/img/u2.jpg">
+      <img src="woa/img/nei_bg.jpg">
     </div>
     <div class="index-box-bottom-line"></div>
     <div class="index-box-bottom-lines">
@@ -377,6 +375,8 @@
     var isCity = "";
     var isDescribe = "";
     var myId = "";
+    var matched = 0;
+    var reservationId = 0;
     $(function () {
         wxUserInfo();
         createMarquee({
@@ -425,44 +425,10 @@
             if (res.code == 2000) {
                 $(".userName").html(res.data.nickname);
                 $(".userInfo-img").attr("src", res.data.image);
-
-//                 var pictureList = res.data.picture;
-//
-//                 var picOne = pictureList[0];
-// //										console.log(picOne,33333333)
-//                 $("#picOne img").attr("src", picOne);
-//                 var picTwo = pictureList[1];
-//                 $("#picTwo img").attr("src", picTwo);
-//                 //					//判断是否是会员
-//                 var isVip = res.data.type;
-//                 var id = res.data.user_id;
-//                 myId = id;
-//
-//                 var city = res.data.city;
-//                 isCity = city;
-//
-//                 console.log(res.data.city)
-//
-//                 var describe = res.data.describe;
-//                 isDescribe = describe;
-//
-//                 console.log(isVip, "会员类型");
-//
-//                 if (isVip == 1) {
-//                     //普通玩家
-//                     $("#vipLevel").hide();
-//                 } else if (isVip == 2) {
-//                     //会员玩家
-//                     $("#vipLevel").show();
-//                 }
-//                 //赋值全局-判断是否填写了个人资料
                 isApprove = res.data.addinfo
-                //					if(isApprove == 0) {
-                //						tooltipbox.show("请前往个人资料完善个人信息,才能体验到更多的功能")
-                //					}
-
+                matched = res.data.state
+                reservationId = res.data.reservationId
             }
-
         })
     }
 </script>
@@ -669,13 +635,6 @@
     };
     geolocation.getLocation(showPosition, showErr, options);
 
-    //		mui.init({
-    //			swipeBack: false //启用右滑关闭功能
-    //		});
-    //		var slider = mui("#slider");
-    //		slider.slider({
-    //			interval: 5000
-    //		});
     //前往活动中心
     $(".activePanel").on("click", function () {
 
@@ -687,13 +646,22 @@
 
     //前往匹配
     $("#goPipei").on("click", function () {
-        location.href = "/reservation/match1?openid=" + openid;
+        if (matched == 2) {
+          location.href = "/reservation/appointment?id=" + reservationId;
+        } else {
+          location.href = "/reservation/match?openid=" + openid + "&matched=" + matched;
+        }
     })
 
     //前往个人资料
     $("#goUserInfo").on("click", function () {
         location.href = "/reservation/personal?openid=" + openid;
     })
+
+    $("#guarantee").on("click", function() {
+      location.href = "/reservation/pocket?openid=" + openid
+    })
+
 </script>
 
 </html>

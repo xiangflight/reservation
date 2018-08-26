@@ -82,7 +82,7 @@
 
 		<div class="index-box-clear"></div>
 		<div class="index-box-bg-img">
-			<img src="woa/img/la1.jpg">
+			<img src="woa/img/nei_bg.jpg">
 		</div>
 	</body>
 </html>
@@ -173,6 +173,7 @@
         wechatId: weixin_code
 			}, function(res) {
 				if(res.code == 2000) {
+				  tooltipbox.show("保存成功，即将返回首页")
 					setTimeout(function(){
 						location.href = "/reservation/index?openid=" + openid
 					},1000)
@@ -214,16 +215,40 @@
       $("#xingz").attr("data-id", constellation)
       switch (constellation) {
         case 1:
-          $("#xingz").val("摩羯座")
+          $("#xingz").val("射手座")
           break;
         case 2:
-          $("#xingz").val("水瓶座")
+          $("#xingz").val("摩羯座")
           break;
         case 3:
-          $("#xingz").val("狮子座")
+          $("#xingz").val("水瓶座")
           break;
         case 4:
-          $("#xingz").val("射手座")
+          $("#xingz").val("双鱼座")
+          break;
+        case 5:
+          $("#xingz").val("白羊座")
+          break;
+        case 6:
+          $("#xingz").val("金牛座")
+          break;
+        case 7:
+          $("#xingz").val("双子座")
+          break;
+        case 8:
+          $("#xingz").val("巨蟹座")
+          break;
+        case 9:
+          $("#xingz").val("狮子座")
+          break;
+        case 10:
+          $("#xingz").val("处女座")
+          break;
+        case 11:
+          $("#xingz").val("天秤座")
+          break;
+        case 12:
+          $("#xingz").val("天蝎座")
           break;
       }
       var drink = res.data.drink
@@ -303,17 +328,42 @@
 	$("#xingz").on("click", function() {
 		picker.setData([{
 			value: "1",
-			text: "摩羯座"
+			text: "射手座"
 		}, {
 			value: "2",
-			text: "水瓶座"
+			text: "摩羯座"
 		}, {
 			value: "3",
-			text: "狮子座"
+			text: "水瓶座"
 		}, {
 			value: "4",
-			text: "射手座"
-		}])
+			text: "双鱼座"
+		}, {
+      value: "5",
+      text: "白羊座"
+		}, {
+      value: "6",
+      text: "金牛座"
+    }, {
+      value: "7",
+      text: "双子座"
+    }, {
+      value: "8",
+      text: "巨蟹座"
+    }, {
+      value: "9",
+      text: "狮子座"
+    }, {
+      value: "10",
+      text: "处女座"
+    }, {
+      value: "11",
+      text: "天秤座"
+    }, {
+      value: "12",
+      text: "天蝎座"
+    }
+		])
 
 		picker.show(function(SelectedItem) {
 			$("#xingz").val(SelectedItem[0].text)

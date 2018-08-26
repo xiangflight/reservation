@@ -25,7 +25,28 @@ public class MatchRequest {
 
     private Integer earn;
 
+    private Integer time;
+
+    private Integer area;
+
+    private Integer save;
+
     public static MatchRequest newInstance() {
         return new MatchRequest();
+    }
+
+    @Override
+    public String toString() {
+        return "MatchRequest{" +
+                "openid='" + openid + '\'' +
+                ", age=" + age +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", education=" + education +
+                ", earn=" + earn +
+                ", time=" + time +
+                ", area=" + area +
+                ", save=" + save +
+                '}';
     }
 }

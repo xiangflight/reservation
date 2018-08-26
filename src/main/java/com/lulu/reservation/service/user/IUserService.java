@@ -3,6 +3,7 @@ package com.lulu.reservation.service.user;
 import com.lulu.reservation.domain.request.BaseInfoRequest;
 import com.lulu.reservation.domain.request.LoginRequest;
 import com.lulu.reservation.domain.request.MoreInfoRequest;
+import com.lulu.reservation.domain.request.ReservationRequest;
 import com.lulu.reservation.domain.response.Resp;
 
 /**
@@ -42,5 +43,12 @@ public interface IUserService {
      * @return Resp
      */
     Resp moreInfo(MoreInfoRequest moreInfoRequest);
+
+    /**
+     * 获取用户约会信息
+     * @param reservationRequest 用户约会信息
+     * @return Resp
+     */
+    Resp reservationInfo(ReservationRequest reservationRequest);
 
 }

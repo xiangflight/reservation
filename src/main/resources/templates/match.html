@@ -42,6 +42,9 @@
 			.tipsBox{
 				display: none;
 			}
+      .tipsBox2{
+        display: none;
+      }
 			
 			
 		</style>
@@ -105,16 +108,23 @@
 
 		<div class="w100 h100 pos_r top03"></div>
 
-		<div class="index-box-clear"></div>
+		<div class="index-box-clear"></div>d
 		<div class="index-box-bg-img">
-			<img src="woa/img/u2.jpg">
+			<img src="woa/img/nei_bg.jpg">
 		</div>
 
 		<!--弹窗提示-->
 		<div class="redire-checkbox tipsBox">
-			<p class="redire-checkbox-span" style="font-size: 0.32rem;">你已成功参与匹配!</p>
-			<p class="redire-checkbox-span" style="font-size: 0.28rem;">请耐心等待匹配结果,结果将以通知的模式发送到给您~</p>
+			<p class="redire-checkbox-span title" style="font-size: 0.32rem;">正在匹配中</p>
+			<p class="redire-checkbox-span content" style="font-size: 0.28rem;">请耐心等待匹配结果,结果将以通知的模式发送到给您~</p>
 		</div>
+
+    <!--弹窗提示3-->
+    <div class="redire-checkbox tipsBox2">
+      <p class="redire-checkbox-span" style="font-size: 0.32rem;">为保证诚信约会请预交守约金，守约金可在约会完成后发起退还</p>
+      <p class="redire-checkbox-span goPay" style="font-size: 0.28rem;color: orange;top:10px">点击进行前往充值~</p>
+    </div>
+
   </body>
 </html>
 <script src="woa/js/jquery-1.8.3.min.js"></script>
@@ -143,6 +153,160 @@
     }
   }
   var openid = getQueryString("openid");
+  var matched = getQueryString("matched");
+  if (matched == 1) {
+    showMask();
+    $(".tipsBox").show()
+  }
+  var money = null;
+  userInfo();
+  function userInfo() {
+    dlc_request('user/info/get',
+      {openid: openid},
+      function(res) {
+        if (res.code == 2000) {
+					money = res.data.money;
+          var age = res.data.ageif;
+          $("#chooseYear").attr("data-id", age);
+          switch (age) {
+            case 1:
+              $("#chooseYear").val("18岁-20岁")
+              break;
+            case 2:
+              $("#chooseYear").val("20岁-23岁")
+              break;
+            case 3:
+              $("#chooseYear").val("23岁-25岁")
+              break;
+            case 4:
+              $("#chooseYear").val("25岁-28岁")
+              break;
+            case 5:
+              $("#chooseYear").val("28岁-30岁")
+              break;
+            case 6:
+              $("#chooseYear").val("30岁-35岁")
+              break;
+            case 7:
+              $("#chooseYear").val("35岁-40岁")
+              break;
+            default:
+              break;
+          }
+          var height = res.data.heightif;
+          $("#talls").attr("data-id", height)
+          switch (height) {
+            case 1:
+              $("#talls").val("140cm-150cm")
+              break;
+            case 2:
+              $("#talls").val("150cm-155cm")
+              break;
+            case 3:
+              $("#talls").val("155cm-160cm")
+              break;
+            case 4:
+              $("#talls").val("160cm-165cm")
+              break;
+            case 5:
+              $("#talls").val("165cm-170cm")
+              break;
+            case 6:
+              $("#talls").val("170cm-175cm")
+              break;
+            case 7:
+              $("#talls").val("175cm-180cm")
+              break;
+            case 8:
+              $("#talls").val("180cm-190cm")
+              break;
+            case 9:
+              $("#talls").val("190cm-200cm")
+              break;
+            default:
+              break;
+          }
+          var weight = res.data.weightif;
+          $("#chooseWeight").attr("data-id", weight)
+          switch (weight) {
+            case 1:
+              $("#chooseWeight").val("40kg-45kg")
+              break;
+            case 2:
+              $("#chooseWeight").val("45kg-50kg")
+              break;
+            case 3:
+              $("#chooseWeight").val("50kg-55kg")
+              break;
+            case 4:
+              $("#chooseWeight").val("55kg-60kg")
+              break;
+            case 5:
+              $("#chooseWeight").val("60kg-70kg")
+              break;
+            case 6:
+              $("#chooseWeight").val("70kg-80kg")
+              break;
+            case 7:
+              $("#chooseWeight").val("80kg-90kg")
+              break;
+            default:
+              break;
+          }
+          var education = res.data.educationif;
+          $("#chooseEducation").attr("data-id", education)
+          switch (education) {
+            case 1:
+              $("#chooseEducation").val("初中及以下")
+              break;
+            case 2:
+              $("#chooseEducation").val("高中")
+              break;
+            case 3:
+              $("#chooseEducation").val("大专")
+              break;
+            case 4:
+              $("#chooseEducation").val("本科")
+              break;
+            case 5:
+              $("#chooseEducation").val("硕士")
+              break;
+            case 6:
+              $("#chooseEducation").val("博士")
+              break;
+            default:
+              break;
+          }
+          var earn = res.data.earnif;
+          $("#chooseEarn").attr("data-id", earn)
+          switch (earn) {
+            case 1:
+              $("#chooseEarn").val("5万元以下")
+              break;
+            case 2:
+              $("#chooseEarn").val("5-10万元")
+              break;
+            case 3:
+              $("#chooseEarn").val("10-15万元")
+              break;
+            case 4:
+              $("#chooseEarn").val("15-20万元")
+              break;
+            case 5:
+              $("#chooseEarn").val("20-25万元")
+              break;
+            case 6:
+              $("#chooseEarn").val("50万元以上")
+              break;
+            default:
+              break;
+          }
+        } else {
+          console.log(res.message)
+        }
+      }
+    )
+  }
 
 	//开始匹配
 	$(".resh_next").on("click",function(){
@@ -151,6 +315,8 @@
     var weight = $("#chooseWeight").data("id");
     var education = $("#chooseEducation").data("id");
     var earn = $("#chooseEarn").data("id");
+    var time = $("#myTime").data("id");
+    var area = $("#chooseArea").data("id");
     if(isNull(age)) {
       tooltipbox.show("年龄范围未选择")
       return false;
@@ -171,71 +337,123 @@
       tooltipbox.show("年收入数未选择")
       return false;
     }
-    showMask();
-    dlc_request('user/match', {
-      openid: openid,
-      age: age,
-      height: height,
-      weight: weight,
-      education: education,
-      earn: earn
-    }, function(res) {
-      console.log(res.message);
-      if(res.code == 2000) {
-        $(".tipsBox").show()
-        showMask();
-      } else {
+    if(isNull(time)) {
+      tooltipbox.show("约会时间未选择")
+      return false;
+    }
+    if(isNull(area)) {
+      tooltipbox.show("约会区域未选择")
+      return false;
+    }
+    showMask()
+    if(isNull(money) || money < 0.01) {
+      dlc_request('user/match', {
+        openid: openid,
+        age: age,
+        height: height,
+        weight: weight,
+        education: education,
+        earn: earn,
+        time: time,
+        area: area,
+        save: 1
+      }, function(res) {
+        console.log(res)
+      })
+      $(".tipsBox2").show()
+      $(".tipsBox2").on("click", function() {
+        window.location.href = "/reservation/pocket?openid=" + openid;
+      })
+    } else {
+      $(".tipsBox").show()
+      dlc_request('user/match', {
+        openid: openid,
+        age: age,
+        height: height,
+        weight: weight,
+        education: education,
+        earn: earn,
+        time: time,
+        area: area,
+        save: 0
+      }, function(res) {
+        $(".tipsBox").hide()
         hideMask()
-        location.href = "/reservation/index?openid=" + openid
-      }
-    })
+        if(res.code == 2000) {
+          var id = res.data.id;
+          window.location.href = "/reservation/appointment?id=" + id;
+        } else {
+          tooltipbox.show("暂无符合条件的另一半!请重新选择条件进行匹配~")
+        }
+      })
+    }
 	})
 
 	var picker = new mui.PopPicker();
-	$("#goWay").on("click", function() {
-
-		window.location.href = "index_information_lasts.html"
-
-	})
-
-	$("#goAppointment").on("click", function() {
-
-		window.location.href = "appointment.html"
-
-	})
 
 	$("#chooseYear").on("click", function() {
 
 		picker.setData([{
 			value: "1",
-			text: "20岁-25岁"
+			text: "18岁-20岁"
 		}, {
 			value: "2",
-			text: "25岁-30岁"
+			text: "20岁-23岁"
 		}, {
 			value: "3",
-			text: "30岁-35岁"
+			text: "23岁-25岁"
 		}, {
 			value: "4",
-			text: "35岁-40岁"
-		}])
+			text: "25岁-28岁"
+		}, {
+      value: "5",
+      text: "28岁-30岁"
+    }, {
+      value: "6",
+      text: "30岁-35岁"
+    }, {
+      value: "4",
+      text: "35岁-40岁"
+    }
+		])
 
 		picker.show(function(SelectedItem) {
 			$("#chooseYear").val(SelectedItem[0].text)
       $("#chooseYear").attr("data-id", SelectedItem[0].value)
 		})
-
 	})
 
 	//身高
 	$("#talls").on("click", function() {
 		picker.setData([{
 			value: "1",
-			text: "165cm-170cm"
+			text: "140cm-150cm"
 		}, {
 			value: "2",
-			text: "170cm-175cm"
-		}])
+			text: "150cm-155cm"
+		}, {
+      value: "3",
+      text: "155cm-160cm"
+    }, {
+      value: "4",
+      text: "160cm-165cm"
+    }, {
+      value: "5",
+      text: "165cm-170cm"
+    }, {
+      value: "6",
+      text: "170cm-175cm"
+    }, {
+      value: "7",
+      text: "175cm-180cm"
+    }, {
+      value: "8",
+      text: "180cm-190cm"
+    }, {
+      value: "9",
+      text: "190cm-200cm"
+    }
+		])
 
 		picker.show(function(SelectedItem) {
 			$("#talls").val(SelectedItem[0].text)
@@ -248,11 +466,27 @@
 
 		picker.setData([{
 			value: "1",
-			text: "45kg-50kg"
+			text: "40kg-45kg"
 		}, {
 			value: "2",
-			text: "50kg-55kg"
-		}])
+			text: "45kg-50kg"
+		}, {
+      value: "3",
+      text: "50kg-55kg"
+    }, {
+      value: "4",
+      text: "55kg-60kg"
+    }, {
+      value: "5",
+      text: "60kg-70kg"
+    }, {
+      value: "6",
+      text: "70kg-80kg"
+    }, {
+      value: "7",
+      text: "80kg-90kg"
+    }
+		])
 
 		picker.show(function(SelectedItem) {
 			$("#chooseWeight").val(SelectedItem[0].text)
@@ -322,6 +556,9 @@
 	$("#myTime").on("click", function() {
 
 		picker.setData([{
+      value: "0",
+      text: "明天"
+    }, {
 			value: "1",
 			text: "10:00-11:00 AM"
 		}, {

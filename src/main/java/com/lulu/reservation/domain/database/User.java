@@ -3,6 +3,7 @@ package com.lulu.reservation.domain.database;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
@@ -90,7 +91,28 @@ public class User {
 
     private String wechatId;
 
+    /**
+     * 状态：0：未匹配 1：匹配中 2：匹配成功
+     */
     private Integer state;
+
+    private Integer time;
+
+    private Integer area;
+
+    private BigDecimal money;
+
+    private Integer ageif;
+
+    private Integer heightif;
+
+    private Integer weightif;
+
+    private Integer educationif;
+
+    private Integer earnif;
+
+    private Long reservationId;
 
     public static User newInstance() {
         return new User();
@@ -135,6 +157,15 @@ public class User {
                 ", hobby='" + hobby + '\'' +
                 ", wechatId='" + wechatId + '\'' +
                 ", state=" + state +
+                ", time=" + time +
+                ", area=" + area +
+                ", money=" + money +
+                ", ageif=" + ageif +
+                ", heightif=" + heightif +
+                ", weightif=" + weightif +
+                ", educationif=" + educationif +
+                ", earnif=" + earnif +
+                ", reservationId=" + reservationId +
                 '}';
     }
 }

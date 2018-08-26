@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>充值成功</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no,email=no,address=no" />
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="woa/css/common.css" />
+		<link rel="stylesheet" href="woa/css/main.css" />
+		<script type="text/javascript" src="woa/js/adaptive.js"></script>
+		<script>
+			window['adaptive'].desinWidth = 750;
+			window['adaptive'].baseFont = 28;
+			window['adaptive'].init();
+		</script>
+	</head>
+
+	<body>
+		<div class="br_box plr24 mt20">
+
+			<div class="pay_tps_box">
+				<!--<div class="pay_tps_icon_success">
+					<img src="../img/ic_chongzhichenggong.png" width="100%">
+				</div>-->
+				<p class="color5 pos_r top02 font17">充值成功</p>
+			</div>
+			<div class="lh90 colw flex bgc1 mt50 font16 border-r4 w80 pos_r mtc return_back" style="background: skyblue;">返回主页</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="woa/js/jquery-1.8.3.min.js" ></script>
+<script>
+  function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    var q = window.location.pathname.substr(1).match(reg_rewrite);
+    if (r != null) {
+      return unescape(r[2]);
+    } else if (q != null) {
+      return unescape(q[2]);
+    } else {
+      return null;
+    }
+  }
+  var openid = getQueryString("openid");
+
+	//返回数据页
+	$(".return_back").on("click",function(){
+		window.location.href="/reservation/index?openid=" + openid;
+	})
+</script>

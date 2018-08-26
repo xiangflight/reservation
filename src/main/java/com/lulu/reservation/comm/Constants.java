@@ -30,6 +30,8 @@ public class Constants {
 
     public static final String WX_MP_GET_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s";
 
+    public static final String WX_MP_PAY_URL = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+
     public static final String SERVICE_ACCESS_URL_PREFIX = "http://zynei.com/reservation/";
 
     public static final String URL_LOGIN = "http://zynei.com/reservation/login";
@@ -41,6 +43,18 @@ public class Constants {
     public static final String UPLOAD_FILE_DIR = "/home/dev/tomcat/webapps/file/";
 
     public static final String AVATAR_PREFIX = "http://zynei.com/file/";
+
+    public static final String MESSAGE_TEMPLATE_ID = "VsI141n6N9Dsb2VhX0Fa_u9Q0nqt8KmcU-l1s18WV_0";
+
+    public static final String MESSAGE_TEMPLATE_FAILURE = "s4q3aZklDL-ncYaEip0dgv9vfrvWfBQU5vjl55WzffA";
+
+    public static final String FIRST_MESSAGE_LINE = "您的约会匹配已成功，请按时前往，迟到将扣除守约金。";
+
+    public static final String FIRST_MESSAGE_LINE_FAILURE = "亲爱的，非常抱歉您本次匹配未成功";
+
+    public static final String REMARK_MESSAGE_LINE = "点击查看匹配详情，如有疑问请联系客服。";
+
+    public static final String REMARK_MESSAGE_LINE_FAILURE = "条件放宽一点，更容易匹配到缘分哟～";
 
     /**
      * 短信类型

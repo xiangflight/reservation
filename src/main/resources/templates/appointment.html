@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>约会通知详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="woa/css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" href="woa/css/app.css" />
+		<link rel="stylesheet" href="woa/css/common.css">
+		<link rel="stylesheet" href="woa/css/main.css" />
+		<script type="text/javascript" src="woa/js/adaptive.js"></script>
+		<script>
+			window['adaptive'].desinWidth = 750;
+			window['adaptive'].baseFont = 28;
+			window['adaptive'].init();
+		</script>
+	</head>
+
+	<body >
+		
+		
+		<div style="width: 90%;height: 6rem;background: #FFF;border-radius: 0.1rem;position: relative;margin: 0px auto;top:1rem">
+            
+            <div style="position: relative;width: 1.2rem;height: 1.2rem;margin: 0px auto;border-radius: 100%;top:-0.5rem">
+            	<img src="woa/img/u00.jpg" id="avatar" style="width: 100%;height: 100%;border-radius: 100%;">
+            </div>
+            
+            <div style="width: 100%;height: 3.5rem;line-height: 0.5rem;padding-left: 0.2rem;color: #232323;">
+            	<p class="font17">你们的匹配度</p>
+            	<p class="font15">100%</p>
+            	<p class="font15">约会详情</p>
+            	<p class="font15">约会类型:条件匹配</p>
+            	<p class="font15" id="time">约会时间:2010-08-18 15:00</p>
+            	<p class="font15" id="location">约会地点:XXXXXXXXXXXXX</p>
+            	<p class="font15">温馨提示:约会开始后30分钟自动完成约会，请准时到达，迟到将扣除约会金补偿对方</p>
+  
+	        </div>
+	
+		</div>
+		
+		 <!--<div style="width: 60%;height: 0.9rem;background: #2DC3E8;border: 0.01rem solid #2DC3E8; position: absolute;left: 20%;top:7.5rem;border-radius: 0.9rem;text-align: center;">-->
+		 	<!--<span class="font15" style="color: #FFF;position: relative;top:0.24rem">不满意,强制重新匹配</span>-->
+		 <!--</div>-->
+		
+		<div style="width: 60%;height: 0.9rem; border: 0.01rem solid #2DC3E8; background: #FFF;position: absolute;left: 20%;top:9rem;border-radius: 0.9rem;text-align: center;">
+			<span class="font15" style="color: #FFF;position: relative;top:0.24rem;color: #2DC3E8;"><a href="tel:16675573713">对方未到,申请客服帮助</a></span>
+		 </div>
+		
+		<div style="width: 100%;height: 0.9rem; position: absolute;top:10rem;text-align: center;">
+		 	<span style="color: #aaa;" class="font12">请于超过约定时间10分钟时申请客服帮助</span>
+		 </div>
+		
+		
+		
+		
+	</body>
+	<script type="text/javascript" src="woa/js/jquery-1.8.3.min.js"></script>
+	<script src="woa/js/mui.js"></script>
+	<script src="woa/js/util.js"></script>
+	<script>
+    function getQueryString(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+      var q = window.location.pathname.substr(1).match(reg_rewrite);
+      if (r != null) {
+        return unescape(r[2]);
+      } else if (q != null) {
+        return unescape(q[2]);
+      } else {
+        return null;
+      }
+    }
+    var id = getQueryString("id");
+
+    reservationInfo();
+
+    function reservationInfo() {
+      dlc_request('user/get/info/reservation',
+        {id: id},
+        function(res) {
+          console.log(res)
+          if (res.code == 2000) {
+            $("#avatar").attr("src", res.data.image);
+            $("#time").html("约会时间：" + res.data.time)
+            $("#location").html("约会地点：" + res.data.location)
+            $("#avatar").on("click", function() {
+              window.location.href = "/reservation/userinfo?openid=" + res.data.openid;
+            })
+          } else {
+            console.log(res.message)
+          }
+        }
+      )
+    }
+
+
+	</script>
+
+</html>

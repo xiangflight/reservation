@@ -29,7 +29,7 @@ public class RequestLogAspect {
 
     private static final String UNKNOWN_STRING = "unknown";
 
-    @Pointcut("execution(public * com.lulu.reservation.web.*.*(..))")
+    @Pointcut("execution(public * com.lulu.reservation.web.*.*(..)) && !execution(public * com.lulu.reservation.web.ScheduleController.*(..))")
     public void appRequestLog() {}
 
     @Before("appRequestLog()")

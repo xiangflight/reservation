@@ -21,4 +21,8 @@ public class WechatParameter {
     private String id;
 
     private String secret;
+
+    private String mchid;
+
+    private String key;
 }

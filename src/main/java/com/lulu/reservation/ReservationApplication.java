@@ -7,6 +7,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author 赵翔 xiangflight@foxmail.com
@@ -16,6 +18,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  *     Spring boot工程启动类
  */
 @SpringBootApplication
+@EnableScheduling
 public class ReservationApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
